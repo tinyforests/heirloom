@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heirloom — Things worth keeping.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green:#3d4535;--beige:#fff0dc;--green-dark:#252c1e;--amber:#c8913a;
+  --card-bg:#f2e4c8;--warm:#e8d5b0;
+  --border:rgba(61,69,53,0.13);--border-mid:rgba(61,69,53,0.22);--border-strong:rgba(61,69,53,0.32);
+  --bg:var(--beige);--fg:var(--green);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+[data-theme="dark"]{
+  --bg:var(--green-dark);--fg:var(--beige);
+  --card-bg:#2e3426;--warm:#353c28;
+  --border:rgba(255,240,220,0.1);--border-mid:rgba(255,240,220,0.18);--border-strong:rgba(255,240,220,0.28);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'IBM Plex Sans',sans-serif;
+  background:var(--bg);color:var(--fg);
+  line-height:1.6;overflow-x:hidden;
+  transition:background 0.4s,color 0.4s;
+}
+/* Paper grain overlay */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:var(--grain);
+  opacity:0.028;pointer-events:none;z-index:9999;
+  mix-blend-mode:multiply;
+}
+[data-theme="dark"] body::after{mix-blend-mode:screen;opacity:0.018;}
+h1,h2,h3,.serif{font-family:'Abril Fatface',serif;font-weight:400;line-height:1.06;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.5rem 3rem;
+}
+.brand{text-decoration:none;display:flex;flex-direction:column;gap:2px;}
+.brand-name{font-family:'Abril Fatface',serif;font-size:1.1rem;color:var(--fg);line-height:1;}
+.brand-sub{font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:var(--fg);opacity:0.35;}
+.nav-r{display:flex;align-items:center;gap:2.5rem;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:10px;letter-spacing:0.13em;text-transform:uppercase;color:var(--fg);text-decoration:none;opacity:0.45;transition:opacity 0.2s;}
+.nav-links a:hover{opacity:1;}
+.theme-btn{background:none;border:1px solid var(--border-strong);color:var(--fg);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;padding:5px 13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:all 0.2s;}
+.theme-btn:hover{background:var(--fg);color:var(--bg);}
+
+/* ── HERO ── */
+.hero{
+  height:100vh;min-height:620px;position:relative;
+  display:flex;align-items:flex-end;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(152deg,#4a5240 0%,#3d4535 38%,#252c1e 100%);
+}
+/* Aged paper texture over hero */
+.hero-age{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(200,145,58,0.08) 0%,transparent 70%),
+             radial-gradient(ellipse 40% 50% at 10% 80%,rgba(255,240,220,0.04) 0%,transparent 60%);
+}
+.hero-drawing{
+  position:absolute;right:3%;top:50%;
+  transform:translateY(-50%);
+  width:40%;max-width:540px;
+  opacity:0.09;pointer-events:none;
+}
+/* Faded vintage border frame */
+.hero-frame{
+  position:absolute;inset:2.5rem;
+  border:1px solid rgba(255,240,220,0.1);
+  pointer-events:none;
+}
+.hero-frame::before{
+  content:'';position:absolute;inset:6px;
+  border:1px solid rgba(255,240,220,0.05);
+}
+.hero-content{
+  position:relative;z-index:10;
+  padding:0 3rem 5rem;max-width:680px;
+}
+.hero-imprint{
+  font-size:8px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--beige);opacity:0.32;margin-bottom:2rem;
+}
+.hero-wordmark{
+  font-family:'Abril Fatface',serif;
+  font-size:clamp(5rem,12vw,11rem);
+  color:var(--beige);line-height:0.88;
+  letter-spacing:-0.025em;
+  opacity:0;animation:fadeUp 1.2s cubic-bezier(0.22,1,0.36,1) forwards 0.2s;
+  margin-bottom:1.8rem;
+}
+.hero-tagline{
+  font-size:clamp(0.95rem,1.5vw,1.1rem);font-weight:300;font-style:italic;
+  color:var(--beige);opacity:0;line-height:1.7;max-width:420px;
+  animation:fadeUp 1.2s cubic-bezier(0.22,1,0.36,1) forwards 0.5s;
+}
+.hero-scroll{
+  position:absolute;bottom:2.5rem;right:3rem;z-index:10;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  opacity:0;animation:fadeIn 1s ease forwards 1.6s;
+}
+.scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,transparent,rgba(255,240,220,0.38));}
+.hero-scroll span{font-size:7px;letter-spacing:0.24em;text-transform:uppercase;color:var(--beige);opacity:0.3;writing-mode:vertical-lr;}
+
+/* ── INTRO BAND ── */
+.intro-band{
+  padding:3.5rem 3rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:baseline;justify-content:space-between;gap:4rem;
+}
+.intro-large{
+  font-family:'Abril Fatface',serif;
+  font-size:clamp(1.3rem,2.2vw,1.9rem);font-weight:400;
+  max-width:500px;line-height:1.25;opacity:0.85;
+}
+.intro-small{
+  font-size:0.85rem;font-weight:300;font-style:italic;
+  max-width:300px;line-height:1.9;opacity:0.5;flex-shrink:0;
+}
+
+/* ── FILTER BAR ── */
+.filter-bar{
+  padding:1.3rem 3rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;
+  position:sticky;top:0;z-index:150;
+  background:var(--bg);transition:background 0.4s;
+}
+.f-lbl{font-size:8px;letter-spacing:0.22em;text-transform:uppercase;opacity:0.3;margin-right:1.8rem;flex-shrink:0;}
+.pills{display:flex;flex-wrap:wrap;gap:0;}
+.pill{
+  font-size:9px;letter-spacing:0.1em;padding:5px 16px;
+  border:1px solid var(--border);border-left:none;
+  background:none;color:var(--fg);cursor:pointer;
+  font-family:'IBM Plex Sans',sans-serif;transition:all 0.18s;opacity:0.5;
+}
+.pill:first-child{border-left:1px solid var(--border);}
+.pill.on,.pill:hover{background:var(--fg);color:var(--bg);opacity:1;}
+.f-count{margin-left:auto;font-size:9px;opacity:0.28;}
+
+/* ── SECTION CHROME ── */
+.s-head{padding:4rem 3rem 1.8rem;}
+.eyebrow{display:block;font-size:8px;letter-spacing:0.26em;text-transform:uppercase;opacity:0.32;margin-bottom:0.8rem;}
+.s-title{font-size:clamp(1.8rem,3.5vw,3rem);}
+
+/* ── OBJECT GRID ── */
+.grid{padding:0 3rem 0;display:grid;grid-template-columns:repeat(12,1fr);gap:3px;margin-bottom:0;}
+.card{position:relative;overflow:hidden;cursor:pointer;background:var(--card-bg);transition:opacity 0.35s;}
+
+/* grid spans */
+.card:nth-child(1){grid-column:span 5;grid-row:span 2;}
+.card:nth-child(2){grid-column:span 7;}
+.card:nth-child(3){grid-column:span 4;}
+.card:nth-child(4){grid-column:span 3;}
+.card:nth-child(5){grid-column:span 5;}
+.card:nth-child(6){grid-column:span 8;}
+.card:nth-child(7){grid-column:span 4;}
+.card:nth-child(8){grid-column:span 7;}
+.card:nth-child(9){grid-column:span 5;}
+
+/* placeholder canvases */
+.ph{width:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;aspect-ratio:4/5;}
+.card:nth-child(1) .ph{aspect-ratio:2/3;min-height:400px;}
+.card:nth-child(2) .ph{aspect-ratio:16/9;}
+.card:nth-child(5) .ph{aspect-ratio:5/4;}
+.card:nth-child(6) .ph{aspect-ratio:16/7;}
+.card:nth-child(8) .ph{aspect-ratio:16/9;}
+
+.ph-svg{position:absolute;inset:0;width:100%;height:100%;transition:transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);}
+.card:hover .ph-svg{transform:scale(1.04);}
+
+/* placeholder tones — slightly more amber/warm for aged objects */
+.card:nth-child(1) .ph{background:#404c38;}
+.card:nth-child(2) .ph{background:#3d4535;}
+.card:nth-child(3) .ph{background:#4e4430;}
+.card:nth-child(4) .ph{background:#3a4830;}
+.card:nth-child(5) .ph{background:#4c3c28;}
+.card:nth-child(6) .ph{background:#384030;}
+.card:nth-child(7) .ph{background:#46402e;}
+.card:nth-child(8) .ph{background:#3c4838;}
+.card:nth-child(9) .ph{background:#504030;}
+
+/* "already carrying time" warm overlay on archive cards */
+.card[data-aged="true"] .ph::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(200,145,58,0.18) 0%,rgba(160,100,20,0.1) 100%);
+  mix-blend-mode:screen;pointer-events:none;
+}
+
+/* era stamp — bottom-left provenance note */
+.era{
+  position:absolute;bottom:1rem;left:1.2rem;z-index:4;
+  font-size:7px;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,240,220,0.42);
+  font-style:italic;
+}
+/* status badge */
+.badge{
+  position:absolute;top:0.9rem;right:0.9rem;z-index:4;
+  font-size:7px;letter-spacing:0.18em;text-transform:uppercase;
+  padding:3px 9px;
+  border:1px solid rgba(255,240,220,0.3);
+  color:rgba(255,240,220,0.65);
+  background:rgba(22,26,16,0.42);
+  backdrop-filter:blur(6px);
+}
+.badge.ltd{border-color:rgba(200,145,58,0.5);color:rgba(220,165,60,0.9);}
+.badge.arc{opacity:0.4;}
+/* card foot */
+.card-ft{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:3.5rem 1.3rem 1.3rem;
+  background:linear-gradient(to top,rgba(18,22,14,0.78) 0%,transparent 100%);
+}
+.card-name{font-family:'Abril Fatface',serif;font-size:1.05rem;font-weight:400;color:var(--beige);line-height:1.15;margin-bottom:2px;}
+.card-mat{font-size:8px;letter-spacing:0.15em;text-transform:uppercase;color:var(--beige);opacity:0.48;}
+/* hover reveal */
+.card-rev{
+  position:absolute;inset:0;z-index:5;
+  background:rgba(18,22,12,0.8);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:2rem;opacity:0;transition:opacity 0.25s;
+}
+.card:hover .card-rev{opacity:1;}
+.card-rev p{font-size:0.85rem;font-style:italic;font-weight:300;color:var(--beige);text-align:center;line-height:1.8;max-width:220px;}
+.card-rev-arr{margin-top:1.2rem;font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:var(--beige);opacity:0.38;}
+
+/* ── TIME AS MATERIAL ── */
+/* The emotional centrepiece. Dark inverted section. */
+.time-section{
+  background:var(--fg);color:var(--bg);
+  margin-top:3px;
+}
+.time-epigraph{
+  padding:5rem 3rem 3rem;
+  border-bottom:1px solid rgba(255,240,220,0.1);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:4rem;
+}
+.time-epigraph-left{
+  font-family:'Abril Fatface',serif;
+  font-size:clamp(2.5rem,5vw,4.5rem);
+  font-weight:400;line-height:1.04;
+  max-width:520px;color:var(--bg);
+  flex-shrink:0;
+}
+.time-epigraph-right{
+  padding-top:0.5rem;
+  font-size:0.85rem;font-weight:300;font-style:italic;
+  line-height:1.95;opacity:0.5;color:var(--bg);
+  max-width:340px;
+}
+/* Three-panel manifesto */
+.time-panels{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(255,240,220,0.08);
+}
+.time-panel{
+  padding:3.5rem 2.5rem;
+  border-right:1px solid rgba(255,240,220,0.08);
+}
+.time-panel:last-child{border-right:none;}
+.time-panel-label{
+  font-size:8px;letter-spacing:0.26em;text-transform:uppercase;
+  opacity:0.28;color:var(--bg);margin-bottom:1.5rem;display:block;
+}
+.time-panel-title{
+  font-family:'Abril Fatface',serif;
+  font-size:1.45rem;font-weight:400;
+  line-height:1.18;color:var(--bg);
+  margin-bottom:1.2rem;
+}
+.time-panel-body{
+  font-size:0.88rem;font-weight:300;line-height:1.9;
+  opacity:0.6;color:var(--bg);
+}
+.time-panel-body p{margin-bottom:0.8rem;}
+.time-panel-body p:last-child{margin-bottom:0;}
+/* Pull quote bar */
+.time-pull{
+  padding:4rem 3rem;
+  border-top:1px solid rgba(255,240,220,0.08);
+  display:flex;align-items:center;justify-content:center;
+}
+.time-pull blockquote{
+  font-family:'Abril Fatface',serif;
+  font-size:clamp(1.6rem,3.5vw,2.8rem);
+  font-weight:400;line-height:1.2;
+  color:var(--bg);opacity:0.55;
+  text-align:center;max-width:780px;
+}
+
+/* ── PHILOSOPHY ── */
+.philosophy{
+  padding:7rem 3rem;border-top:1px solid var(--border);
+  display:grid;grid-template-columns:5fr 7fr;gap:6rem;
+}
+.phil-l h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.08;}
+.phil-r{display:flex;flex-direction:column;gap:1.4rem;padding-top:0.3rem;}
+.phil-r p{font-size:0.9rem;font-weight:300;line-height:1.95;opacity:0.7;padding-left:1.4rem;border-left:1px solid var(--border-strong);}
+.phil-pull{
+  font-family:'Abril Fatface',serif;font-size:1.35rem;
+  font-weight:400;line-height:1.3;opacity:0.45;
+  padding-left:1.4rem;border-left:2px solid var(--fg);
+  margin:0.5rem 0;
+}
+
+/* ── COLLECTIONS ── */
+.collections{padding:0 3rem 7rem;border-top:1px solid var(--border);}
+.col-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:3rem;}
+.col-card{cursor:pointer;}
+.col-img{aspect-ratio:3/4;position:relative;overflow:hidden;transition:opacity 0.25s;}
+.col-card:nth-child(2) .col-img{margin-top:3.5rem;}
+.col-card:nth-child(4) .col-img{margin-top:5.5rem;}
+.col-card:hover .col-img{opacity:0.82;}
+.col-card:nth-child(1) .col-img{background:#3d4535;}
+.col-card:nth-child(2) .col-img{background:#4a3f2c;}
+.col-card:nth-child(3) .col-img{background:#384530;}
+.col-card:nth-child(4) .col-img{background:#4c3c28;}
+.col-svg{position:absolute;inset:0;width:100%;height:100%;opacity:0.18;}
+.col-lbl{padding:1rem 0 0;}
+.col-name{font-family:'Abril Fatface',serif;font-size:1rem;font-weight:400;}
+.col-desc{font-size:0.77rem;opacity:0.42;font-style:italic;font-weight:300;margin-top:3px;}
+
+/* ── STUDIO BAND ── */
+.studio-band{
+  padding:5rem 3rem;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:4rem;
+}
+.studio-t h3{font-size:clamp(1.3rem,2.3vw,2rem);margin-bottom:0.6rem;}
+.studio-t p{font-size:0.86rem;opacity:0.48;font-style:italic;font-weight:300;max-width:380px;line-height:1.75;}
+.studio-link{
+  flex-shrink:0;text-decoration:none;color:var(--fg);
+  font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  display:flex;align-items:center;gap:0.8rem;
+  border-bottom:1px solid var(--border-strong);padding-bottom:3px;
+  transition:gap 0.2s;
+}
+.studio-link:hover{gap:1.4rem;}
+
+/* ── FOOTER ── */
+footer{
+  padding:2.5rem 3rem;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.foot-brand{display:flex;flex-direction:column;gap:3px;}
+.foot-name{font-family:'Abril Fatface',serif;font-size:0.95rem;font-weight:400;opacity:0.65;}
+.foot-by{font-size:7px;letter-spacing:0.2em;text-transform:uppercase;opacity:0.28;}
+footer nav{display:flex;gap:2rem;}
+footer nav a{font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:var(--fg);text-decoration:none;opacity:0.28;transition:opacity 0.2s;}
+footer nav a:hover{opacity:0.7;}
+
+/* ── DETAIL PAGES ── */
+.detail{display:none;}
+.detail.on{display:block;}
+.d-hero{height:88vh;min-height:520px;position:relative;display:flex;align-items:flex-end;overflow:hidden;}
+.d-hero-age{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 40%,rgba(200,145,58,0.1) 0%,transparent 65%);}
+.d-hero-c{position:relative;z-index:5;padding:3.5rem 3rem;width:100%;display:flex;justify-content:space-between;align-items:flex-end;}
+.d-hero-l .d-ey{font-size:8px;letter-spacing:0.24em;text-transform:uppercase;color:var(--beige);opacity:0.35;margin-bottom:0.9rem;display:block;}
+.d-hero-l h1{font-size:clamp(2.6rem,5.5vw,5rem);color:var(--beige);}
+.d-hero-r{text-align:right;color:var(--beige);}
+.d-hero-r .d-slbl{font-size:8px;letter-spacing:0.2em;text-transform:uppercase;opacity:0.35;margin-bottom:4px;}
+.d-hero-r .d-sval{font-size:0.95rem;font-weight:300;opacity:0.85;}
+
+/* provenance timeline */
+.d-provenance{
+  padding:2.5rem 3rem;
+  background:var(--warm);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:stretch;gap:0;
+  overflow:hidden;
+}
+.d-prov-item{
+  flex:1;padding:0 2rem;
+  border-right:1px solid var(--border-mid);
+  display:flex;flex-direction:column;gap:4px;
+}
+.d-prov-item:first-child{padding-left:0;}
+.d-prov-item:last-child{border-right:none;}
+.d-prov-lbl{font-size:7px;letter-spacing:0.24em;text-transform:uppercase;opacity:0.35;}
+.d-prov-val{font-family:'Abril Fatface',serif;font-size:1.35rem;font-weight:400;line-height:1.1;opacity:0.75;}
+.d-prov-note{font-size:0.78rem;font-style:italic;font-weight:300;opacity:0.5;line-height:1.5;}
+
+.d-body{display:grid;grid-template-columns:1fr 360px;padding:5rem 3rem;gap:0;max-width:1280px;}
+.d-desc{padding-right:4.5rem;border-right:1px solid var(--border);}
+.d-desc p{font-size:1.02rem;font-weight:300;font-style:italic;line-height:1.95;opacity:0.75;margin-bottom:1.7rem;}
+.d-specs{padding-left:3rem;}
+.d-spec{display:flex;justify-content:space-between;align-items:baseline;padding:0.8rem 0;border-bottom:1px solid var(--border);}
+.d-spec:last-child{border:none;}
+.d-slbl{font-size:8px;letter-spacing:0.18em;text-transform:uppercase;opacity:0.35;}
+.d-sval{font-size:0.86rem;text-align:right;max-width:200px;line-height:1.5;}
+
+/* "In the garden" role panel — same dark inversion as Time section */
+.d-role{background:var(--fg);color:var(--bg);padding:4.5rem 3rem;}
+.d-role h3{font-size:1.6rem;opacity:0.6;margin-bottom:2.5rem;color:var(--bg);}
+.d-role-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;}
+.d-ri{padding:1.8rem 1.3rem;background:rgba(255,240,220,0.04);}
+.d-ri-mark{font-size:1.1rem;opacity:0.4;margin-bottom:0.5rem;}
+.d-ri-lbl{font-size:7px;letter-spacing:0.18em;text-transform:uppercase;opacity:0.35;color:var(--bg);margin-bottom:0.4rem;}
+.d-ri-txt{font-size:0.8rem;font-style:italic;font-weight:300;opacity:0.58;line-height:1.65;color:var(--bg);}
+
+.d-buy{padding:3.5rem 3rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.d-price{font-family:'Abril Fatface',serif;font-size:2.3rem;font-weight:400;}
+.d-pnote{font-size:0.77rem;opacity:0.35;font-style:italic;margin-top:3px;}
+.btn-enq{font-family:'IBM Plex Sans',sans-serif;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;padding:0.9rem 2rem;background:var(--fg);color:var(--bg);border:none;cursor:pointer;transition:opacity 0.2s;}
+.btn-enq:hover{opacity:0.72;}
+
+.back{
+  position:fixed;top:1.3rem;left:3rem;z-index:300;
+  font-size:8px;letter-spacing:0.18em;text-transform:uppercase;
+  background:none;border:1px solid rgba(255,240,220,0.32);
+  color:var(--beige);padding:6px 14px;cursor:pointer;
+  font-family:'IBM Plex Sans',sans-serif;transition:all 0.2s;display:none;
+}
+.back.on{display:block;}
+.back:hover{background:var(--beige);color:var(--green);}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.9s ease,transform 0.9s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+</style>
+</head>
+<body>
+
+<button class="back" id="backBtn" onclick="goHome()">← Heirloom</button>
+
+<nav id="nav">
+  <a href="#" class="brand" onclick="goHome();return false;">
+    <span class="brand-name">Heirloom</span>
+    <span class="brand-sub">by Gardener &amp; Son</span>
+  </a>
+  <div class="nav-r">
+    <ul class="nav-links">
+      <li><a href="#index">Index</a></li>
+      <li><a href="#time">On Objects</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#studio">Studio</a></li>
+    </ul>
+    <button class="theme-btn" onclick="toggleTheme()">◐ Theme</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════ HOMEPAGE ════════════════════════ -->
+<div id="homepage">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-age"></div>
+  <div class="hero-frame"></div>
+
+  <!-- Large vessel illustration -->
+  <svg class="hero-drawing" viewBox="0 0 440 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M145 660 C122 570 100 440 122 310 C144 180 185 125 220 110 C255 125 296 180 318 310 C340 440 318 570 295 660" stroke="#fff0dc" stroke-width="1.5" fill="none"/>
+    <ellipse cx="220" cy="660" rx="150" ry="24" stroke="#fff0dc" stroke-width="1.2"/>
+    <ellipse cx="220" cy="110" rx="75" ry="12" stroke="#fff0dc" stroke-width="1"/>
+    <path d="M148 410 C124 388 110 348 132 324 C154 300 200 316 220 348" stroke="#fff0dc" stroke-width="0.8" fill="none" opacity="0.7"/>
+    <path d="M292 410 C316 388 330 348 308 324 C286 300 240 316 220 348" stroke="#fff0dc" stroke-width="0.8" fill="none" opacity="0.7"/>
+    <ellipse cx="220" cy="420" rx="95" ry="22" stroke="#fff0dc" stroke-width="0.5" opacity="0.3"/>
+    <ellipse cx="220" cy="510" rx="108" ry="20" stroke="#fff0dc" stroke-width="0.5" opacity="0.25"/>
+    <!-- cracks — aged detail -->
+    <path d="M185 300 C182 290 180 278 185 270" stroke="#fff0dc" stroke-width="0.4" opacity="0.3" fill="none"/>
+    <path d="M185 270 C188 263 184 255 188 248" stroke="#fff0dc" stroke-width="0.3" opacity="0.2" fill="none"/>
+    <line x1="220" y1="110" x2="220" y2="660" stroke="#fff0dc" stroke-width="0.35" opacity="0.2"/>
+    <!-- rim hairline -->
+    <ellipse cx="220" cy="240" rx="98" ry="11" stroke="#fff0dc" stroke-width="0.5" opacity="0.2"/>
+  </svg>
+
+  <div class="hero-content">
+    <p class="hero-imprint">A Gardener &amp; Son Imprint — Est. 2025</p>
+    <h1 class="hero-wordmark">Heir&shy;loom.</h1>
+    <p class="hero-tagline">Things worth keeping. Objects for the garden, the table outside, and the life lived around them.</p>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Index</span></div>
+</section>
+
+<!-- INTRO BAND -->
+<div class="intro-band reveal">
+  <p class="intro-large">Objects that reward attention — tools and forms meant to be used, worn in, repaired, and kept.</p>
+  <p class="intro-small">If something is too precious to be used, it does not belong here.</p>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar" id="index">
+  <span class="f-lbl">Filter</span>
+  <div class="pills">
+    <button class="pill on" onclick="doFilter('all',this)">All</button>
+    <button class="pill" onclick="doFilter('water',this)">Water</button>
+    <button class="pill" onclick="doFilter('vessel',this)">Vessel</button>
+    <button class="pill" onclick="doFilter('tool',this)">Tool</button>
+    <button class="pill" onclick="doFilter('seating',this)">Seating</button>
+    <button class="pill" onclick="doFilter('stone',this)">Stone</button>
+    <button class="pill" onclick="doFilter('terracotta',this)">Terracotta</button>
+    <button class="pill" onclick="doFilter('timber',this)">Timber</button>
+    <button class="pill" onclick="doFilter('aged',this)">Carrying time</button>
+  </div>
+  <span class="f-count" id="ct">9 objects</span>
+</div>
+
+<div class="s-head reveal">
+  <span class="eyebrow">The index</span>
+  <h2 class="s-title">Selected objects.</h2>
+</div>
+
+<!-- OBJECT GRID -->
+<div class="grid" id="grid">
+
+  <!-- 1 -->
+  <div class="card" data-tags="stone water vessel aged" data-aged="true" onclick="goDetail('birdbath')">
+    <div class="ph">
+      <svg class="ph-svg" viewBox="0 0 380 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="190" cy="310" r="140" stroke="#fff0dc" stroke-width="0.8" opacity="0.35"/>
+        <circle cx="190" cy="310" r="88" stroke="#fff0dc" stroke-width="0.5" opacity="0.28"/>
+        <ellipse cx="190" cy="430" rx="120" ry="16" stroke="#fff0dc" stroke-width="0.8" opacity="0.45"/>
+        <ellipse cx="190" cy="190" rx="56" ry="9" stroke="#fff0dc" stroke-width="0.6" opacity="0.4"/>
+        <line x1="190" y1="199" x2="190" y2="430" stroke="#fff0dc" stroke-width="0.8" opacity="0.38"/>
+        <line x1="50" y1="310" x2="330" y2="310" stroke="#fff0dc" stroke-width="0.3" opacity="0.2"/>
+        <!-- lichen marks -->
+        <circle cx="140" cy="340" r="8" stroke="#fff0dc" stroke-width="0.3" opacity="0.18"/>
+        <circle cx="240" cy="280" r="5" stroke="#fff0dc" stroke-width="0.3" opacity="0.14"/>
+      </svg>
+    </div>
+    <div class="badge">Available</div>
+    <div class="era">Bluestone — c. 1960s</div>
+    <div class="card-ft"><p class="card-name">Bluestone Birdbath</p><p class="card-mat">Stone — Water</p></div>
+    <div class="card-rev"><p>Still water in the open garden. Over time it gathers leaf fall, insects, and reflection.</p><span class="card-rev-arr">View object →</span></div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card" data-tags="terracotta vessel" onclick="goDetail('terracotta')">
+    <div class="ph">
+      <svg class="ph-svg" viewBox="0 0 680 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M185 295 C162 238 152 175 172 128 C192 78 282 58 340 58 C398 58 488 78 508 128 C528 175 518 238 495 295" stroke="#fff0dc" stroke-width="1.1" opacity="0.42" fill="none"/>
+        <ellipse cx="340" cy="295" rx="155" ry="20" stroke="#fff0dc" stroke-width="0.8" opacity="0.38"/>
+        <ellipse cx="340" cy="58" rx="68" ry="9" stroke="#fff0dc" stroke-width="0.7" opacity="0.38"/>
+      </svg>
+    </div>
+    <div class="badge ltd">3 remaining</div>
+    <div class="card-ft"><p class="card-name">Wide Terracotta Vessel</p><p class="card-mat">Terracotta — Vessel</p></div>
+    <div class="card-rev"><p>An unglazed vessel that breathes with the season. It ages in the same direction as the garden.</p><span class="card-rev-arr">View object →</span></div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card" data-tags="timber tool" onclick="goDetail('trowel')">
+    <div class="ph">
+      <svg class="ph-svg" viewBox="0 0 320 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M160 60 L140 320" stroke="#fff0dc" stroke-width="1.4" opacity="0.5"/>
+        <path d="M140 320 C120 360 200 360 180 320" stroke="#fff0dc" stroke-width="1" opacity="0.4" fill="none"/>
+        <path d="M130 200 C100 188 82 158 102 138 C122 118 152 138 160 170" stroke="#fff0dc" stroke-width="0.8" opacity="0.38" fill="none"/>
+        <path d="M190 200 C220 188 238 158 218 138 C198 118 168 138 160 170" stroke="#fff0dc" stroke-width="0.8" opacity="0.38" fill="none"/>
+      </svg>
+    </div>
+    <div class="badge">Available</div>
+    <div class="card-ft"><p class="card-name">Forged Trowel</p><p class="card-mat">Carbon Steel &amp; Timber — Tool</p></div>
+    <div class="card-rev"><p>Made to last a working life. The handle wears to the hand.</p><span class="card-rev-arr">View object →</span></div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card" data-tags="stone vessel water aged" data-aged="true" onclick="goDetail('birdbath')">
+    <div class="ph">
+      <svg class="ph-svg" viewBox="0 0 240 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="120" cy="280" rx="88" ry="15" stroke="#fff0dc" stroke-width="0.8" opacity="0.42"/>
+        <path d="M40 280 C28 218 48 148 120 120 C192 148 212 218 200 280" stroke="#fff0dc" stroke-width="1" opacity="0.45" fill="none"/>
+        <circle cx="90" cy="200" r="6" stroke="#fff0dc" stroke-width="0.3" opacity="0.15"/>
+      </svg>
+    </div>
+    <div class="badge arc">Archive</div>
+    <div class="era">Found — pre-war</div>
+    <div class="card-ft"><p class="card-name">Basalt Water Stone</p><p class="card-mat">Basalt — Water</p></div>
+    <div class="card-rev"><p>Rain gathers in the hollow. It has done this for longer than the garden exists.</p><span class="card-rev-arr">View object →</span></div>
+  </div>
+
+  <!-- 5 -->
+  <div class="card" data-tags="timber seating" onclick="goDetail('bench')">
+    <div class="ph">
+      <svg class="ph-svg" viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="60" y="120" width="380" height="28" rx="2" stroke="#fff0dc" stroke-width="1" opacity="0.42"/>
+        <line x1="100" y1="148" x2="100" y2="280" stroke="#fff0dc" stroke-width="0.9" opacity="0.32"/>
+        <line x1="400" y1="148" x2="400" y2="280" stroke="#fff0dc" stroke-width="0.9" opacity="0.32"/>
+        <line x1="100" y1="220" x2="400" y2="220" stroke="#fff0dc" stroke-width="0.5" opacity="0.22"/>
+        <!-- wood grain lines -->
+        <line x1="80" y1="128" x2="420" y2="130" stroke="#fff0dc" stroke-width="0.3" opacity="0.15"/>
+        <line x1="80" y1="136" x2="420" y2="133" stroke="#fff0dc" stroke-width="0.3" opacity="0.12"/>
+        <line x1="80" y1="142" x2="420" y2="140" stroke="#fff0dc" stroke-width="0.3" opacity="0.1"/>
+      </svg>
+    </div>
+    <div class="badge">Available</div>
+    <div class="card-ft"><p class="card-name">Reclaimed Timber Bench</p><p class="card-mat">Recycled Ironbark — Seating</p></div>
+    <div class="card-rev"><p>Milled from old-growth timber already lived in. Each board carries a prior use.</p><span class="card-rev-arr">View object →</span></div>
+  </div>
+
+  <!-- 6 -->
+  <div class="card" data-tags="cast-iron water vessel aged" data-aged="true" onclick="goDetail('birdbath')">
+    <div class="ph">
+      <svg class="ph-svg" viewBox="0 0 760 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 130 Q95 50 190 130 Q285 210 380 130 Q475 50 570 130 Q665 210 760 130" stroke="#fff0dc" stroke-width="0.9" opacity="0.38" fill="none"/>
+        <path d="M0 148 Q95 68 190 148 Q285 228 380 148 Q475 68 570 148 Q665 228 760 148" stroke="#fff0dc" stroke-width="0.5" opacity="0.22" fill="none"/>
+        <!-- rust/age marks -->
+        <circle cx="190" cy="130" r="18" stroke="#fff0dc" stroke-width="0.3" opacity="0.12"/>
+        <circle cx="570" cy="130" r="12" stroke="#fff0dc" stroke-width="0.3" opacity="0.1"/>
+      </svg>
+    </div>
+    <div class="badge ltd">Limited</div>
+    <div class="era">Cast iron — c. 1940s</div>
+    <div class="card-ft"><p class="card-name">Cast Iron Water Tray</p><p class="card-mat">Cast Iron — Water</p></div>
+    <div class="card-rev"><p>Flat and heavy. Rust comes with time and makes it more itself.</p><span class="card-rev-arr">View object →</span></div>
+  </div>
+
+  <!-- 7 -->
+  <div class="card" data-tags="terracotta vessel aged" data-aged="true" onclick="goDetail('terracotta')">
+    <div class="ph">
+      <svg class="ph-svg" viewBox="0 0 320 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 358 C80 298 75 218 90 158 C105 98 160 78 160 78 C160 78 215 98 230 158 C245 218 240 298 220 358" stroke="#fff0dc" stroke-width="1.1" opacity="0.42" fill="none"/>
+        <ellipse cx="160" cy="358" rx="60" ry="12" stroke="#fff0dc" stroke-width="0.8" opacity="0.38"/>
+        <ellipse cx="160" cy="78" rx="30" ry="6" stroke="#fff0dc" stroke-width="0.7" opacity="0.38"/>
+        <!-- salt ring — aged detail -->
+        <ellipse cx="160" cy="320" rx="55" ry="6" stroke="#fff0dc" stroke-width="0.4" opacity="0.18" stroke-dasharray="3 4"/>
+      </svg>
+    </div>
+    <div class="badge">Available</div>
+    <div class="era">Terracotta — hand thrown</div>
+    <div class="card-ft"><p class="card-name">Tall Neck Vessel</p><p class="card-mat">Terracotta — Vessel</p></div>
+    <div class="card-rev"><p>Thrown tall. The neck suits a single stem, a slow grass, a moment of restraint.</p><span class="card-rev-arr">View object →</span></div>
+  </div>
+
+  <!-- 8 -->
+  <div class="card" data-tags="stone seating aged" data-aged="true" onclick="goDetail('bench')">
+    <div class="ph">
+      <svg class="ph-svg" viewBox="0 0 680 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="80" y="90" width="520" height="58" rx="2" stroke="#fff0dc" stroke-width="0.9" opacity="0.4"/>
+        <line x1="140" y1="148" x2="140" y2="228" stroke="#fff0dc" stroke-width="0.8" opacity="0.28"/>
+        <line x1="540" y1="148" x2="540" y2="228" stroke="#fff0dc" stroke-width="0.8" opacity="0.28"/>
+        <!-- surface marks -->
+        <path d="M200 105 C205 108 202 115 208 118" stroke="#fff0dc" stroke-width="0.3" opacity="0.15" fill="none"/>
+        <path d="M380 100 C383 106 380 112 385 116" stroke="#fff0dc" stroke-width="0.3" opacity="0.12" fill="none"/>
+      </svg>
+    </div>
+    <div class="badge">Available</div>
+    <div class="era">Bluestone — single slab</div>
+    <div class="card-ft"><p class="card-name">Bluestone Slab Seat</p><p class="card-mat">Bluestone — Seating</p></div>
+    <div class="card-rev"><p>A single slab. No joins. It will be in this garden long after most other things have gone.</p><span class="card-rev-arr">View object →</span></div>
+  </div>
+
+  <!-- 9 -->
+  <div class="card" data-tags="timber tool" onclick="goDetail('trowel')">
+    <div class="ph">
+      <svg class="ph-svg" viewBox="0 0 380 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M190 60 L170 340" stroke="#fff0dc" stroke-width="1.4" opacity="0.48"/>
+        <ellipse cx="190" cy="340" rx="40" ry="11" stroke="#fff0dc" stroke-width="0.9" opacity="0.38"/>
+        <path d="M130 185 L70 225 L80 244 L170 212" stroke="#fff0dc" stroke-width="0.8" opacity="0.38" fill="none"/>
+      </svg>
+    </div>
+    <div class="badge">Available</div>
+    <div class="card-ft"><p class="card-name">Hori Hori Knife</p><p class="card-mat">Carbon Steel &amp; Walnut — Tool</p></div>
+    <div class="card-rev"><p>Half knife, half trowel. Once you have used one, nothing else feels adequate.</p><span class="card-rev-arr">View object →</span></div>
+  </div>
+
+</div><!-- /grid -->
+
+
+<!-- ════ TIME AS MATERIAL — MANIFESTO SECTION ════ -->
+<section class="time-section" id="time">
+
+  <div class="time-epigraph reveal">
+    <h2 class="time-epigraph-left">Some objects arrive already carrying time.</h2>
+    <p class="time-epigraph-right">Their surfaces hold weather, use, and repair. Nothing here is pristine. Nothing needs to be.</p>
+  </div>
+
+  <div class="time-panels">
+    <div class="time-panel reveal">
+      <span class="time-panel-label">On objects</span>
+      <h3 class="time-panel-title">Objects matter because they shape behaviour.</h3>
+      <div class="time-panel-body">
+        <p>We choose objects that reward attention — tools and forms meant to be used, worn in, repaired, and kept.</p>
+        <p>If something is too precious to be used, it does not belong here.</p>
+      </div>
+    </div>
+    <div class="time-panel reveal" style="transition-delay:0.12s;">
+      <span class="time-panel-label">On vessels and forms</span>
+      <h3 class="time-panel-title">The vessels in the studio were shaped decades ago.</h3>
+      <div class="time-panel-body">
+        <p>Some more than a century past. Their surfaces hold weather, use, and repair.</p>
+        <p>Nothing here is pristine. Nothing needs to be.</p>
+      </div>
+    </div>
+    <div class="time-panel reveal" style="transition-delay:0.24s;">
+      <span class="time-panel-label">Time as material</span>
+      <h3 class="time-panel-title">Time is the primary material in these forms.</h3>
+      <div class="time-panel-body">
+        <p>Long exposure has softened edges and revealed structure. These vessels have already proven their durability through use.</p>
+        <p>Newness would add nothing.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="time-pull">
+    <blockquote>"Newness would add nothing."</blockquote>
+  </div>
+
+</section>
+
+
+<!-- PHILOSOPHY -->
+<section class="philosophy reveal" id="philosophy">
+  <div class="phil-l">
+    <span class="eyebrow">On objects</span>
+    <h2>Things made to outlast their moment.</h2>
+  </div>
+  <div class="phil-r">
+    <p>An heirloom is not a category. It is a quality — the quality of having been made with enough care that time improves rather than diminishes it.</p>
+    <p class="phil-pull">"Use it. Leave it in the rain. It will be fine."</p>
+    <p>We do not collect objects for novelty. We look for material honesty — the kind that reveals itself over years of use. The way a good trowel develops a personal wear pattern. The way terracotta takes on a patina of salt and moss. The way cast iron rusts into something more beautiful than it began.</p>
+    <p>Longevity is the first criterion. An object that lasts a generation becomes part of the garden's history. Heirloom is our attempt to find and hold the ones that qualify.</p>
+  </div>
+</section>
+
+
+<!-- COLLECTIONS -->
+<section class="collections reveal" id="collections">
+  <div class="s-head" style="padding:4.5rem 0 1.8rem;">
+    <span class="eyebrow">Collections</span>
+    <h2 class="s-title">Curated groupings.</h2>
+  </div>
+  <div class="col-grid">
+    <div class="col-card" onclick="doFilter('water',document.querySelector('.pill:nth-child(2)'))">
+      <div class="col-img">
+        <svg class="col-svg" viewBox="0 0 280 360" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path d="M140 40 C140 40 75 130 75 200 C75 260 102 310 140 310 C178 310 205 260 205 200 C205 130 140 40 140 40Z" stroke="#fff0dc" stroke-width="1.5"/>
+          <path d="M140 90 C140 90 108 155 108 200 C108 238 120 272 140 280" stroke="#fff0dc" stroke-width="0.8" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="col-lbl"><p class="col-name">Water</p><p class="col-desc">Objects that hold, carry, and offer water.</p></div>
+    </div>
+    <div class="col-card" onclick="doFilter('vessel',document.querySelector('.pill:nth-child(3)'))">
+      <div class="col-img">
+        <svg class="col-svg" viewBox="0 0 280 360" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path d="M90 320 C72 255 65 180 80 120 C95 60 140 40 140 40 C140 40 185 60 200 120 C215 180 208 255 190 320" stroke="#fff0dc" stroke-width="1.5"/>
+          <ellipse cx="140" cy="320" rx="50" ry="11" stroke="#fff0dc" stroke-width="1"/>
+          <ellipse cx="140" cy="40" rx="28" ry="6" stroke="#fff0dc" stroke-width="0.8"/>
+          <ellipse cx="140" cy="290" rx="44" ry="5" stroke="#fff0dc" stroke-width="0.4" opacity="0.3" stroke-dasharray="3 4"/>
+        </svg>
+      </div>
+      <div class="col-lbl"><p class="col-name">Vessels</p><p class="col-desc">Terracotta, stone, ceramic — for planting and display.</p></div>
+    </div>
+    <div class="col-card" onclick="doFilter('aged',document.querySelector('.pill:nth-child(9)'))">
+      <div class="col-img" style="background:#3a3020;">
+        <svg class="col-svg" viewBox="0 0 280 360" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <circle cx="140" cy="180" r="110" stroke="#fff0dc" stroke-width="1.2"/>
+          <circle cx="140" cy="180" r="70" stroke="#fff0dc" stroke-width="0.7"/>
+          <circle cx="140" cy="180" r="30" stroke="#fff0dc" stroke-width="0.4"/>
+          <circle cx="115" cy="155" r="8" stroke="#fff0dc" stroke-width="0.3" opacity="0.4"/>
+          <circle cx="170" cy="210" r="5" stroke="#fff0dc" stroke-width="0.3" opacity="0.3"/>
+          <line x1="140" y1="70" x2="140" y2="290" stroke="#fff0dc" stroke-width="0.3" opacity="0.2"/>
+          <line x1="30" y1="180" x2="250" y2="180" stroke="#fff0dc" stroke-width="0.3" opacity="0.2"/>
+        </svg>
+      </div>
+      <div class="col-lbl"><p class="col-name">Carrying time</p><p class="col-desc">Objects already shaped by decades of use.</p></div>
+    </div>
+    <div class="col-card" onclick="doFilter('tool',document.querySelector('.pill:nth-child(4)'))">
+      <div class="col-img">
+        <svg class="col-svg" viewBox="0 0 280 360" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <line x1="140" y1="40" x2="140" y2="320" stroke="#fff0dc" stroke-width="1.5"/>
+          <path d="M140 180 L100 155 C82 145 70 118 94 106 C118 94 140 130 140 180" stroke="#fff0dc" stroke-width="1.1"/>
+          <path d="M140 180 L180 155 C198 145 210 118 186 106 C162 94 140 130 140 180" stroke="#fff0dc" stroke-width="1.1"/>
+        </svg>
+      </div>
+      <div class="col-lbl"><p class="col-name">Tools</p><p class="col-desc">Forged, fitted, made for decades of use.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDIO BAND -->
+<section class="studio-band reveal" id="studio">
+  <div class="studio-t">
+    <h3>From the studio of Gardener &amp; Son.</h3>
+    <p>Designing gardens across Melbourne — the studio works with long-horizon thinking and a belief that gardens should be built to last. Heirloom is the material expression of that practice.</p>
+  </div>
+  <a href="https://gardenerandson.com.au" class="studio-link" target="_blank">Visit the studio <span>→</span></a>
+</section>
+
+<footer>
+  <div class="foot-brand">
+    <span class="foot-name">Heirloom</span>
+    <span class="foot-by">by Gardener &amp; Son — Churchill Street, Mont Albert</span>
+  </div>
+  <nav>
+    <a href="#index">Objects</a>
+    <a href="#time">On objects</a>
+    <a href="#collections">Collections</a>
+    <a href="https://ecologicalregistry.org" target="_blank">Registry</a>
+  </nav>
+</footer>
+</div><!-- /homepage -->
+
+
+<!-- ════════════════════════ DETAIL: BIRDBATH ════════════════════════ -->
+<div id="det-birdbath" class="detail">
+  <div class="d-hero" style="background:linear-gradient(152deg,#3e4c34,#272e20);">
+    <div class="d-hero-age"></div>
+    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.08" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="600" cy="380" r="260" stroke="#fff0dc" stroke-width="1.2"/>
+      <circle cx="600" cy="380" r="155" stroke="#fff0dc" stroke-width="0.7"/>
+      <circle cx="600" cy="380" r="55" stroke="#fff0dc" stroke-width="0.4"/>
+      <line x1="600" y1="120" x2="600" y2="640" stroke="#fff0dc" stroke-width="0.5"/>
+      <line x1="340" y1="380" x2="860" y2="380" stroke="#fff0dc" stroke-width="0.5"/>
+      <circle cx="460" cy="300" r="18" stroke="#fff0dc" stroke-width="0.3" opacity="0.4"/>
+      <circle cx="720" cy="460" r="12" stroke="#fff0dc" stroke-width="0.3" opacity="0.3"/>
+    </svg>
+    <div class="d-hero-c">
+      <div class="d-hero-l">
+        <span class="d-ey">Stone — Water — Bluestone</span>
+        <h1>Bluestone Birdbath.</h1>
+      </div>
+      <div class="d-hero-r"><p class="d-slbl">Status</p><p class="d-sval">Available</p></div>
+    </div>
+  </div>
+
+  <!-- PROVENANCE TIMELINE -->
+  <div class="d-provenance">
+    <div class="d-prov-item">
+      <span class="d-prov-lbl">Origin</span>
+      <p class="d-prov-val">Central Victoria</p>
+      <p class="d-prov-note">Quarried from a working bluestone site near Castlemaine.</p>
+    </div>
+    <div class="d-prov-item">
+      <span class="d-prov-lbl">Circa</span>
+      <p class="d-prov-val">1960s</p>
+      <p class="d-prov-note">Made for a garden in Kew. Acquired from the estate.</p>
+    </div>
+    <div class="d-prov-item">
+      <span class="d-prov-lbl">Years in use</span>
+      <p class="d-prov-val">60+</p>
+      <p class="d-prov-note">Surface carries lichen and edge wear from six decades of weather.</p>
+    </div>
+    <div class="d-prov-item">
+      <span class="d-prov-lbl">Condition</span>
+      <p class="d-prov-val">Working</p>
+      <p class="d-prov-note">Nothing here is pristine. Nothing needs to be.</p>
+    </div>
+  </div>
+
+  <div class="d-body">
+    <div class="d-desc">
+      <p>This vessel holds water quietly. Over time, it gathers leaf fall, insects, and reflection. It becomes part of the garden's rhythm — a fixed point around which everything else moves.</p>
+      <p>The basin was cut from a single piece of bluestone and ground shallow across its face. That original work is still visible, barely — the tool marks softened now by sixty years of weather and use.</p>
+      <p>In the first weeks it will hold rain cleanly. By the second season, a thin film of algae will form at the margins. This is not deterioration. It is the stone becoming part of the garden's biology. The water becomes habitat. The stone becomes more itself.</p>
+      <p>It sits best in partial shade — under the canopy of a tall tree, or at the edge of a planted border. Not in full sun, where the water evaporates too quickly and the stone bleaches pale.</p>
+    </div>
+    <div class="d-specs">
+      <div class="d-spec"><span class="d-slbl">Material</span><span class="d-sval">Bluestone (basalt)</span></div>
+      <div class="d-spec"><span class="d-slbl">Dimensions</span><span class="d-sval">450 × 450 × 80 mm</span></div>
+      <div class="d-spec"><span class="d-slbl">Weight</span><span class="d-sval">Approx. 24 kg</span></div>
+      <div class="d-spec"><span class="d-slbl">Surface</span><span class="d-sval">Lichen colonies, edge wear — unrestored</span></div>
+      <div class="d-spec"><span class="d-slbl">Placement</span><span class="d-sval">Partial shade, ground or plinth</span></div>
+      <div class="d-spec"><span class="d-slbl">Care</span><span class="d-sval">Rinse monthly. Allow algae at margins — it belongs there.</span></div>
+    </div>
+  </div>
+
+  <div class="d-role">
+    <h3 style="font-family:'Abril Fatface',serif;font-weight:400;">In the garden.</h3>
+    <div class="d-role-grid">
+      <div class="d-ri"><div class="d-ri-mark">〜</div><p class="d-ri-lbl">Water</p><p class="d-ri-txt">Provides standing water for birds and insects throughout the year.</p></div>
+      <div class="d-ri"><div class="d-ri-mark">◈</div><p class="d-ri-lbl">Surface life</p><p class="d-ri-txt">Lichen and moss colonies established over decades. The stone supports life beyond its primary use.</p></div>
+      <div class="d-ri"><div class="d-ri-mark">◎</div><p class="d-ri-lbl">Microclimate</p><p class="d-ri-txt">Evaporating water provides mild cooling in exposed positions.</p></div>
+      <div class="d-ri"><div class="d-ri-mark">⊕</div><p class="d-ri-lbl">Ground</p><p class="d-ri-txt">Overflow carries moisture and organic material to surrounding soil.</p></div>
+      <div class="d-ri"><div class="d-ri-mark">◯</div><p class="d-ri-lbl">Presence</p><p class="d-ri-txt">A still point. Birds bring daily, unscheduled attention to the space.</p></div>
+    </div>
+  </div>
+
+  <div class="d-buy">
+    <div><p class="d-price">$480</p><p class="d-pnote">Delivery available. Installation by arrangement.</p></div>
+    <button class="btn-enq">Enquire about this object</button>
+  </div>
+  <footer>
+    <div class="foot-brand"><span class="foot-name">Heirloom</span><span class="foot-by">by Gardener &amp; Son</span></div>
+    <nav><a href="#" onclick="goHome();return false;">← All objects</a></nav>
+  </footer>
+</div>
+
+<!-- ════════════════════════ DETAIL: TERRACOTTA ════════════════════════ -->
+<div id="det-terracotta" class="detail">
+  <div class="d-hero" style="background:linear-gradient(152deg,#4e3e28,#302414);">
+    <div class="d-hero-age"></div>
+    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.08" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M420 640 C400 545 378 415 400 298 C422 180 500 118 600 108 C700 118 778 180 800 298 C822 415 800 545 780 640" stroke="#fff0dc" stroke-width="1.5"/>
+      <ellipse cx="600" cy="640" rx="180" ry="26" stroke="#fff0dc" stroke-width="1"/>
+      <ellipse cx="600" cy="108" rx="80" ry="11" stroke="#fff0dc" stroke-width="0.8"/>
+      <ellipse cx="600" cy="580" rx="160" ry="8" stroke="#fff0dc" stroke-width="0.4" opacity="0.3" stroke-dasharray="4 5"/>
+    </svg>
+    <div class="d-hero-c">
+      <div class="d-hero-l">
+        <span class="d-ey">Terracotta — Vessel — Unglazed</span>
+        <h1>Wide Terracotta Vessel.</h1>
+      </div>
+      <div class="d-hero-r"><p class="d-slbl">Status</p><p class="d-sval">3 remaining</p></div>
+    </div>
+  </div>
+
+  <div class="d-provenance">
+    <div class="d-prov-item">
+      <span class="d-prov-lbl">Made by</span>
+      <p class="d-prov-val">Family workshop</p>
+      <p class="d-prov-note">Three generations working the same clay in northern Portugal.</p>
+    </div>
+    <div class="d-prov-item">
+      <span class="d-prov-lbl">Method</span>
+      <p class="d-prov-val">Hand thrown</p>
+      <p class="d-prov-note">Each piece varies slightly in dimension and surface character.</p>
+    </div>
+    <div class="d-prov-item">
+      <span class="d-prov-lbl">Surface</span>
+      <p class="d-prov-val">Unglazed</p>
+      <p class="d-prov-note">The porosity is the function. Do not seal it.</p>
+    </div>
+    <div class="d-prov-item">
+      <span class="d-prov-lbl">Character</span>
+      <p class="d-prov-val">Salt & moss</p>
+      <p class="d-prov-note">Will mark and mottle with use. This is expected and correct.</p>
+    </div>
+  </div>
+
+  <div class="d-body">
+    <div class="d-desc">
+      <p>This is an unglazed vessel. It breathes. Moisture moves through its walls throughout the day, cooling the root zone of whatever grows inside. In summer this can be the difference between a plant that holds and one that doesn't.</p>
+      <p>The form is wide-shouldered and low. The opening is generous enough for a proper soil volume, deep enough for real roots.</p>
+      <p>Over time, the exterior will mark. Salt deposits appear around the lower rim where water wicks and evaporates. Moss establishes in sheltered positions. The vessel ages in the same direction as the garden — darkening, softening, accumulating. This is not a fault. It is the point.</p>
+      <p>Made in Portugal by a family workshop that has worked with this clay for three generations. Each piece varies slightly. None of them are wrong.</p>
+    </div>
+    <div class="d-specs">
+      <div class="d-spec"><span class="d-slbl">Material</span><span class="d-sval">Unglazed terracotta</span></div>
+      <div class="d-spec"><span class="d-slbl">Dimensions</span><span class="d-sval">Ø 380 × H 280 mm</span></div>
+      <div class="d-spec"><span class="d-slbl">Drainage</span><span class="d-sval">Single aperture, 20 mm</span></div>
+      <div class="d-spec"><span class="d-slbl">Origin</span><span class="d-sval">Made in Portugal</span></div>
+      <div class="d-spec"><span class="d-slbl">Care</span><span class="d-sval">Frost-free in winter. Do not seal — porosity is the function.</span></div>
+    </div>
+  </div>
+
+  <div class="d-buy">
+    <div><p class="d-price">$195</p><p class="d-pnote">Three available. Delivery to Melbourne metro included.</p></div>
+    <button class="btn-enq">Enquire about this object</button>
+  </div>
+  <footer>
+    <div class="foot-brand"><span class="foot-name">Heirloom</span><span class="foot-by">by Gardener &amp; Son</span></div>
+    <nav><a href="#" onclick="goHome();return false;">← All objects</a></nav>
+  </footer>
+</div>
+
+<!-- DETAIL: TROWEL -->
+<div id="det-trowel" class="detail">
+  <div class="d-hero" style="background:linear-gradient(152deg,#2a2a1e,#1a1a12);">
+    <div class="d-hero-c">
+      <div class="d-hero-l"><span class="d-ey">Carbon Steel &amp; Timber — Tool</span><h1>Forged Trowel.</h1></div>
+      <div class="d-hero-r"><p class="d-slbl">Status</p><p class="d-sval">Available</p></div>
+    </div>
+  </div>
+  <div class="d-provenance">
+    <div class="d-prov-item"><span class="d-prov-lbl">Made by</span><p class="d-prov-val">Sheffield smith</p><p class="d-prov-note">Thirty years of tool making in the same workshop.</p></div>
+    <div class="d-prov-item"><span class="d-prov-lbl">Method</span><p class="d-prov-val">Drop forged</p><p class="d-prov-note">Single piece of carbon steel. No welds, no seams.</p></div>
+    <div class="d-prov-item"><span class="d-prov-lbl">Handle</span><p class="d-prov-val">Seasoned walnut</p><p class="d-prov-note">Will darken and wear to the shape of the hand.</p></div>
+    <div class="d-prov-item"><span class="d-prov-lbl">Repairability</span><p class="d-prov-val">Full</p><p class="d-prov-note">The handle can be replaced. This is by design.</p></div>
+  </div>
+  <div class="d-body">
+    <div class="d-desc">
+      <p>Forged from a single piece of carbon steel, fitted with a seasoned walnut handle. It is heavier than the hardware store version. This is not incidental — the weight does the work.</p>
+      <p>The blade is narrow enough to plant seedlings without disturbing roots, wide enough to move soil with purpose. Over years of use, the metal develops a patina. The handle wears to the hand.</p>
+      <p>When the handle eventually needs replacing, it can be replaced. This is by design.</p>
+    </div>
+    <div class="d-specs">
+      <div class="d-spec"><span class="d-slbl">Material</span><span class="d-sval">Carbon steel, walnut</span></div>
+      <div class="d-spec"><span class="d-slbl">Length</span><span class="d-sval">310 mm overall</span></div>
+      <div class="d-spec"><span class="d-slbl">Origin</span><span class="d-sval">Sheffield, England</span></div>
+      <div class="d-spec"><span class="d-slbl">Care</span><span class="d-sval">Wipe clean. Oil handle annually.</span></div>
+    </div>
+  </div>
+  <div class="d-buy">
+    <div><p class="d-price">$145</p><p class="d-pnote">Posted carefully. Arrives ready to use.</p></div>
+    <button class="btn-enq">Enquire about this object</button>
+  </div>
+  <footer><div class="foot-brand"><span class="foot-name">Heirloom</span><span class="foot-by">by Gardener &amp; Son</span></div><nav><a href="#" onclick="goHome();return false;">← All objects</a></nav></footer>
+</div>
+
+<!-- DETAIL: BENCH -->
+<div id="det-bench" class="detail">
+  <div class="d-hero" style="background:linear-gradient(152deg,#2e2818,#1e1a10);">
+    <div class="d-hero-c">
+      <div class="d-hero-l"><span class="d-ey">Recycled Ironbark — Seating</span><h1>Reclaimed Timber Bench.</h1></div>
+      <div class="d-hero-r"><p class="d-slbl">Status</p><p class="d-sval">Available</p></div>
+    </div>
+  </div>
+  <div class="d-provenance">
+    <div class="d-prov-item"><span class="d-prov-lbl">Timber</span><p class="d-prov-val">Old-growth ironbark</p><p class="d-prov-note">Recovered from demolition in country Victoria.</p></div>
+    <div class="d-prov-item"><span class="d-prov-lbl">Prior life</span><p class="d-prov-val">Rural structure</p><p class="d-prov-note">Nail holes, surface marks, and grain shifts from decades of weather.</p></div>
+    <div class="d-prov-item"><span class="d-prov-lbl">Each bench</span><p class="d-prov-val">Individual</p><p class="d-prov-note">Made from available timber. No two are identical.</p></div>
+    <div class="d-prov-item"><span class="d-prov-lbl">Time in service</span><p class="d-prov-val">80–100 yr</p><p class="d-prov-note">The timber's first life. Now beginning its second.</p></div>
+  </div>
+  <div class="d-body">
+    <div class="d-desc">
+      <p>Milled from old-growth ironbark recovered from a demolition site. Each board carries a prior use — nail holes, surface marks, the occasional deep grain shift from decades of weather. None of this has been sanded away.</p>
+      <p>The bench is simple in form. Two boards on two legs. No joins that will fail, no finish that will peel. Left outside, the ironbark will silver. Oiled, it holds its warmth. Either way, it will be fine.</p>
+      <p>This timber has already proven its durability through use. Newness would add nothing.</p>
+    </div>
+    <div class="d-specs">
+      <div class="d-spec"><span class="d-slbl">Material</span><span class="d-sval">Recycled ironbark</span></div>
+      <div class="d-spec"><span class="d-slbl">Dimensions</span><span class="d-sval">Approx. 1800 × 300 × 440 mm H</span></div>
+      <div class="d-spec"><span class="d-slbl">Origin</span><span class="d-sval">Country Victoria demolition</span></div>
+      <div class="d-spec"><span class="d-slbl">Lead time</span><span class="d-sval">3–4 weeks, made to order</span></div>
+      <div class="d-spec"><span class="d-slbl">Care</span><span class="d-sval">Oil once a year if you like. Leave it if you don't.</span></div>
+    </div>
+  </div>
+  <div class="d-buy">
+    <div><p class="d-price">$680</p><p class="d-pnote">Each bench made individually. 3–4 weeks from enquiry.</p></div>
+    <button class="btn-enq">Enquire about this object</button>
+  </div>
+  <footer><div class="foot-brand"><span class="foot-name">Heirloom</span><span class="foot-by">by Gardener &amp; Son</span></div><nav><a href="#" onclick="goHome();return false;">← All objects</a></nav></footer>
+</div>
+
+<script>
+function toggleTheme(){
+  document.body.setAttribute('data-theme',
+    document.body.getAttribute('data-theme')==='dark'?'light':'dark');
+}
+function goDetail(id){
+  document.getElementById('homepage').style.display='none';
+  document.querySelectorAll('.detail').forEach(d=>d.classList.remove('on'));
+  const p=document.getElementById('det-'+id);
+  if(p){p.classList.add('on');window.scrollTo(0,0);}
+  document.getElementById('backBtn').classList.add('on');
+  document.getElementById('nav').style.display='none';
+}
+function goHome(){
+  document.querySelectorAll('.detail').forEach(d=>d.classList.remove('on'));
+  document.getElementById('homepage').style.display='block';
+  document.getElementById('backBtn').classList.remove('on');
+  document.getElementById('nav').style.display='flex';
+  window.scrollTo(0,0);
+}
+function doFilter(tag,btn){
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  let n=0;
+  document.querySelectorAll('.card').forEach(c=>{
+    const match=tag==='all'||(c.dataset.tags||'').includes(tag);
+    c.style.opacity=match?'1':'0.18';
+    c.style.pointerEvents=match?'auto':'none';
+    if(match)n++;
+  });
+  document.getElementById('ct').textContent=n+' object'+(n!==1?'s':'');
+}
+const ro=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');});
+},{threshold:0.07});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>
