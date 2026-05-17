@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heirloom — Brand Book, Edition 02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #3D4535;
+    --paper: #FFF0DC;
+    --paper-warm: #F4E2C6;
+    --live: #A8C285;
+    --patina: #8C6A4A;
+    --hair: #C9BFAE;
+    --subtle: #847D6E;
+    --deep: #1A1F18;
+    --deep-paper: #F4E2C6;
+    --warmed-patina: #C9A07A;
+
+    --display: 'Abril Fatface', Georgia, serif;
+    --serif: 'IBM Plex Serif', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--paper);
+    font-weight: 400;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Paper noise texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.24 0 0 0 0 0.27 0 0 0 0 0.21 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 1;
+    mix-blend-mode: multiply;
+  }
+
+  /* Sticky top meta strip */
+  .meta-strip {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--ink);
+    padding: 14px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .meta-strip .center { color: var(--ink); letter-spacing: 0.35em; }
+
+  .meta-strip .progress {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    background: var(--live);
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  /* Sections */
+  section {
+    position: relative;
+    z-index: 2;
+    padding: 80px 48px;
+    border-bottom: 1px solid var(--hair);
+  }
+
+  .container { max-width: 1120px; margin: 0 auto; }
+  .narrow { max-width: 740px; margin: 0 auto; }
+
+  /* ─── COVER ─── */
+  .cover {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 64px 48px 48px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .cover-top, .cover-bottom-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .cover-top .left, .cover-bottom-strip .left {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .cover-top .right, .cover-bottom-strip .right {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--subtle);
+    font-style: italic;
+  }
+
+  .cover-title-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0;
+  }
+
+  .cover-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .cover-title {
+    font-family: var(--display);
+    font-size: clamp(96px, 16vw, 220px);
+    line-height: 0.9;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .cover-deck {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--patina);
+    margin-top: 40px;
+    max-width: 660px;
+  }
+
+  .cover-pullquote {
+    font-family: var(--display);
+    font-size: 56px;
+    line-height: 1;
+    color: var(--ink);
+    padding-left: 28px;
+    border-left: 4px solid var(--live);
+    margin-top: 64px;
+    max-width: 620px;
+  }
+
+  .cover-pullquote .attribution {
+    display: block;
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--subtle);
+    font-style: italic;
+    margin-top: 16px;
+    font-weight: normal;
+    letter-spacing: 0;
+  }
+
+  .cover-bottom {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ink);
+  }
+
+  .cover-bottom .col-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .cover-bottom .col-val {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  /* ─── TABLE OF CONTENTS ─── */
+  .toc {
+    padding: 96px 48px;
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--hair);
+  }
+
+  .toc h2 {
+    font-family: var(--display);
+    font-size: 80px;
+    line-height: 0.95;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .toc .toc-deck {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--patina);
+    margin-bottom: 56px;
+    max-width: 620px;
+  }
+
+  .toc-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 64px;
+  }
+
+  .toc-part {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--hair);
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    align-items: baseline;
+    text-decoration: none;
+    color: var(--ink);
+    transition: padding-left 0.2s;
+  }
+
+  .toc-part:hover { padding-left: 8px; }
+
+  .toc-part .part-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .toc-part .part-title {
+    font-family: var(--display);
+    font-size: 28px;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .toc-part .part-sub {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--subtle);
+    margin-top: 4px;
+  }
+
+  /* ─── PART OPENER ─── */
+  .part-opener {
+    padding: 140px 48px 80px;
+    border-bottom: 1px solid var(--hair);
+  }
+
+  .part-opener .part-num {
+    font-family: var(--sans);
+    font-size: 14px;
+    letter-spacing: 0.4em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .part-opener h1 {
+    font-family: var(--display);
+    font-size: clamp(72px, 11vw, 144px);
+    line-height: 0.95;
+    color: var(--ink);
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 4px solid var(--live);
+    letter-spacing: -0.01em;
+  }
+
+  .part-opener .part-caption {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--patina);
+    max-width: 620px;
+  }
+
+  /* ─── SECTION ─── */
+  .sec {
+    padding: 64px 48px;
+    border-bottom: 1px solid var(--hair);
+  }
+
+  .sec-header {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    align-items: baseline;
+    margin-bottom: 40px;
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sec-num {
+    font-family: var(--sans);
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .sec-title {
+    font-family: var(--display);
+    font-size: 56px;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .sec-body {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-left: 112px;
+  }
+
+  .sec-body p {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    color: var(--ink);
+    max-width: 720px;
+  }
+
+  .sec-body p.lead {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--patina);
+    margin-bottom: 32px;
+  }
+
+  .sec-body p strong { font-weight: 600; }
+  .sec-body p em { font-style: italic; }
+
+  /* Caption — small italic gray text used under headings */
+  .caption {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--subtle);
+    margin-bottom: 24px;
+    max-width: 620px;
+  }
+
+  /* Sub-head — small caps label */
+  .subhead {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 32px;
+    margin-bottom: 14px;
+  }
+
+  /* Pull quote */
+  .pull {
+    font-family: var(--display);
+    font-size: 44px;
+    line-height: 1.05;
+    color: var(--ink);
+    padding: 24px 0 24px 32px;
+    margin: 32px 0;
+    border-left: 4px solid var(--live);
+    max-width: 720px;
+  }
+
+  .pull .att {
+    display: block;
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--subtle);
+    font-style: italic;
+    margin-top: 16px;
+    font-weight: normal;
+    letter-spacing: 0;
+  }
+
+  /* Dash bullets */
+  .dash {
+    list-style: none;
+    margin-bottom: 24px;
+    max-width: 720px;
+  }
+  .dash li {
+    padding: 4px 0 4px 28px;
+    position: relative;
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .dash li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--patina);
+  }
+
+  /* Definition entry */
+  .defn {
+    margin-bottom: 14px;
+    max-width: 720px;
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .defn strong { font-weight: 600; }
+  .defn .em { color: var(--patina); margin: 0 6px; }
+
+  /* Ledger table — label : value */
+  .ledger {
+    margin: 24px 0;
+    max-width: 820px;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 24px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--hair);
+  }
+  .ledger-row:last-child { border-bottom: none; }
+  .ledger-row .lbl {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-top: 4px;
+  }
+  .ledger-row .val {
+    font-family: var(--sans);
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  /* Comparison: two-column words list */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin: 32px 0;
+    max-width: 820px;
+  }
+  .compare-col h4 {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .compare-col ul {
+    list-style: none;
+  }
+  .compare-col li {
+    font-family: var(--sans);
+    font-size: 15px;
+    padding: 6px 0;
+    line-height: 1.5;
+  }
+  .compare-col.refuse li { color: var(--subtle); }
+
+  /* Swatches */
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 24px 0 8px;
+    max-width: 820px;
+  }
+  .swatch {
+    display: flex;
+    flex-direction: column;
+  }
+  .swatch-block {
+    width: 100%;
+    aspect-ratio: 1.2 / 1;
+    border: 1px solid var(--ink);
+  }
+  .swatch-name {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 10px;
+  }
+  .swatch-hex {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--subtle);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── THE MARK SECTION ─── */
+  .mark-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    margin: 40px 0 48px;
+    max-width: 1120px;
+  }
+  .mark-hero .seal-display {
+    background: var(--paper-warm);
+    padding: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--hair);
+  }
+  .mark-hero .seal-display svg {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+  }
+  .mark-hero .seal-text h3 {
+    font-family: var(--display);
+    font-size: 56px;
+    line-height: 0.95;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .mark-hero .seal-text p {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  /* Ornament studies row */
+  .ornaments-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin: 32px 0;
+  }
+  .orn-cell {
+    text-align: center;
+    padding: 16px 8px;
+    border: 1px solid var(--hair);
+    background: var(--paper);
+  }
+  .orn-cell.chosen {
+    border-color: var(--ink);
+    border-width: 2px;
+    background: var(--paper-warm);
+  }
+  .orn-cell svg {
+    width: 100%;
+    max-width: 160px;
+    height: auto;
+    margin-bottom: 14px;
+  }
+  .orn-cell .orn-name {
+    font-family: var(--display);
+    font-size: 22px;
+    line-height: 1;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .orn-cell .orn-reg {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .orn-cell .orn-note {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--subtle);
+    line-height: 1.4;
+  }
+  .orn-cell .chosen-tag {
+    font-family: var(--sans);
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    color: #5a7a3a;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .orn-cell:not(.chosen) .chosen-tag {
+    color: transparent;
+  }
+
+  /* Mark system grid */
+  .mark-system {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin: 32px 0;
+  }
+  .ms-cell {
+    text-align: center;
+  }
+  .ms-cell .ms-box {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    border: 1px solid var(--hair);
+    margin-bottom: 14px;
+  }
+  .ms-cell .ms-box.paper { background: var(--paper); }
+  .ms-cell .ms-box.kraft { background: #B89968; }
+  .ms-cell .ms-box.dark { background: var(--deep); }
+  .ms-cell .ms-box svg { width: 100%; height: auto; }
+  .ms-cell .ms-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ms-cell .ms-name {
+    font-family: var(--display);
+    font-size: 18px;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  /* ─── UNDERSTORY INVERSION (used once for the comparison) ─── */
+  .understory {
+    background: var(--deep);
+    color: var(--deep-paper);
+    border-bottom: 1px solid var(--deep);
+  }
+  .understory .sec-title { color: var(--deep-paper); }
+  .understory .sec-num { color: var(--warmed-patina); }
+  .understory .sec-body p { color: var(--deep-paper); }
+  .understory .caption { color: var(--warmed-patina); }
+  .understory .subhead { color: var(--warmed-patina); }
+  .understory .pull { color: var(--deep-paper); }
+  .understory .pull .att { color: var(--warmed-patina); }
+  .understory .ledger { border-color: var(--warmed-patina); }
+  .understory .ledger-row { border-color: rgba(201,160,122,0.25); }
+  .understory .ledger-row .lbl { color: var(--warmed-patina); }
+  .understory .ledger-row .val { color: var(--deep-paper); }
+  .understory .swatch-block { border-color: var(--warmed-patina); }
+  .understory .swatch-name { color: var(--deep-paper); }
+  .understory .swatch-hex { color: var(--warmed-patina); }
+
+  /* ─── FINAL ─── */
+  .final {
+    background: var(--paper-warm);
+    padding: 120px 48px;
+    text-align: center;
+    border-bottom: none;
+  }
+  .final-tagline {
+    font-family: var(--display);
+    font-size: clamp(56px, 9vw, 120px);
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin: 32px 0;
+  }
+  .final-rules {
+    width: 100px;
+    height: 4px;
+    background: var(--live);
+    margin: 0 auto;
+  }
+  .final-meta {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--patina);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 48px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--deep);
+    color: var(--deep-paper);
+    padding: 80px 48px 40px;
+    position: relative;
+    z-index: 2;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 48px;
+    max-width: 1120px;
+    margin: 0 auto 56px;
+  }
+  .footer-col h4 {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--warmed-patina);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--warmed-patina);
+  }
+  .footer-col .item {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--deep-paper);
+    margin-bottom: 8px;
+    line-height: 1.55;
+  }
+  .footer-col .item.small {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--warmed-patina);
+  }
+  .footer-bottom {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--warmed-patina);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--warmed-patina);
+    text-transform: uppercase;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    section, .sec, .part-opener, .cover, .toc, .final, footer { padding-left: 24px; padding-right: 24px; }
+    .meta-strip { padding-left: 24px; padding-right: 24px; }
+    .meta-strip .hide-mobile { display: none; }
+    .sec-header { grid-template-columns: 1fr; gap: 8px; }
+    .sec-body { padding-left: 0; }
+    .sec-title { font-size: 40px; }
+    .part-opener h1 { font-size: 64px; }
+    .cover-title { font-size: clamp(64px, 16vw, 96px); }
+    .cover-bottom { grid-template-columns: 1fr 1fr; }
+    .toc-list { grid-template-columns: 1fr; gap: 0; }
+    .compare { grid-template-columns: 1fr; gap: 24px; }
+    .ledger-row { grid-template-columns: 1fr; gap: 4px; }
+    .swatches { grid-template-columns: 1fr 1fr; }
+    .ornaments-row { grid-template-columns: 1fr 1fr; }
+    .mark-system { grid-template-columns: 1fr 1fr; }
+    .mark-hero { grid-template-columns: 1fr; gap: 32px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .pull { font-size: 32px; }
+  }
+
+  @media print {
+    body::before { display: none; }
+    .meta-strip { position: static; }
+    section, .sec, .part-opener { page-break-inside: avoid; }
+    .part-opener { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- META STRIP (sticky) -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="meta-strip">
+  <span>Heirloom</span>
+  <span class="center hide-mobile">Brand Book · Edition 02 · Integrated</span>
+  <span>Internal &amp; partner use</span>
+  <div class="progress" id="progress"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- COVER -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="cover" id="cover">
+  <div class="cover-top">
+    <div class="left">A Gardener &amp; Son imprint</div>
+    <div class="right">Edition 02 · May 2026 · the canonical document</div>
+  </div>
+
+  <div class="cover-title-area">
+    <div class="cover-eyebrow">Brand Book — a document of intent, identity &amp; instruction</div>
+    <h1 class="cover-title">Heirloom</h1>
+    <p class="cover-deck">The canonical reference for the Heirloom brand — strategy, voice, mark, system, and the rules by which decisions are made.</p>
+
+    <div class="cover-pullquote">
+      Things worth keeping.
+      <span class="attribution">The line. Three words. Functional and ethical at once.</span>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div>
+      <div class="col-label">Issued by</div>
+      <div class="col-val">Gardener &amp; Son</div>
+    </div>
+    <div>
+      <div class="col-label">Address</div>
+      <div class="col-val">2 Churchill Street, Mont Albert, Melbourne</div>
+    </div>
+    <div>
+      <div class="col-label">Edition</div>
+      <div class="col-val">02 · May 2026</div>
+    </div>
+    <div>
+      <div class="col-label">Contact</div>
+      <div class="col-val">studio@gardenerandson.com</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- 00 · HOW TO USE THIS DOCUMENT -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="sec" id="how-to-use">
+  <div class="sec-header">
+    <div class="sec-num">00</div>
+    <h2 class="sec-title">How to use this document</h2>
+  </div>
+  <div class="sec-body">
+    <p>This is the canonical reference for Heirloom — a Gardener &amp; Son imprint. It exists so that anyone touching the brand — designer, writer, photographer, supplier, retailer, partner, journalist, intern, future hire — can act on its behalf without diluting it.</p>
+    <p>Brand books fail when they are read once and shelved. This one is built to be returned to. Each section is short. Each rule is specific. Each guardrail exists because of a mistake we do not want to repeat.</p>
+    <p>If you cannot find an answer here, apply the only test that matters:</p>
+    <div class="pull">Would this thing still be here in fifty years?</div>
+    <p>If yes, it belongs in the Heirloom catalogue, or in its communications, or on its shelf. If no, it does not.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- TABLE OF CONTENTS -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="toc" id="toc">
+  <div class="container">
+    <h2>Document map.</h2>
+    <p class="toc-deck">Eight parts. Thirty-seven sections. Read in order on first sitting; return by section thereafter.</p>
+
+    <div class="toc-list">
+      <a class="toc-part" href="#part-one">
+        <span class="part-label">Part One</span>
+        <span>
+          <span class="part-title">Foundation</span>
+          <span class="part-sub">Why Heirloom exists.</span>
+        </span>
+      </a>
+      <a class="toc-part" href="#part-two">
+        <span class="part-label">Part Two</span>
+        <span>
+          <span class="part-title">Positioning</span>
+          <span class="part-sub">How we are different.</span>
+        </span>
+      </a>
+      <a class="toc-part" href="#part-three">
+        <span class="part-label">Part Three</span>
+        <span>
+          <span class="part-title">Personality</span>
+          <span class="part-sub">Who we are.</span>
+        </span>
+      </a>
+      <a class="toc-part" href="#part-four">
+        <span class="part-label">Part Four</span>
+        <span>
+          <span class="part-title">Verbal identity</span>
+          <span class="part-sub">How we speak.</span>
+        </span>
+      </a>
+      <a class="toc-part" href="#part-five">
+        <span class="part-label">Part Five</span>
+        <span>
+          <span class="part-title">Visual identity</span>
+          <span class="part-sub">How we look. The Mark.</span>
+        </span>
+      </a>
+      <a class="toc-part" href="#part-six">
+        <span class="part-label">Part Six</span>
+        <span>
+          <span class="part-title">Application</span>
+          <span class="part-sub">How it lives across surfaces.</span>
+        </span>
+      </a>
+      <a class="toc-part" href="#part-seven">
+        <span class="part-label">Part Seven</span>
+        <span>
+          <span class="part-title">Guardrails</span>
+          <span class="part-sub">What we never do.</span>
+        </span>
+      </a>
+      <a class="toc-part" href="#part-eight">
+        <span class="part-label">Part Eight</span>
+        <span>
+          <span class="part-title">Appendix</span>
+          <span class="part-sub">References, glossary, control.</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PART ONE · FOUNDATION -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="part-opener" id="part-one">
+  <div class="part-num">Part One</div>
+  <h1>Foundation</h1>
+  <p class="part-caption">Why Heirloom exists, and the cultural conditions that demand it.</p>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">01</div><h2 class="sec-title">The Thesis</h2></div>
+  <div class="sec-body">
+    <p>We live in a moment of disposability. Things are made to be replaced, then replaced again. Gardens are designed for the photograph and forgotten by the season. Objects are bought in volume and grieved in landfill.</p>
+    <p>Heirloom is a counter-proposition. It is a curatorial imprint of vintage and antique garden objects — concrete, terracotta, stone, cast iron, copper, timber, glass, wicker — collected, restored where necessary, documented in full, and re-released into the world with their provenance intact. Each object has been used. Each is built to be used again. Each is here because it survived.</p>
+    <div class="pull">We do not sell decor. We sell custodianship.</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">02</div><h2 class="sec-title">The world we operate in</h2></div>
+  <div class="sec-body">
+    <p>Positioning is meaningless without context. A brief read of the cultural moment:</p>
+    <ul class="dash">
+      <li>The fast-design economy has saturated. Mass-produced "vintage-look" objects, Pottery Barn aesthetics and Marketplace flips have made the market noisy and value-illegible.</li>
+      <li>Climate anxiety has collapsed into purchase behaviour. People want their consumption to mean something, and to last.</li>
+      <li>"Slow goods" has become a legible language: small batches, traceable origins, anti-disposable design.</li>
+      <li>Provenance is the new luxury. Story is the new label.</li>
+      <li>Gardens have re-entered the cultural conversation as ecological, not decorative. The objects placed in them must follow.</li>
+    </ul>
+    <p>Heirloom is positioned at the precise centre of this convergence: ecological literacy, material truth, slow commerce, and the resurgent appetite for objects with biography.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">03</div><h2 class="sec-title">Our position</h2></div>
+  <div class="sec-body">
+    <div class="subhead">In one sentence</div>
+    <p><em>Heirloom is a curatorial imprint for vintage garden objects worth keeping.</em></p>
+
+    <div class="subhead">Three positional vectors</div>
+    <ul class="dash">
+      <li>Curatorial, not catalogue. We say no more than we say yes. The collection is small by design.</li>
+      <li>Vintage by criterion, not by aesthetic. We curate on age, material truth and provenance — not on a "vintage look."</li>
+      <li>An imprint, not a shop. Heirloom belongs to the Gardener &amp; Son ecosystem. Every object lives inside a larger argument about ecology, permanence and the long view.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">04</div><h2 class="sec-title">Purpose</h2></div>
+  <div class="sec-body">
+    <p>To return durable, characterful, biographied objects to the gardens that deserve them — and to slow the disposal cycle, one object at a time.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">05</div><h2 class="sec-title">Operating values</h2></div>
+  <div class="sec-body">
+    <p class="caption">These are not aspirational. They are the rules by which decisions are made.</p>
+    <div class="defn"><strong>Permanence over novelty.</strong><span class="em">—</span>We choose objects that have already outlasted a generation and assume they will outlast another.</div>
+    <div class="defn"><strong>Patina over polish.</strong><span class="em">—</span>Wear is provenance made visible. We do not erase it.</div>
+    <div class="defn"><strong>Material truth.</strong><span class="em">—</span>Concrete, terracotta, stone, iron, copper, timber, glass. No composites. No imitation.</div>
+    <div class="defn"><strong>Curatorial restraint.</strong><span class="em">—</span>Fewer, slower, deeper. A small catalogue is a curatorial statement.</div>
+    <div class="defn"><strong>Honest commerce.</strong><span class="em">—</span>Plain pricing, complete provenance, no theatre.</div>
+    <div class="defn"><strong>Belonging.</strong><span class="em">—</span>Objects are photographed in gardens, never on seamless white sweeps. They belong in the world.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PART TWO · POSITIONING -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="part-opener" id="part-two">
+  <div class="part-num">Part Two</div>
+  <h1>Positioning</h1>
+  <p class="part-caption">Where Heirloom sits within the Gardener &amp; Son ecosystem, against the market, and in the minds of its audiences.</p>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">06</div><h2 class="sec-title">Brand architecture</h2></div>
+  <div class="sec-body">
+    <p>Heirloom is a Gardener &amp; Son imprint. It does not stand alone, nor does it sit subordinate. It functions as one of several specialised vessels through which the parent studio expresses its broader practice.</p>
+    <p>The architectural model is endorsed, in the brand-strategy sense: Heirloom carries its own identity, its own voice, its own catalogue — but signs every meaningful surface with a quiet parent endorsement.</p>
+
+    <div class="subhead">The ecosystem at a glance</div>
+    <div class="ledger">
+      <div class="ledger-row"><div class="lbl">Gardener &amp; Son</div><div class="val">The parent studio. Ecological design practice.</div></div>
+      <div class="ledger-row"><div class="lbl">Gardens</div><div class="val">Built work — designed and installed gardens.</div></div>
+      <div class="ledger-row"><div class="lbl">Plants of Place</div><div class="val">Indigenous micro-nursery.</div></div>
+      <div class="ledger-row"><div class="lbl">Heirloom</div><div class="val">Curatorial imprint of vintage garden objects. — this document.</div></div>
+      <div class="ledger-row"><div class="lbl">Ecological Registry</div><div class="val">Platform: garden documentation, scoring, yield.</div></div>
+      <div class="ledger-row"><div class="lbl">Sardines</div><div class="val">Laneway wine bar (Mason Lane). Sibling, not parent.</div></div>
+    </div>
+    <p class="caption">Heirloom shares the visual and ecological language of the parent studio but speaks with its own register — slower, more editorial, more elegiac.</p>
+
+    <div class="subhead">Endorsement lockup</div>
+    <p>Every signature surface — website footer, catalogue cover, object certificate, packaging stamp — carries the endorsement line:</p>
+    <div class="pull">Heirloom — a Gardener &amp; Son imprint.<span class="att">Set in the brand sans, opened slightly, at a clearly subordinate size.</span></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">07</div><h2 class="sec-title">Audience</h2></div>
+  <div class="sec-body">
+    <p>Four overlapping audiences, ranked by current commercial and strategic weight:</p>
+    <div class="subhead">01 · The Steward</div>
+    <p>Owns or rents a meaningful garden. Has begun to ask what is worth keeping. Often a Gardener &amp; Son client or future client. Values lineage, story, and the unfaked. Spends slowly, deeply. The Steward is the gravitational centre of the brand — every other audience defines itself in relation to them.</p>
+    <div class="subhead">02 · The Designer</div>
+    <p>Landscape designers, stylists, set decorators, location scouts. Sources for clients. Wants provenance documentation and clean trade terms. Repeat-buyer if treated well.</p>
+    <div class="subhead">03 · The Collector</div>
+    <p>Already inside the antiques world. Recognises material and period at a glance. Will trade up over time and tests our authority.</p>
+    <div class="subhead">04 · The Reader</div>
+    <p>Does not yet buy. Follows. Subscribes. Saves images. Eventually crosses the threshold into Stewardship. Our editorial channels exist for this audience first; commerce follows.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">08</div><h2 class="sec-title">Competitive frame</h2></div>
+  <div class="sec-body">
+    <p>Heirloom is not competing on price. It is competing on legibility of value.</p>
+    <div class="ledger">
+      <div class="ledger-row"><div class="lbl">Antique dealers, salvage yards</div><div class="val">Offer volume and serendipity. We offer curation and documentation.</div></div>
+      <div class="ledger-row"><div class="lbl">Etsy / eBay / Marketplace</div><div class="val">Offer access. We offer trust and editorial.</div></div>
+      <div class="ledger-row"><div class="lbl">Pottery Barn et al.</div><div class="val">Offer the look. We offer the thing itself.</div></div>
+      <div class="ledger-row"><div class="lbl">High-end nurseries with objects</div><div class="val">Closest neighbours. We are more editorial, more aged, more single-minded.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">09</div><h2 class="sec-title">The Heirloom Promise</h2></div>
+  <div class="sec-body">
+    <p>Every object sold under the Heirloom imprint is released with four guarantees:</p>
+    <ul class="dash">
+      <li>A documented provenance — origin, period, material, prior life where known.</li>
+      <li>An honest condition statement — including imperfection.</li>
+      <li>A custodianship note — how to live with the object, how to maintain it.</li>
+      <li>A lifetime trade-back offer — we will take any object back into the catalogue, always.</li>
+    </ul>
+    <p class="caption">The trade-back is the single mechanic that proves the thesis. It is non-negotiable and it appears on every certificate.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PART THREE · PERSONALITY -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="part-opener" id="part-three">
+  <div class="part-num">Part Three</div>
+  <h1>Personality</h1>
+  <p class="part-caption">Who Heirloom is when it walks into a room.</p>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">10</div><h2 class="sec-title">Archetype</h2></div>
+  <div class="sec-body">
+    <p>Heirloom occupies a hybrid archetype: the Curator-Custodian. A controlled blend of two classical positions:</p>
+    <div class="defn"><strong>The Sage.</strong><span class="em">—</span>Knowledge, discernment, attribution. We know what the object is and we will tell you.</div>
+    <div class="defn"><strong>The Caregiver.</strong><span class="em">—</span>Preservation, stewardship, the long view. We are here to keep things going.</div>
+    <p>Heirloom is explicitly <em>not</em> the Maker (we do not make), not the Magician (we do not theatre), not the Outlaw (we are not anti-establishment, we are pre-establishment).</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">11</div><h2 class="sec-title">Character</h2></div>
+  <div class="sec-body">
+    <p>If Heirloom were a person:</p>
+    <ul class="dash">
+      <li>Reads more than they speak.</li>
+      <li>Wears workwear that has been worked in.</li>
+      <li>Knows the difference between weathered and ruined.</li>
+      <li>Is generous with knowledge.</li>
+      <li>Quietly contemptuous of fakery.</li>
+      <li>Patient with the right buyer. Indifferent to the wrong one.</li>
+      <li>Australian, but reads French, Italian and Japanese garden writing.</li>
+      <li>Has never sent an exclamation mark in their life.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">12</div><h2 class="sec-title">Voice and tone</h2></div>
+  <div class="sec-body">
+    <div class="subhead">Voice — constant</div>
+    <p>Considered. Quietly authoritative. Plainspoken. Literate without being literary. Australian without being Australiana.</p>
+    <div class="subhead">Tone — shifts by context</div>
+    <div class="ledger">
+      <div class="ledger-row"><div class="lbl">Object descriptions</div><div class="val">Observational. Factual. Sparing. The image carries the romance.</div></div>
+      <div class="ledger-row"><div class="lbl">Newsletter &amp; essays</div><div class="val">Warmer. Essayistic. Room for digression and the long sentence.</div></div>
+      <div class="ledger-row"><div class="lbl">Trade &amp; provenance documents</div><div class="val">Formal. Terse. No adjectives that are not load-bearing.</div></div>
+      <div class="ledger-row"><div class="lbl">Social</div><div class="val">Slow. Image-led. Captions earn their existence or do not appear.</div></div>
+      <div class="ledger-row"><div class="lbl">In-studio signage</div><div class="val">Instructive. Helpful. Never cute.</div></div>
+      <div class="ledger-row"><div class="lbl">Customer correspondence</div><div class="val">Warm, specific, written by a person.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">13</div><h2 class="sec-title">Lexicon</h2></div>
+  <div class="sec-body">
+    <p>Vocabulary is positioning. The words we choose, and the words we refuse, do more strategic work than any tagline.</p>
+    <div class="compare">
+      <div class="compare-col">
+        <h4>Words we use</h4>
+        <ul>
+          <li>custodianship</li>
+          <li>steward, stewardship</li>
+          <li>provenance</li>
+          <li>lineage</li>
+          <li>patina</li>
+          <li>weathered</li>
+          <li>period (e.g. "mid-century period")</li>
+          <li>attribution</li>
+          <li>restoration, restored</li>
+          <li>kept, returned, re-released</li>
+          <li>the long view</li>
+          <li>biographied</li>
+          <li>of place</li>
+          <li>characterful</li>
+          <li>material</li>
+          <li>salvaged</li>
+          <li>considered</li>
+          <li>slow</li>
+          <li>archive, edition, imprint</li>
+        </ul>
+      </div>
+      <div class="compare-col refuse">
+        <h4>Words we refuse</h4>
+        <ul>
+          <li>rustic</li>
+          <li>shabby chic</li>
+          <li>farmhouse</li>
+          <li>vintage-inspired</li>
+          <li>distressed (as a finish)</li>
+          <li>unique (every object is)</li>
+          <li>one-of-a-kind</li>
+          <li>must-have</li>
+          <li>curated (we are curators — we don't need to say it)</li>
+          <li>hand-picked, hand-selected</li>
+          <li>treasure, gem, find, score</li>
+          <li>statement piece</li>
+          <li>eclectic</li>
+          <li>boho</li>
+          <li>drop, drop-day</li>
+          <li>iconic</li>
+          <li>elevated</li>
+          <li>luxe</li>
+          <li>exclusive</li>
+        </ul>
+      </div>
+    </div>
+    <p class="caption">The right column is more important than the left. A brand is defined more clearly by what it refuses than by what it adopts.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PART FOUR · VERBAL IDENTITY -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="part-opener" id="part-four">
+  <div class="part-num">Part Four</div>
+  <h1>Verbal identity</h1>
+  <p class="part-caption">How Heirloom speaks. The line, the hierarchy, the rules of the sentence.</p>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">14</div><h2 class="sec-title">The line</h2></div>
+  <div class="sec-body">
+    <div class="pull">Things worth keeping.</div>
+    <p>Three words. Iambic. Functional and ethical at once. It works as catalogue header, footer signature, social caption, packaging stamp, and final word in an essay. It does all of this without raising its voice.</p>
+    <div class="subhead">Rules</div>
+    <ul class="dash">
+      <li>Always lowercase where layout permits.</li>
+      <li>Full stop included. The line is a complete sentence.</li>
+      <li>Never extended. Never punctuated differently. Never translated into derivative slogans.</li>
+      <li>Never used as a hashtag. Never used as a question.</li>
+    </ul>
+    <div class="subhead">Secondary marks — rotate, never replace</div>
+    <ul class="dash">
+      <li>A catalogue of survivors.</li>
+      <li>For gardens that intend to stay.</li>
+      <li>Patina is provenance.</li>
+      <li>Kept, not bought.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">15</div><h2 class="sec-title">Messaging hierarchy</h2></div>
+  <div class="sec-body">
+    <p class="caption">Three tiers, used in proportion to surface and context.</p>
+    <div class="subhead">Tier 1 — The line</div>
+    <p>Things worth keeping.</p>
+    <div class="subhead">Tier 2 — Positioning line</div>
+    <p>A Gardener &amp; Son imprint of vintage garden objects, curated for provenance and permanence.</p>
+    <div class="subhead">Tier 3 — Long-form descriptor</div>
+    <p>Heirloom is a curatorial imprint within the Gardener &amp; Son ecosystem. We acquire, restore, document and re-release vintage garden objects — concrete, terracotta, stone, cast iron, copper, timber and glass — with full provenance and a standing offer of trade-back. Every object is here because it was kept once and is worth keeping again.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">16</div><h2 class="sec-title">Copy principles</h2></div>
+  <div class="sec-body">
+    <div class="defn"><strong>Object first, copy second.</strong><span class="em">—</span>Photography leads. Words follow. If the image is doing the work, get out of its way.</div>
+    <div class="defn"><strong>Observable over evocative.</strong><span class="em">—</span>Describe what is there. The reader does the feeling.</div>
+    <div class="defn"><strong>Specificity is the persuasion.</strong><span class="em">—</span>"1920s French terracotta, hand-thrown, repaired rim" beats "stunning antique pot" every time.</div>
+    <div class="defn"><strong>Adjectives earn their place or leave.</strong><span class="em">—</span>Default to nouns and verbs. An adjective must be load-bearing or it is decoration.</div>
+    <div class="defn"><strong>No exclamation marks.</strong><span class="em">—</span>Anywhere. Ever.</div>
+    <div class="defn"><strong>No emoji in commerce contexts.</strong><span class="em">—</span>Used sparingly in personal-voice channels only.</div>
+    <div class="defn"><strong>Australian English.</strong><span class="em">—</span>Colour, not color. Catalogue, not catalog. Centre, not center.</div>
+    <div class="defn"><strong>Plain price.</strong><span class="em">—</span>No "from," no "price on application" unless the object is genuinely bespoke. State it.</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">17</div><h2 class="sec-title">Object naming convention</h2></div>
+  <div class="sec-body">
+    <p>Every object in the catalogue is named by formula:</p>
+    <div class="pull">[Period or era] + [Material] + [Form]</div>
+    <p>Examples:</p>
+    <ul class="dash">
+      <li>1960s Cast Concrete Trough.</li>
+      <li>Victorian Cast Iron Urn.</li>
+      <li>Mid-Century Terracotta Strawberry Pot.</li>
+      <li>1930s French Galvanised Watering Can.</li>
+      <li>Edwardian English Lead Cistern.</li>
+    </ul>
+    <p>Subjective adjectives ("beautiful," "rare," "stunning") never appear in the name. They may appear, sparingly, in the description — but only if load-bearing.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PART FIVE · VISUAL IDENTITY -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="part-opener" id="part-five">
+  <div class="part-num">Part Five</div>
+  <h1>Visual identity</h1>
+  <p class="part-caption">The Mark, the wordmark, palette, typography, photography and layout. The Heirloom system is parsimonious. Restraint is the design.</p>
+</section>
+
+<!-- ─── 18 · THE MARK ─── -->
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">18</div><h2 class="sec-title">The Mark</h2></div>
+  <div class="sec-body">
+    <p>The Heirloom mark is a struck circular maker's seal. It carries the wordmark at its centre, the parent endorsement on its rim, and a single botanical ornament above. It is both brand identity and certifying mark: the same form that signs the catalogue cover ink-presses the certificate of provenance and embosses the kraft packaging stamp.</p>
+    <p>The form descends from the visual ancestry of every object in the catalogue — potter's chops, foundry stamps, nursery rings, wax seals, customs marks. This is not a decorative choice. The mark says, formally, what the brand says verbally: <em>kept, documented, certified.</em></p>
+
+    <!-- The primary mark hero -->
+    <div class="mark-hero">
+      <div class="seal-display">
+        <!-- PRIMARY SEAL — Seed Head ornament -->
+        <svg viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg" role="img">
+          <title>The Heirloom seal — primary mark</title>
+          <circle cx="230" cy="230" r="200" fill="none" stroke="#3D4535" stroke-width="2.5"/>
+          <circle cx="230" cy="230" r="178" fill="none" stroke="#3D4535" stroke-width="0.7"/>
+          <defs>
+            <path id="topPrim" d="M 64 188 A 188 188 0 0 1 396 188" fill="none"/>
+            <path id="botPrim" d="M 64 272 A 188 188 0 0 0 396 272" fill="none"/>
+          </defs>
+          <text font-family="Georgia, serif" font-size="14" fill="#8C6A4A" letter-spacing="3" font-weight="600">
+            <textPath href="#topPrim" startOffset="50%" text-anchor="middle">A · GARDENER · &amp; · SON · IMPRINT</textPath>
+          </text>
+          <text font-family="Georgia, serif" font-size="14" fill="#8C6A4A" letter-spacing="3" font-weight="600">
+            <textPath href="#botPrim" startOffset="50%" text-anchor="middle">EST · MELBOURNE · MMXXVI</textPath>
+          </text>
+          <g transform="translate(230, 162)" stroke="#3D4535" stroke-width="1.4" stroke-linecap="round" fill="none">
+            <circle cx="0" cy="0" r="2.2" fill="#3D4535" stroke="none"/>
+            <line x1="0" y1="0" x2="0" y2="-18"/>
+            <line x1="0" y1="0" x2="6" y2="-17"/>
+            <line x1="0" y1="0" x2="12" y2="-14"/>
+            <line x1="0" y1="0" x2="16" y2="-9"/>
+            <line x1="0" y1="0" x2="18" y2="-2"/>
+            <line x1="0" y1="0" x2="17" y2="6"/>
+            <line x1="0" y1="0" x2="13" y2="12"/>
+            <line x1="0" y1="0" x2="-6" y2="-17"/>
+            <line x1="0" y1="0" x2="-12" y2="-14"/>
+            <line x1="0" y1="0" x2="-16" y2="-9"/>
+            <line x1="0" y1="0" x2="-18" y2="-2"/>
+            <line x1="0" y1="0" x2="-17" y2="6"/>
+            <line x1="0" y1="0" x2="-13" y2="12"/>
+            <circle cx="0" cy="-18" r="1.2" fill="#3D4535" stroke="none"/>
+            <circle cx="6" cy="-17" r="1.2" fill="#3D4535" stroke="none"/>
+            <circle cx="12" cy="-14" r="1.2" fill="#3D4535" stroke="none"/>
+            <circle cx="16" cy="-9" r="1.2" fill="#3D4535" stroke="none"/>
+            <circle cx="18" cy="-2" r="1.2" fill="#3D4535" stroke="none"/>
+            <circle cx="17" cy="6" r="1.2" fill="#3D4535" stroke="none"/>
+            <circle cx="13" cy="12" r="1.2" fill="#3D4535" stroke="none"/>
+            <circle cx="-6" cy="-17" r="1.2" fill="#3D4535" stroke="none"/>
+            <circle cx="-12" cy="-14" r="1.2" fill="#3D4535" stroke="none"/>
+            <circle cx="-16" cy="-9" r="1.2" fill="#3D4535" stroke="none"/>
+            <circle cx="-18" cy="-2" r="1.2" fill="#3D4535" stroke="none"/>
+            <circle cx="-17" cy="6" r="1.2" fill="#3D4535" stroke="none"/>
+            <circle cx="-13" cy="12" r="1.2" fill="#3D4535" stroke="none"/>
+            <line x1="0" y1="14" x2="0" y2="24" stroke-width="1.6"/>
+          </g>
+          <text x="230" y="240" text-anchor="middle" font-family="Georgia, serif" font-size="44" fill="#3D4535">Heirloom</text>
+          <line x1="200" y1="262" x2="260" y2="262" stroke="#A8C285" stroke-width="2.2"/>
+        </svg>
+      </div>
+      <div class="seal-text">
+        <h3>The primary mark.</h3>
+        <p>A two-ring seal in ink on paper. Rim text in transitional serif, generously tracked. Wordmark in display serif at the centre. A single botanical ornament above. A green hairline rule beneath.</p>
+        <p>Used at every signature surface where the brand needs to declare itself: catalogue covers, certificates of provenance, the studio shopfront, the website header.</p>
+      </div>
+    </div>
+
+    <div class="subhead">Why a seal, not a wordmark</div>
+    <p>A flat wordmark is fine for a fashion label. Heirloom is a certifying imprint, and the mark must function as both brand signal and authentication device. When stamped on the underside of a concrete urn, on the corner of kraft packaging, or pressed into a wax-sealed certificate, the seal performs exactly the role its 400-year-old ancestors performed for makers, foundries, potters and nurseries: <em>this object has been verified, documented and released.</em></p>
+
+    <div class="subhead">The ornament — design rationale</div>
+    <p>The single highest-leverage detail in the seal is the small glyph at its centre. Every other element (ring, rim, wordmark, hairline) is convention; the ornament is what makes the mark distinctly Heirloom's.</p>
+    <p>Four directions were drawn and reviewed. The chosen ornament is <strong>the Seed Head</strong> — a radial dried bloom, geometric and structurally beautiful in a way the flower never was. The other three were strong but lost on specific arguments outlined below.</p>
+
+    <div class="ornaments-row">
+      <!-- Seed Head — chosen -->
+      <div class="orn-cell chosen">
+        <span class="chosen-tag">✦ Chosen</span>
+        <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="90" cy="90" r="76" fill="none" stroke="#3D4535" stroke-width="1.2"/>
+          <circle cx="90" cy="90" r="68" fill="none" stroke="#3D4535" stroke-width="0.35"/>
+          <g transform="translate(90, 62)" stroke="#3D4535" stroke-width="0.7" stroke-linecap="round" fill="none">
+            <circle cx="0" cy="0" r="1.1" fill="#3D4535" stroke="none"/>
+            <line x1="0" y1="0" x2="0" y2="-10"/>
+            <line x1="0" y1="0" x2="3.5" y2="-9.5"/>
+            <line x1="0" y1="0" x2="7" y2="-8"/>
+            <line x1="0" y1="0" x2="9" y2="-5"/>
+            <line x1="0" y1="0" x2="10" y2="-1"/>
+            <line x1="0" y1="0" x2="9.5" y2="3.5"/>
+            <line x1="0" y1="0" x2="7" y2="7"/>
+            <line x1="0" y1="0" x2="-3.5" y2="-9.5"/>
+            <line x1="0" y1="0" x2="-7" y2="-8"/>
+            <line x1="0" y1="0" x2="-9" y2="-5"/>
+            <line x1="0" y1="0" x2="-10" y2="-1"/>
+            <line x1="0" y1="0" x2="-9.5" y2="3.5"/>
+            <line x1="0" y1="0" x2="-7" y2="7"/>
+            <line x1="0" y1="8" x2="0" y2="14" stroke-width="0.9"/>
+          </g>
+          <text x="90" y="96" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#3D4535">Heirloom</text>
+          <line x1="78" y1="106" x2="102" y2="106" stroke="#A8C285" stroke-width="0.9"/>
+        </svg>
+        <div class="orn-name">Seed Head</div>
+        <div class="orn-reg">Custodial</div>
+        <div class="orn-note">The only ornament whose meaning is the brand's meaning.</div>
+      </div>
+      <!-- Oak Gall -->
+      <div class="orn-cell">
+        <span class="chosen-tag">·</span>
+        <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="90" cy="90" r="76" fill="none" stroke="#3D4535" stroke-width="1.2"/>
+          <circle cx="90" cy="90" r="68" fill="none" stroke="#3D4535" stroke-width="0.35"/>
+          <g transform="translate(90, 62)" stroke="#3D4535" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" fill="none">
+            <path d="M -1 -12 C -4 -12, -7 -10, -7 -8 C -9 -8, -10 -5, -9 -4 C -11 -3, -11 0, -9 1 C -10 2, -9 4, -7 4 C -7 7, -4 8, -2 7 L 0 8 L 2 7 C 4 8, 7 7, 7 4 C 9 4, 10 2, 9 1 C 11 0, 11 -3, 9 -4 C 10 -5, 9 -8, 7 -8 C 7 -10, 4 -12, 1 -12 Z" stroke-width="0.7"/>
+            <line x1="0" y1="-10" x2="0" y2="7" stroke-width="0.4"/>
+            <line x1="0" y1="8" x2="0" y2="13" stroke-width="0.8"/>
+            <circle cx="0" cy="15" r="2.2" fill="#3D4535" stroke="none"/>
+          </g>
+          <text x="90" y="96" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#3D4535">Heirloom</text>
+          <line x1="78" y1="106" x2="102" y2="106" stroke="#A8C285" stroke-width="0.9"/>
+        </svg>
+        <div class="orn-name">Oak Gall</div>
+        <div class="orn-reg">Scholarly</div>
+        <div class="orn-note">Deepest concept. Lost on legibility.</div>
+      </div>
+      <!-- Fern Crozier -->
+      <div class="orn-cell">
+        <span class="chosen-tag">·</span>
+        <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="90" cy="90" r="76" fill="none" stroke="#3D4535" stroke-width="1.2"/>
+          <circle cx="90" cy="90" r="68" fill="none" stroke="#3D4535" stroke-width="0.35"/>
+          <g transform="translate(90, 62)" stroke="#3D4535" stroke-width="0.95" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M 0 12 C 0 8, 0 4, 2 2 C 4 0, 8 0, 9 2 C 10 4, 9 8, 6 9 C 2 10, -1 8, -1 4 C -1 1, 2 -2, 7 -2 C 12 -2, 14 2, 13 7"/>
+            <circle cx="6" cy="4" r="0.8" fill="#A8C285" stroke="none"/>
+            <line x1="0" y1="8" x2="-3" y2="11" stroke-width="0.55"/>
+            <line x1="0" y1="11" x2="-4" y2="14" stroke-width="0.55"/>
+          </g>
+          <text x="90" y="96" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#3D4535">Heirloom</text>
+          <line x1="78" y1="106" x2="102" y2="106" stroke="#A8C285" stroke-width="0.9"/>
+        </svg>
+        <div class="orn-name">Fern Crozier</div>
+        <div class="orn-reg">Ancient</div>
+        <div class="orn-note">Most elegant. Reads spa-adjacent.</div>
+      </div>
+      <!-- Acorn Pair -->
+      <div class="orn-cell">
+        <span class="chosen-tag">·</span>
+        <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="90" cy="90" r="76" fill="none" stroke="#3D4535" stroke-width="1.2"/>
+          <circle cx="90" cy="90" r="68" fill="none" stroke="#3D4535" stroke-width="0.35"/>
+          <g transform="translate(90, 60)" stroke="#3D4535" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <line x1="-7" y1="-2" x2="7" y2="-2" stroke-width="0.85"/>
+            <path d="M -9 -2 L -9 1 C -9 3, -7 4, -6 4 C -4 4, -2 3, -2 1 L -2 -2 Z" fill="#3D4535" stroke="#3D4535"/>
+            <path d="M -9 3 C -9 9, -7 13, -6 13 C -4 13, -2 9, -2 3" stroke-width="0.85"/>
+            <path d="M 2 -2 L 2 1 C 2 3, 4 4, 6 4 C 7 4, 9 3, 9 1 L 9 -2 Z" fill="#3D4535" stroke="#3D4535"/>
+            <path d="M 2 3 C 2 9, 4 13, 6 13 C 7 13, 9 9, 9 3" stroke-width="0.85"/>
+          </g>
+          <text x="90" y="96" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#3D4535">Heirloom</text>
+          <line x1="78" y1="106" x2="102" y2="106" stroke="#A8C285" stroke-width="0.9"/>
+        </svg>
+        <div class="orn-name">Acorn Pair</div>
+        <div class="orn-reg">Generational</div>
+        <div class="orn-note">Most legible. Most generic.</div>
+      </div>
+    </div>
+
+    <div class="pull">The bloom is gone. What remains has been kept.<span class="att">The Seed Head, in one line.</span></div>
+
+    <p>The Seed Head was chosen because it is the only ornament whose meaning is identical to the brand's meaning. A dried seed head is an object that has finished its first life and is still here, structurally intact, kept because it is worth keeping. Everything else is metaphor; this is the same idea.</p>
+    <p>It is also the rarest. Of the brands Heirloom will sit next to — established antique dealers, new editorial garden brands — none use this form. Adopting it signals that Heirloom is not joining a category, but defining one.</p>
+
+    <div class="subhead">The Mark system</div>
+    <p>The seal exists as a small family of variants, each calibrated to a specific application:</p>
+
+    <div class="mark-system">
+      <!-- Primary -->
+      <div class="ms-cell">
+        <div class="ms-box paper">
+          <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="90" cy="90" r="76" fill="none" stroke="#3D4535" stroke-width="1.2"/>
+            <circle cx="90" cy="90" r="68" fill="none" stroke="#3D4535" stroke-width="0.35"/>
+            <defs>
+              <path id="topMS1" d="M 26 72 A 64 64 0 0 1 154 72" fill="none"/>
+              <path id="botMS1" d="M 26 108 A 64 64 0 0 0 154 108" fill="none"/>
+            </defs>
+            <text font-family="Georgia, serif" font-size="5.5" fill="#8C6A4A" letter-spacing="1.6" font-weight="600">
+              <textPath href="#topMS1" startOffset="50%" text-anchor="middle">A · GARDENER · &amp; · SON · IMPRINT</textPath>
+            </text>
+            <text font-family="Georgia, serif" font-size="5.5" fill="#8C6A4A" letter-spacing="1.6" font-weight="600">
+              <textPath href="#botMS1" startOffset="50%" text-anchor="middle">EST · MELBOURNE · MMXXVI</textPath>
+            </text>
+            <g transform="translate(90, 62)" stroke="#3D4535" stroke-width="0.7" stroke-linecap="round" fill="none">
+              <circle cx="0" cy="0" r="1.1" fill="#3D4535" stroke="none"/>
+              <line x1="0" y1="0" x2="0" y2="-10"/>
+              <line x1="0" y1="0" x2="3.5" y2="-9.5"/>
+              <line x1="0" y1="0" x2="7" y2="-8"/>
+              <line x1="0" y1="0" x2="9" y2="-5"/>
+              <line x1="0" y1="0" x2="10" y2="-1"/>
+              <line x1="0" y1="0" x2="9.5" y2="3.5"/>
+              <line x1="0" y1="0" x2="7" y2="7"/>
+              <line x1="0" y1="0" x2="-3.5" y2="-9.5"/>
+              <line x1="0" y1="0" x2="-7" y2="-8"/>
+              <line x1="0" y1="0" x2="-9" y2="-5"/>
+              <line x1="0" y1="0" x2="-10" y2="-1"/>
+              <line x1="0" y1="0" x2="-9.5" y2="3.5"/>
+              <line x1="0" y1="0" x2="-7" y2="7"/>
+              <line x1="0" y1="8" x2="0" y2="14" stroke-width="0.9"/>
+            </g>
+            <text x="90" y="96" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#3D4535">Heirloom</text>
+            <line x1="78" y1="106" x2="102" y2="106" stroke="#A8C285" stroke-width="0.9"/>
+          </svg>
+        </div>
+        <div class="ms-label">01</div>
+        <div class="ms-name">Primary</div>
+      </div>
+      <!-- Stamp (single ink on kraft) -->
+      <div class="ms-cell">
+        <div class="ms-box kraft">
+          <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="90" cy="90" r="76" fill="none" stroke="#3D4535" stroke-width="1.5" opacity="0.92"/>
+            <circle cx="90" cy="90" r="68" fill="none" stroke="#3D4535" stroke-width="0.45" opacity="0.92"/>
+            <defs>
+              <path id="topMS2" d="M 26 72 A 64 64 0 0 1 154 72" fill="none"/>
+              <path id="botMS2" d="M 26 108 A 64 64 0 0 0 154 108" fill="none"/>
+            </defs>
+            <text font-family="Georgia, serif" font-size="5.5" fill="#3D4535" letter-spacing="1.6" font-weight="600" opacity="0.92">
+              <textPath href="#topMS2" startOffset="50%" text-anchor="middle">A · GARDENER · &amp; · SON · IMPRINT</textPath>
+            </text>
+            <text font-family="Georgia, serif" font-size="5.5" fill="#3D4535" letter-spacing="1.6" font-weight="600" opacity="0.92">
+              <textPath href="#botMS2" startOffset="50%" text-anchor="middle">EST · MELBOURNE · MMXXVI</textPath>
+            </text>
+            <g transform="translate(90, 62)" stroke="#3D4535" stroke-width="0.7" stroke-linecap="round" fill="none" opacity="0.92">
+              <circle cx="0" cy="0" r="1.1" fill="#3D4535" stroke="none"/>
+              <line x1="0" y1="0" x2="0" y2="-10"/>
+              <line x1="0" y1="0" x2="3.5" y2="-9.5"/>
+              <line x1="0" y1="0" x2="7" y2="-8"/>
+              <line x1="0" y1="0" x2="9" y2="-5"/>
+              <line x1="0" y1="0" x2="10" y2="-1"/>
+              <line x1="0" y1="0" x2="9.5" y2="3.5"/>
+              <line x1="0" y1="0" x2="7" y2="7"/>
+              <line x1="0" y1="0" x2="-3.5" y2="-9.5"/>
+              <line x1="0" y1="0" x2="-7" y2="-8"/>
+              <line x1="0" y1="0" x2="-9" y2="-5"/>
+              <line x1="0" y1="0" x2="-10" y2="-1"/>
+              <line x1="0" y1="0" x2="-9.5" y2="3.5"/>
+              <line x1="0" y1="0" x2="-7" y2="7"/>
+              <line x1="0" y1="8" x2="0" y2="14" stroke-width="0.9"/>
+            </g>
+            <text x="90" y="96" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#3D4535" opacity="0.92">Heirloom</text>
+            <line x1="78" y1="106" x2="102" y2="106" stroke="#3D4535" stroke-width="0.9" opacity="0.92"/>
+          </svg>
+        </div>
+        <div class="ms-label">02</div>
+        <div class="ms-name">Stamp</div>
+      </div>
+      <!-- Miniature -->
+      <div class="ms-cell">
+        <div class="ms-box paper">
+          <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="90" cy="90" r="56" fill="none" stroke="#3D4535" stroke-width="1.2"/>
+            <circle cx="90" cy="90" r="48" fill="none" stroke="#3D4535" stroke-width="0.35"/>
+            <g transform="translate(90, 78)" stroke="#3D4535" stroke-width="0.7" stroke-linecap="round" fill="none">
+              <circle cx="0" cy="0" r="1.1" fill="#3D4535" stroke="none"/>
+              <line x1="0" y1="0" x2="0" y2="-7"/>
+              <line x1="0" y1="0" x2="4" y2="-6"/>
+              <line x1="0" y1="0" x2="6" y2="-3"/>
+              <line x1="0" y1="0" x2="7" y2="0"/>
+              <line x1="0" y1="0" x2="6" y2="3"/>
+              <line x1="0" y1="0" x2="-4" y2="-6"/>
+              <line x1="0" y1="0" x2="-6" y2="-3"/>
+              <line x1="0" y1="0" x2="-7" y2="0"/>
+              <line x1="0" y1="0" x2="-6" y2="3"/>
+              <line x1="0" y1="5" x2="0" y2="9" stroke-width="0.8"/>
+            </g>
+            <text x="90" y="96" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#3D4535">Heirloom</text>
+            <line x1="80" y1="104" x2="100" y2="104" stroke="#A8C285" stroke-width="0.6"/>
+            <text x="90" y="116" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="4.5" fill="#8C6A4A" letter-spacing="0.8" font-weight="600">MMXXVI</text>
+          </svg>
+        </div>
+        <div class="ms-label">03</div>
+        <div class="ms-name">Miniature</div>
+      </div>
+      <!-- Reverse on dark -->
+      <div class="ms-cell">
+        <div class="ms-box dark">
+          <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="90" cy="90" r="76" fill="none" stroke="#FFF0DC" stroke-width="1.2"/>
+            <circle cx="90" cy="90" r="68" fill="none" stroke="#FFF0DC" stroke-width="0.35"/>
+            <defs>
+              <path id="topMS4" d="M 26 72 A 64 64 0 0 1 154 72" fill="none"/>
+              <path id="botMS4" d="M 26 108 A 64 64 0 0 0 154 108" fill="none"/>
+            </defs>
+            <text font-family="Georgia, serif" font-size="5.5" fill="#C9A07A" letter-spacing="1.6" font-weight="600">
+              <textPath href="#topMS4" startOffset="50%" text-anchor="middle">A · GARDENER · &amp; · SON · IMPRINT</textPath>
+            </text>
+            <text font-family="Georgia, serif" font-size="5.5" fill="#C9A07A" letter-spacing="1.6" font-weight="600">
+              <textPath href="#botMS4" startOffset="50%" text-anchor="middle">EST · MELBOURNE · MMXXVI</textPath>
+            </text>
+            <g transform="translate(90, 62)" stroke="#FFF0DC" stroke-width="0.7" stroke-linecap="round" fill="none">
+              <circle cx="0" cy="0" r="1.1" fill="#FFF0DC" stroke="none"/>
+              <line x1="0" y1="0" x2="0" y2="-10"/>
+              <line x1="0" y1="0" x2="3.5" y2="-9.5"/>
+              <line x1="0" y1="0" x2="7" y2="-8"/>
+              <line x1="0" y1="0" x2="9" y2="-5"/>
+              <line x1="0" y1="0" x2="10" y2="-1"/>
+              <line x1="0" y1="0" x2="9.5" y2="3.5"/>
+              <line x1="0" y1="0" x2="7" y2="7"/>
+              <line x1="0" y1="0" x2="-3.5" y2="-9.5"/>
+              <line x1="0" y1="0" x2="-7" y2="-8"/>
+              <line x1="0" y1="0" x2="-9" y2="-5"/>
+              <line x1="0" y1="0" x2="-10" y2="-1"/>
+              <line x1="0" y1="0" x2="-9.5" y2="3.5"/>
+              <line x1="0" y1="0" x2="-7" y2="7"/>
+              <line x1="0" y1="8" x2="0" y2="14" stroke-width="0.9"/>
+            </g>
+            <text x="90" y="96" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#FFF0DC">Heirloom</text>
+            <line x1="78" y1="106" x2="102" y2="106" stroke="#A8C285" stroke-width="0.9"/>
+          </svg>
+        </div>
+        <div class="ms-label">04</div>
+        <div class="ms-name">Reverse</div>
+      </div>
+    </div>
+
+    <div class="ledger">
+      <div class="ledger-row"><div class="lbl">Primary</div><div class="val">Full mark in Ink on Paper. All signature surfaces. Default form.</div></div>
+      <div class="ledger-row"><div class="lbl">Stamp</div><div class="val">Single-ink mark on kraft. Hand-pressed. Packaging, tags, ephemera.</div></div>
+      <div class="ledger-row"><div class="lbl">Miniature</div><div class="val">Reduced mark, no rim text. Favicons, embossed dies, tags below 20mm.</div></div>
+      <div class="ledger-row"><div class="lbl">Reverse</div><div class="val">Inverted on Deep ground. Understory contexts. The Live accent remains.</div></div>
+    </div>
+
+    <div class="subhead">Construction rules</div>
+    <ul class="dash">
+      <li>Minimum size: 16mm cap-height for primary; 8mm for the miniature.</li>
+      <li>Clearspace: a full width of the outer ring on all sides.</li>
+      <li>Never re-coloured outside the palette (Ink, Paper, Live, the Deep variants).</li>
+      <li>Never outlined, shadowed, or set on insufficient contrast.</li>
+      <li>Never rotated. The seal sits upright. Always.</li>
+      <li>The ornament is never altered, never substituted, never removed.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── 19 · THE WORDMARK ─── -->
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">19</div><h2 class="sec-title">The Wordmark</h2></div>
+  <div class="sec-body">
+    <p>The wordmark — used standalone, outside the seal — is the word <em>Heirloom</em> set in Abril Fatface, in sentence case or lowercase depending on surface. The letterforms are confident and slightly anachronistic — a display serif with the weight of a hand-painted shop sign, which is exactly the cultural register we want.</p>
+
+    <div class="subhead">Construction notes</div>
+    <ul class="dash">
+      <li>Letter-spacing: tight. The wordmark behaves as a single object.</li>
+      <li>Minimum size in print: 16mm cap-height. Minimum on screen: 32px.</li>
+      <li>Never outlined. Never shadowed. Never set against an image without sufficient contrast.</li>
+      <li>Never re-coloured outside the palette below.</li>
+    </ul>
+
+    <div class="subhead">Endorsement lockup</div>
+    <p>"Heirloom — a Gardener &amp; Son imprint." Set in IBM Plex Sans, tracked open at +100, at a clearly subordinate size — typically 30–40% of the Heirloom wordmark. Used where the seal is not appropriate but parent endorsement is required.</p>
+  </div>
+</section>
+
+<!-- ─── 20 · COLOUR ─── -->
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">20</div><h2 class="sec-title">Colour</h2></div>
+  <div class="sec-body">
+    <p>The palette is inherited from the Gardener &amp; Son system and refined for Heirloom's editorial register. It exists as two surface conditions: Canopy (light) and Understory (dark). One must dominate per layout. The other appears once, as inversion.</p>
+
+    <div class="subhead">Canopy — default light surface</div>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-block" style="background:#FFF0DC"></div><div class="swatch-name">Paper</div><div class="swatch-hex">#FFF0DC</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#3D4535"></div><div class="swatch-name">Ink</div><div class="swatch-hex">#3D4535</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#A8C285"></div><div class="swatch-name">Live</div><div class="swatch-hex">#A8C285</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#8C6A4A"></div><div class="swatch-name">Patina</div><div class="swatch-hex">#8C6A4A</div></div>
+    </div>
+    <p class="caption">Paper is the dominant surface. Ink is the type. Live is the accent — used sparingly, often as a hairline or section anchor. Patina is the warm metadata colour, reserved for labels, numerals and section markers.</p>
+
+    <div class="subhead">Understory — the inversion</div>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-block" style="background:#1A1F18"></div><div class="swatch-name">Deep</div><div class="swatch-hex">#1A1F18</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#FFF0DC"></div><div class="swatch-name">Paper</div><div class="swatch-hex">#FFF0DC</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#A8C285"></div><div class="swatch-name">Live</div><div class="swatch-hex">#A8C285</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#C9A07A"></div><div class="swatch-name">Warmed Patina</div><div class="swatch-hex">#C9A07A</div></div>
+    </div>
+    <p class="caption">Understory backgrounds carry the inverted layout. Paper becomes ink-on-dark. Live is unchanged. Patina warms slightly to compensate for the surface.</p>
+
+    <div class="pull">Exactly one Understory section per layout.<span class="att">The inversion is a punctuation mark, not a pattern. Used everywhere, it loses its meaning.</span></div>
+  </div>
+</section>
+
+<!-- ─── 21 · TYPOGRAPHY ─── -->
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">21</div><h2 class="sec-title">Typography</h2></div>
+  <div class="sec-body">
+    <div class="ledger">
+      <div class="ledger-row"><div class="lbl">Display typeface</div><div class="val">Abril Fatface — used for the wordmark, object names, hero headlines, section openers.</div></div>
+      <div class="ledger-row"><div class="lbl">Body typeface</div><div class="val">IBM Plex Sans — all running copy, captions, navigation, metadata.</div></div>
+      <div class="ledger-row"><div class="lbl">Provenance metadata</div><div class="val">IBM Plex Sans Italic — reserved for the material / period / origin line beneath object names.</div></div>
+      <div class="ledger-row"><div class="lbl">Print fallbacks</div><div class="val">Cambria (display) · Inter or Arial (body).</div></div>
+      <div class="ledger-row"><div class="lbl">Word document standard</div><div class="val">Georgia (display) · Helvetica or Arial (body) — used in all internal documents.</div></div>
+    </div>
+
+    <div class="subhead">Type rules</div>
+    <ul class="dash">
+      <li>Headings are sentence case. Never all-caps for body content.</li>
+      <li>Tracking: tight on display, neutral on body, slightly open on labels and small caps.</li>
+      <li>No drop shadows. No outlines. No gradient type. Ever.</li>
+      <li>Numerals: tabular in tables and ledgers, proportional in body.</li>
+      <li>Line-length: 50–70 characters in body. Anything wider is a layout error.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── 22 · PHOTOGRAPHY ─── -->
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">22</div><h2 class="sec-title">Photography direction</h2></div>
+  <div class="sec-body">
+    <div class="pull">Every object is photographed where it belongs.<span class="att">Outdoors. In garden context. In real light. This is the single rule. The rest follows from it.</span></div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h4>Yes</h4>
+        <ul>
+          <li>Soft natural daylight, often overcast</li>
+          <li>Visible ground, foliage, weather</li>
+          <li>Patina catching morning or late-afternoon angle</li>
+          <li>Imperfection in frame</li>
+          <li>Object at use-height — placed where it lives</li>
+          <li>Wide shot for context, close shot for material</li>
+          <li>Companion plant or texture as supporting cast</li>
+          <li>A single, considered shadow</li>
+        </ul>
+      </div>
+      <div class="compare-col refuse">
+        <h4>Never</h4>
+        <ul>
+          <li>Seamless white sweeps</li>
+          <li>Stylised flat-lays</li>
+          <li>Heavy filters or HDR</li>
+          <li>Beauty-product lighting</li>
+          <li>Hands holding objects ("artisan" cliche)</li>
+          <li>Faces, identifiable people</li>
+          <li>Visible brand-name props</li>
+          <li>Anything that looks like a furniture catalogue</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 23 · LAYOUT ─── -->
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">23</div><h2 class="sec-title">Layout principles</h2></div>
+  <div class="sec-body">
+    <p>Borrowed from the Ecological Registry source code, codified here as the Heirloom system:</p>
+    <div class="ledger">
+      <div class="ledger-row"><div class="lbl">Border-radius</div><div class="val">0. Square corners only. No rounded UI, no rounded cards, no rounded buttons.</div></div>
+      <div class="ledger-row"><div class="lbl">White-space</div><div class="val">Generous. Paper-space, in our case. The page should breathe.</div></div>
+      <div class="ledger-row"><div class="lbl">Rhythm</div><div class="val">Strong vertical. Single column dominates.</div></div>
+      <div class="ledger-row"><div class="lbl">Marginalia</div><div class="val">Permitted in the gutter — small italic captions, never as decoration.</div></div>
+      <div class="ledger-row"><div class="lbl">Centred type</div><div class="val">Reserved for ceremonial moments only — covers, section openings.</div></div>
+      <div class="ledger-row"><div class="lbl">Default alignment</div><div class="val">Left-ranged for everything else. Justified type avoided.</div></div>
+      <div class="ledger-row"><div class="lbl">Lists</div><div class="val">Ledgers and tables preferred to bullets. Bullets, when used, are em-dash bullets.</div></div>
+      <div class="ledger-row"><div class="lbl">Hairlines</div><div class="val">Used to separate sections. Never coloured outside Hair (#C9BFAE) or Live (#A8C285).</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 24 · PHYSICAL MARKS ─── -->
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">24</div><h2 class="sec-title">Physical marks</h2></div>
+  <div class="sec-body">
+    <div class="defn"><strong>Object tag.</strong><span class="em">—</span>Kraft card, 60 × 90 mm, three lines: object name, period &amp; material, internal SKU. Carries the Miniature seal in the top corner. Tied with natural twine — never ribbon.</div>
+    <div class="defn"><strong>Certificate of provenance.</strong><span class="em">—</span>A5, single sheet, printed letterpress where budget permits. Primary seal in the head. Signed in ink. Issued with every object over $500 and on request for everything else.</div>
+    <div class="defn"><strong>Studio shelf labels.</strong><span class="em">—</span>Type-only, no icons. Set in IBM Plex Sans, on natural card stock.</div>
+    <div class="defn"><strong>Packaging stamp.</strong><span class="em">—</span>Single-ink seal applied to the corner of plain kraft. No printed inserts.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PART SIX · APPLICATION -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="part-opener" id="part-six">
+  <div class="part-num">Part Six</div>
+  <h1>Application</h1>
+  <p class="part-caption">Heirloom across surfaces. Each application inherits the system above; this section names the conventions specific to each.</p>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">25</div><h2 class="sec-title">Digital — website</h2></div>
+  <div class="sec-body">
+    <p>Heirloom lives at heirloom.gardenerandson.com (or equivalent domain), built as a single-file HTML site against the Ecological Registry design system. The site is deliberately lean — speed is a brand attribute.</p>
+    <div class="subhead">Structural conventions</div>
+    <ul class="dash">
+      <li>Canopy default. One Understory section per page — usually the hero or the closing essay block.</li>
+      <li>Sticky nav with scrolled-state contrast change.</li>
+      <li>Catalogue grid: three columns desktop, one column mobile, generous gutter.</li>
+      <li>Object page: full-bleed photography, sentence-case object name, italic provenance line, plain price, tabular condition / dimensions / material, expandable provenance narrative.</li>
+      <li>No carousels on object pages. Scroll, do not swipe.</li>
+      <li>No pop-ups. No exit-intent. No "only 2 left" urgency theatre.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">26</div><h2 class="sec-title">Digital — newsletter</h2></div>
+  <div class="sec-body">
+    <p>Monthly. Long-form. One feature object, one essay, no merchandising stack at the foot. Plain text where possible — the reader is a reader.</p>
+    <ul class="dash">
+      <li>Subject lines are essay titles, not promotional hooks.</li>
+      <li>No "SHOP NOW" buttons. A single, plain link to the catalogue at the end of the letter.</li>
+      <li>Sender name: "Heirloom, Gardener &amp; Son." Never first-person-as-brand.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">27</div><h2 class="sec-title">Digital — social</h2></div>
+  <div class="sec-body">
+    <p>Instagram primary. Substack secondary. No TikTok, no Reels for the sake of Reels.</p>
+    <div class="ledger">
+      <div class="ledger-row"><div class="lbl">Cadence</div><div class="val">2–3 posts per week. Quality over volume. A week without a post is acceptable.</div></div>
+      <div class="ledger-row"><div class="lbl">Format default</div><div class="val">Two-image carousel: object + context.</div></div>
+      <div class="ledger-row"><div class="lbl">Caption length</div><div class="val">Earn it. 30 words or 300 — never the middle.</div></div>
+      <div class="ledger-row"><div class="lbl">Hashtags</div><div class="val">None on grid. Discoverability is not our growth lever.</div></div>
+      <div class="ledger-row"><div class="lbl">Voice on social</div><div class="val">Slightly warmer than commerce. Still observational. Still no exclamation marks.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">28</div><h2 class="sec-title">Print — catalogue zine</h2></div>
+  <div class="sec-body">
+    <p>Twice yearly. A5. Stapled. 32–48 pages. Photography-led. Released in Autumn and Spring. Sold for nominal cost, included free with any object purchase.</p>
+    <ul class="dash">
+      <li>Cover: full-bleed photograph, primary seal top-left, edition number bottom-right.</li>
+      <li>Inside front: editor's letter from the Gardener &amp; Son studio.</li>
+      <li>Body: object features, with one long-form essay in the middle.</li>
+      <li>Inside back: provenance ledger — every object listed with full attribution.</li>
+      <li>Back cover: the line, alone, centred. Things worth keeping.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">29</div><h2 class="sec-title">Studio presence</h2></div>
+  <div class="sec-body">
+    <p>Heirloom objects appear in the Gardener &amp; Son studios (Mont Albert, Auburn) but are not crowded. A single shelf, or a single corner of a garden vignette. Restraint reinforces value.</p>
+    <ul class="dash">
+      <li>Tagged but not labelled. Provenance available on request.</li>
+      <li>Rotation: objects move out of the studios on a 60-day cycle. Stale display is anti-Heirloom.</li>
+      <li>Pricing visible. No "price on application" unless genuinely bespoke.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">30</div><h2 class="sec-title">Packaging and despatch</h2></div>
+  <div class="sec-body">
+    <div class="defn"><strong>Box.</strong><span class="em">—</span>Plain kraft. No printed exterior.</div>
+    <div class="defn"><strong>Mark.</strong><span class="em">—</span>The Stamp seal in the upper corner. Single ink. Hand-applied.</div>
+    <div class="defn"><strong>Tie.</strong><span class="em">—</span>Natural twine, finished with a half-hitch — never ribbon, never adhesive bow.</div>
+    <div class="defn"><strong>Fill.</strong><span class="em">—</span>Wood-wool. Recyclable.</div>
+    <div class="defn"><strong>Insert.</strong><span class="em">—</span>The certificate of provenance, folded once. Nothing else.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PART SEVEN · GUARDRAILS (Understory inversion) -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="part-opener understory" id="part-seven" style="background:var(--deep); color:var(--deep-paper); border-bottom-color:var(--deep);">
+  <div class="part-num" style="color:var(--warmed-patina);">Part Seven</div>
+  <h1 style="color:var(--deep-paper); border-bottom-color:var(--live);">Guardrails</h1>
+  <p class="part-caption" style="color:var(--warmed-patina);">The compressed do-and-don't. When in doubt, read this section first.</p>
+</section>
+
+<section class="sec understory">
+  <div class="sec-header"><div class="sec-num">31</div><h2 class="sec-title">Brand do's and don'ts</h2></div>
+  <div class="sec-body">
+    <div class="compare">
+      <div class="compare-col">
+        <h4 style="color:var(--warmed-patina); border-bottom-color:var(--warmed-patina);">Always</h4>
+        <ul style="color:var(--deep-paper);">
+          <li>Sign with the parent endorsement on signature surfaces</li>
+          <li>Keep the catalogue small</li>
+          <li>Photograph the object where it belongs</li>
+          <li>Document provenance plainly</li>
+          <li>Honour the trade-back</li>
+          <li>Speak in observable specifics</li>
+          <li>Use the line in full, with its full stop</li>
+          <li>Treat the reader as literate</li>
+          <li>Allow imperfection in image and copy</li>
+          <li>Hold the long view</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <h4 style="color:var(--warmed-patina); border-bottom-color:var(--warmed-patina);">Never</h4>
+        <ul style="color:var(--warmed-patina);">
+          <li>Drop "drop" — we do not drop, we release</li>
+          <li>Stage objects on white sweeps</li>
+          <li>Reproduce, fake or accelerate patina</li>
+          <li>Discount the catalogue</li>
+          <li>Run sales, flash sales, or "limited edition" theatre</li>
+          <li>Use exclamation marks</li>
+          <li>Use the word "curated" in copy</li>
+          <li>Use stock photography</li>
+          <li>Promise rarity (every object is rare; saying so is empty)</li>
+          <li>Translate the line into derivative slogans</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec understory">
+  <div class="sec-header"><div class="sec-num">32</div><h2 class="sec-title">Photography — the short list</h2></div>
+  <div class="sec-body">
+    <div class="compare">
+      <div class="compare-col">
+        <h4 style="color:var(--warmed-patina); border-bottom-color:var(--warmed-patina);">Always</h4>
+        <ul style="color:var(--deep-paper);">
+          <li>Natural daylight</li>
+          <li>Garden context, with weather and ground visible</li>
+          <li>Object at its working height</li>
+          <li>Imperfection allowed in frame</li>
+          <li>Material close-up as supporting image</li>
+          <li>One considered shadow</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <h4 style="color:var(--warmed-patina); border-bottom-color:var(--warmed-patina);">Never</h4>
+        <ul style="color:var(--warmed-patina);">
+          <li>Studio sweeps</li>
+          <li>Flat-lays</li>
+          <li>Hands holding objects</li>
+          <li>Faces in commerce imagery</li>
+          <li>Filter stacks or HDR</li>
+          <li>Beauty-product lighting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec understory">
+  <div class="sec-header"><div class="sec-num">33</div><h2 class="sec-title">Copy — the short list</h2></div>
+  <div class="sec-body">
+    <div class="compare">
+      <div class="compare-col">
+        <h4 style="color:var(--warmed-patina); border-bottom-color:var(--warmed-patina);">Always</h4>
+        <ul style="color:var(--deep-paper);">
+          <li>Sentence case</li>
+          <li>Australian English</li>
+          <li>Specific, observable nouns</li>
+          <li>Plain price, plainly stated</li>
+          <li>Period · Material · Form (object names)</li>
+          <li>Trade-back referenced in every certificate</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <h4 style="color:var(--warmed-patina); border-bottom-color:var(--warmed-patina);">Never</h4>
+        <ul style="color:var(--warmed-patina);">
+          <li>Exclamation marks</li>
+          <li>"Curated," "unique," "one-of-a-kind"</li>
+          <li>Urgency language ("only 2 left")</li>
+          <li>Hashtags on grid</li>
+          <li>Subjective adjectives in object names</li>
+          <li>Emoji in commerce copy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PART EIGHT · APPENDIX -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="part-opener" id="part-eight">
+  <div class="part-num">Part Eight</div>
+  <h1>Appendix</h1>
+  <p class="part-caption">Glossary, categories, control.</p>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">34</div><h2 class="sec-title">Glossary</h2></div>
+  <div class="sec-body">
+    <div class="defn"><strong>Imprint.</strong><span class="em">—</span>A specialised label within a parent house. Heirloom relates to Gardener &amp; Son the way a publishing imprint relates to its publisher — distinct voice, shared spine.</div>
+    <div class="defn"><strong>Provenance.</strong><span class="em">—</span>The documented history of an object: origin, period, material, prior life where known.</div>
+    <div class="defn"><strong>Patina.</strong><span class="em">—</span>Surface character that accrues with age and use. Distinct from damage.</div>
+    <div class="defn"><strong>Steward.</strong><span class="em">—</span>A buyer who understands themselves as a temporary custodian rather than a permanent owner.</div>
+    <div class="defn"><strong>Stewardship / custodianship.</strong><span class="em">—</span>The active practice of caring for an object across its life. The core Heirloom proposition.</div>
+    <div class="defn"><strong>Trade-back.</strong><span class="em">—</span>Heirloom's standing offer to repurchase any object at fair market value into the catalogue. Lifetime, transferable to the next steward.</div>
+    <div class="defn"><strong>Canopy / Understory.</strong><span class="em">—</span>The light / dark surface pair shared across the Gardener &amp; Son ecosystem.</div>
+    <div class="defn"><strong>The Mark.</strong><span class="em">—</span>The Heirloom seal in its primary form: a struck circular maker's mark with the Seed Head ornament at centre.</div>
+    <div class="defn"><strong>The line.</strong><span class="em">—</span>Heirloom's tagline: "Things worth keeping."</div>
+    <div class="defn"><strong>Edition.</strong><span class="em">—</span>A version of a published Heirloom artefact (catalogue, brand book, essay). Numbered.</div>
+    <div class="defn"><strong>Release.</strong><span class="em">—</span>The verb Heirloom uses for the act of bringing an object to the catalogue. We do not "drop." We release.</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">35</div><h2 class="sec-title">Object categories</h2></div>
+  <div class="sec-body">
+    <p>The catalogue is organised, not by style or period, but by function in the garden:</p>
+    <div class="ledger">
+      <div class="ledger-row"><div class="lbl">Vessels</div><div class="val">Urns, pots, troughs, planters, cisterns.</div></div>
+      <div class="ledger-row"><div class="lbl">Tools</div><div class="val">Forks, spades, secateurs, edgers, dibbers.</div></div>
+      <div class="ledger-row"><div class="lbl">Containers</div><div class="val">Watering cans, baskets, crates, trugs.</div></div>
+      <div class="ledger-row"><div class="lbl">Architecture</div><div class="val">Gates, finials, staddle stones, boundary markers.</div></div>
+      <div class="ledger-row"><div class="lbl">Lighting</div><div class="val">Lanterns, candle-stands, oil lamps.</div></div>
+      <div class="ledger-row"><div class="lbl">Furniture</div><div class="val">Benches, tables, stools, étagères.</div></div>
+      <div class="ledger-row"><div class="lbl">Cloches and frames</div><div class="val">Glass cloches, cold frames, cucumber lights.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">36</div><h2 class="sec-title">Sample applications</h2></div>
+  <div class="sec-body">
+    <p>Future editions of this document will include rendered examples of each of the following — held here as a map for the build-out:</p>
+    <ul class="dash">
+      <li>Cover — catalogue zine.</li>
+      <li>Object page — desktop and mobile.</li>
+      <li>Object tag — physical, kraft.</li>
+      <li>Certificate of provenance — letterpress A5.</li>
+      <li>Newsletter — long-form email.</li>
+      <li>Instagram post — two-image carousel.</li>
+      <li>Studio shelf — in-situ display.</li>
+      <li>Packaging — exterior and interior, with stamp and certificate.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-header"><div class="sec-num">37</div><h2 class="sec-title">Document control</h2></div>
+  <div class="sec-body">
+    <div class="ledger">
+      <div class="ledger-row"><div class="lbl">Edition</div><div class="val">02 — Integrated. Supersedes Edition 01 and Ornament Studies 02.</div></div>
+      <div class="ledger-row"><div class="lbl">Issued</div><div class="val">May 2026</div></div>
+      <div class="ledger-row"><div class="lbl">Owner</div><div class="val">Gardener &amp; Son studio</div></div>
+      <div class="ledger-row"><div class="lbl">Authors</div><div class="val">Tyson &amp; Natasha</div></div>
+      <div class="ledger-row"><div class="lbl">Review cycle</div><div class="val">6-monthly — next review November 2026</div></div>
+      <div class="ledger-row"><div class="lbl">Distribution</div><div class="val">Internal team, retained partners, commissioned collaborators.</div></div>
+      <div class="ledger-row"><div class="lbl">Update authority</div><div class="val">All updates routed through the studio. No partial edits in circulation.</div></div>
+      <div class="ledger-row"><div class="lbl">Contact</div><div class="val">studio@gardenerandson.com</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- FINAL -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="final">
+  <div class="final-rules"></div>
+  <div class="final-tagline">Things worth keeping.</div>
+  <div class="final-rules"></div>
+  <div class="final-meta">Heirloom · A Gardener &amp; Son imprint · Edition 02 · MMXXVI</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Document</h4>
+      <div class="item">Heirloom Brand Book</div>
+      <div class="item small">Edition 02 · Integrated</div>
+      <div class="item small">May 2026</div>
+    </div>
+    <div class="footer-col">
+      <h4>Issued by</h4>
+      <div class="item">Gardener &amp; Son</div>
+      <div class="item small">2 Churchill Street</div>
+      <div class="item small">Mont Albert, Melbourne</div>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="item small">studio@gardenerandson.com</div>
+      <div class="item small">gardenerandson.com</div>
+    </div>
+    <div class="footer-col">
+      <h4>Authority</h4>
+      <div class="item small">Tyson &amp; Natasha</div>
+      <div class="item small">Updates routed through studio</div>
+      <div class="item small">Next review: Nov 2026</div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>Heirloom · A Gardener &amp; Son imprint</span>
+    <span>MMXXVI · Melbourne</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress indicator
+  (function() {
+    var bar = document.getElementById('progress');
+    if (!bar) return;
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+      bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+</script>
+
+</body>
+</html>
