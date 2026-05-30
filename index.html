@@ -190,25 +190,13 @@
     .grid-head{padding:3.5rem var(--pad-x) 2rem}
 
     /* GRID */
-    .obj-grid{padding:0 var(--pad-x);display:grid;grid-template-columns:repeat(12,1fr);gap:3px;padding-bottom:0;grid-auto-flow:row dense}
+    .obj-grid{padding:0 var(--pad-x);display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding-bottom:0}
     .card{position:relative;overflow:hidden;cursor:pointer;background:var(--panel);transition:opacity .35s}
-    /* Hero — spans 6 columns × 2 rows. Image stretches to fill the whole tall cell. */
-    .card:nth-child(1){grid-column:span 6;grid-row:span 2}
-    .card:nth-child(1) .ph{aspect-ratio:auto;position:absolute;inset:0}
-    .card:nth-child(2){grid-column:span 6}
-    .card:nth-child(3){grid-column:span 6}
-    .card:nth-child(4){grid-column:span 4}
-    .card:nth-child(5){grid-column:span 4}
-    .card:nth-child(6){grid-column:span 4}
-    .card:nth-child(7){grid-column:span 6}
-    .card:nth-child(8){grid-column:span 6}
     .obj-grid.filtered{grid-template-columns:repeat(3,1fr)}
     .obj-grid.filtered .card{grid-column:span 1!important;grid-row:span 1!important}
     .obj-grid.filtered .card .ph{aspect-ratio:4/3!important;min-height:unset!important;position:relative!important}
     @media(max-width:900px){
       .obj-grid{grid-template-columns:repeat(2,1fr)}
-      .card:nth-child(n){grid-column:span 1;grid-row:span 1}
-      .card:nth-child(1) .ph{position:relative;aspect-ratio:4/5}
       .obj-grid.filtered{grid-template-columns:repeat(2,1fr)}
     }
     @media(max-width:540px){.obj-grid{grid-template-columns:1fr}.obj-grid.filtered{grid-template-columns:1fr}}
