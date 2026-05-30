@@ -190,11 +190,13 @@
     .grid-head{padding:3.5rem var(--pad-x) 2rem}
 
     /* GRID */
-    .obj-grid{padding:0 var(--pad-x);display:grid;grid-template-columns:repeat(12,1fr);gap:3px;padding-bottom:0}
+    .obj-grid{padding:0 var(--pad-x);display:grid;grid-template-columns:repeat(12,1fr);gap:3px;padding-bottom:0;grid-auto-flow:row dense}
     .card{position:relative;overflow:hidden;cursor:pointer;background:var(--panel);transition:opacity .35s}
-    .card:nth-child(1){grid-column:span 7;grid-row:span 2}
-    .card:nth-child(2){grid-column:span 5}
-    .card:nth-child(3){grid-column:span 5}
+    /* Hero — spans 6 columns × 2 rows. Image stretches to fill the whole tall cell. */
+    .card:nth-child(1){grid-column:span 6;grid-row:span 2}
+    .card:nth-child(1) .ph{aspect-ratio:auto;position:absolute;inset:0}
+    .card:nth-child(2){grid-column:span 6}
+    .card:nth-child(3){grid-column:span 6}
     .card:nth-child(4){grid-column:span 4}
     .card:nth-child(5){grid-column:span 4}
     .card:nth-child(6){grid-column:span 4}
@@ -202,12 +204,15 @@
     .card:nth-child(8){grid-column:span 6}
     .obj-grid.filtered{grid-template-columns:repeat(3,1fr)}
     .obj-grid.filtered .card{grid-column:span 1!important;grid-row:span 1!important}
-    .obj-grid.filtered .card .ph{aspect-ratio:4/3!important;min-height:unset!important}
-    @media(max-width:900px){.obj-grid{grid-template-columns:repeat(2,1fr)}.card:nth-child(n){grid-column:span 1;grid-row:span 1}.obj-grid.filtered{grid-template-columns:repeat(2,1fr)}}
+    .obj-grid.filtered .card .ph{aspect-ratio:4/3!important;min-height:unset!important;position:relative!important}
+    @media(max-width:900px){
+      .obj-grid{grid-template-columns:repeat(2,1fr)}
+      .card:nth-child(n){grid-column:span 1;grid-row:span 1}
+      .card:nth-child(1) .ph{position:relative;aspect-ratio:4/5}
+      .obj-grid.filtered{grid-template-columns:repeat(2,1fr)}
+    }
     @media(max-width:540px){.obj-grid{grid-template-columns:1fr}.obj-grid.filtered{grid-template-columns:1fr}}
     .ph{width:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;aspect-ratio:4/5;background:#2a3320}
-    .card:nth-child(1) .ph{aspect-ratio:3/4;min-height:520px}
-    .card:nth-child(2) .ph{aspect-ratio:4/5}
     .ph-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.25,.46,.45,.94)}
     .card:hover .ph-img{transform:scale(1.03)}
     .ph-svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .9s cubic-bezier(.25,.46,.45,.94)}
@@ -217,8 +222,8 @@
     .era{position:absolute;bottom:1rem;left:1.25rem;z-index:4;font-size:.5625rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warmed-patina);font-style:italic;font-family:var(--font-serif)}
     .badge{position:absolute;top:.875rem;right:.875rem;z-index:4;font-size:.5625rem;letter-spacing:.16em;text-transform:uppercase;padding:3px 8px;border:1px solid rgba(255,240,220,.25);color:rgba(255,240,220,.7);background:rgba(22,26,16,.55);backdrop-filter:blur(4px)}
     .badge.arc{opacity:.45}
-    .card-ft{position:absolute;bottom:0;left:0;right:0;padding:3rem 1.25rem 3rem;background:linear-gradient(to top,rgba(18,22,14,.88) 0%,transparent 100%)}
-    .card-name{font-family:var(--font-display);font-size:1.0625rem;font-weight:400;color:var(--beige);line-height:1.15;margin-bottom:.4rem}
+    .card-ft{position:absolute;bottom:0;left:0;right:0;padding:3rem 1.25rem 2rem;background:linear-gradient(to top,rgba(18,22,14,.88) 0%,transparent 100%)}
+    .card-name{font-family:var(--font-display);font-size:1.0625rem;font-weight:400;color:var(--beige);line-height:1.15;margin-bottom:.2rem}
     .card-mat{font-family:var(--font-serif);font-style:italic;font-size:.75rem;color:var(--beige);opacity:.55}
     .card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);opacity:0;transition:opacity .25s}
     .card:hover::after{opacity:1}
