@@ -190,22 +190,26 @@
     .grid-head{padding:3.5rem var(--pad-x) 2rem}
 
     /* GRID */
-    .obj-grid{padding:0 var(--pad-x);display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding-bottom:0;align-items:start}
-    .card{position:relative;overflow:hidden;cursor:pointer;background:var(--panel);transition:opacity .35s}
+    /* Masonry catalogue — CSS columns packs cards of varied height without gaps */
+    .obj-grid{padding:0 var(--pad-x);column-count:3;column-gap:3px;padding-bottom:0}
+    .card{position:relative;overflow:hidden;cursor:pointer;background:var(--panel);transition:opacity .35s;display:block;width:100%;margin-bottom:3px;break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid}
 
-    /* Editorial size variation — most cards default (4/5), selected cards taller (3/4 or 2/3) */
-    /* Pattern: tall · short · short  /  short · short · tall  /  short · tall · short */
+    /* Editorial size variation — most cards default (4/5), selected cards taller */
     .card.tall .ph{aspect-ratio:3/4}
     .card.taller .ph{aspect-ratio:2/3}
 
-    .obj-grid.filtered{grid-template-columns:repeat(3,1fr)}
-    .obj-grid.filtered .card{grid-column:span 1!important;grid-row:span 1!important}
-    .obj-grid.filtered .card .ph{aspect-ratio:4/3!important;min-height:unset!important;position:relative!important}
+    /* Filtered view — clean uniform grid for comparison */
+    .obj-grid.filtered{column-count:3}
+    .obj-grid.filtered .card .ph{aspect-ratio:4/3!important;min-height:unset!important}
+
     @media(max-width:900px){
-      .obj-grid{grid-template-columns:repeat(2,1fr)}
-      .obj-grid.filtered{grid-template-columns:repeat(2,1fr)}
+      .obj-grid{column-count:2}
+      .obj-grid.filtered{column-count:2}
     }
-    @media(max-width:540px){.obj-grid{grid-template-columns:1fr}.obj-grid.filtered{grid-template-columns:1fr}}
+    @media(max-width:540px){
+      .obj-grid{column-count:1}
+      .obj-grid.filtered{column-count:1}
+    }
     .ph{width:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;aspect-ratio:4/5;background:#2a3320}
     .ph-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.25,.46,.45,.94)}
     .card:hover .ph-img{transform:scale(1.03)}
