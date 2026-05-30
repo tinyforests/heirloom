@@ -164,17 +164,21 @@
     .promise-head{max-width:var(--max-w);margin:0 auto 3.5rem}
     .promise-head h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.25rem);line-height:1.1;max-width:24ch}
     .promise-head p{font-family:var(--font-serif);font-style:italic;font-size:1.0625rem;opacity:.55;margin-top:1.25rem;max-width:54ch;line-height:1.75}
-    .promise-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px;border-top:1px solid var(--line)}
-    @media(max-width:900px){.promise-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:540px){.promise-grid{grid-template-columns:1fr}}
-    .promise-item{padding:2.5rem 2rem;background:var(--bg);position:relative}
+    .promise-grid{max-width:var(--max-w);margin:0 auto;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+    .promise-item{padding:2.75rem 0;background:var(--bg);position:relative;display:grid;grid-template-columns:60px 1fr 1.6fr;gap:3rem;align-items:start;border-bottom:1px solid var(--line)}
+    .promise-item:last-child{border-bottom:none}
+    @media(max-width:760px){
+      .promise-item{grid-template-columns:1fr;gap:.75rem;padding:2rem 1.25rem}
+    }
     .promise-item::before{content:'';position:absolute;left:0;top:0;width:2.5rem;height:2px;background:var(--accent)}
-    .promise-num{font-family:var(--font-sans);font-size:.625rem;letter-spacing:.22em;text-transform:uppercase;color:var(--patina);margin-bottom:1.25rem;margin-top:1.5rem;display:block}
-    .promise-item h3{font-family:var(--font-display);font-size:1.625rem;line-height:1.15;margin-bottom:.875rem}
-    .promise-item p{font-family:var(--font-sans);font-size:.875rem;line-height:1.7;opacity:.68}
+    .promise-num{font-family:var(--font-sans);font-size:.625rem;letter-spacing:.22em;text-transform:uppercase;color:var(--patina);margin:0;display:block;padding-top:.5rem}
+    @media(max-width:760px){.promise-num{padding-top:0}}
+    .promise-item h3{font-family:var(--font-display);font-size:clamp(1.5rem,2.4vw,2rem);line-height:1.1;margin:0;color:var(--fg)}
+    .promise-item p{font-family:var(--font-sans);font-size:1rem;line-height:1.75;color:var(--fg);opacity:.78;max-width:54ch}
+    @media(max-width:760px){.promise-item p{font-size:.9375rem}}
 
     /* FILTER BAR */
-    .filter-bar{padding:1.1rem var(--pad-x);border-bottom:1px solid var(--line);border-top:1px solid var(--line);display:flex;align-items:center;gap:1.5rem;position:sticky;top:0;z-index:150;background:var(--bg);transition:background .35s;flex-wrap:wrap}
+    .filter-bar{padding:1.1rem var(--pad-x);border-bottom:1px solid var(--line);border-top:1px solid var(--line);display:flex;align-items:center;gap:1.5rem;position:sticky;top:0;z-index:250;background:var(--bg);transition:background .35s;flex-wrap:wrap}
     .f-lbl{font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--patina);flex-shrink:0}
     .pills{display:flex;flex-wrap:wrap;gap:0}
     .pill{font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem 1rem;border:1px solid var(--line);border-left:none;background:none;color:var(--fg);cursor:pointer;font-family:var(--font-sans);transition:all .18s;opacity:.5}
@@ -210,10 +214,10 @@
     .card:hover .ph-svg{transform:scale(1.04)}
     .card:nth-child(3) .ph{background:#404c38}.card:nth-child(4) .ph{background:#3d4535}.card:nth-child(5) .ph{background:#4e4430}
     .card:nth-child(6) .ph{background:#3a4830}.card:nth-child(7) .ph{background:#4c3c28}.card:nth-child(8) .ph{background:#384030}
-    .era{position:absolute;bottom:5.5rem;left:1.25rem;z-index:4;font-size:.5625rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warmed-patina);font-style:italic;font-family:var(--font-serif)}
+    .era{position:absolute;bottom:1rem;left:1.25rem;z-index:4;font-size:.5625rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warmed-patina);font-style:italic;font-family:var(--font-serif)}
     .badge{position:absolute;top:.875rem;right:.875rem;z-index:4;font-size:.5625rem;letter-spacing:.16em;text-transform:uppercase;padding:3px 8px;border:1px solid rgba(255,240,220,.25);color:rgba(255,240,220,.7);background:rgba(22,26,16,.55);backdrop-filter:blur(4px)}
     .badge.arc{opacity:.45}
-    .card-ft{position:absolute;bottom:0;left:0;right:0;padding:3rem 1.25rem 1.25rem;background:linear-gradient(to top,rgba(18,22,14,.88) 0%,transparent 100%)}
+    .card-ft{position:absolute;bottom:0;left:0;right:0;padding:3rem 1.25rem 3rem;background:linear-gradient(to top,rgba(18,22,14,.88) 0%,transparent 100%)}
     .card-name{font-family:var(--font-display);font-size:1.0625rem;font-weight:400;color:var(--beige);line-height:1.15;margin-bottom:.4rem}
     .card-mat{font-family:var(--font-serif);font-style:italic;font-size:.75rem;color:var(--beige);opacity:.55}
     .card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);opacity:0;transition:opacity .25s}
@@ -528,6 +532,9 @@
     </section>
 
     <!-- ───────────────── FILTER BAR — Concrete leads ───────────────── -->
+    <!-- Catalogue zone — filter bar sticky within this wrapper only -->
+    <div class="catalogue-zone">
+
     <div class="filter-bar" id="index">
       <span class="f-lbl">Filter</span>
       <div class="pills">
@@ -647,6 +654,8 @@
       </div>
 
     </div>
+
+    </div><!-- /catalogue-zone -->
 
     <!-- ───────────────── ON OBJECTS ───────────────── -->
     <section class="time-section" id="time">
@@ -984,11 +993,24 @@
       localStorage.setItem('heirloom-theme', isUnder ? 'understory' : 'canopy');
     });
 
-    // Nav
+    // Nav — hides while the catalogue filter bar is sticking, reappears before and after
     const nav = document.getElementById('site-nav');
+    const filterBar = document.querySelector('.filter-bar');
     const NAV_THRESHOLD = 80;
-    function updateNav() { nav.classList.toggle('scrolled', window.scrollY > NAV_THRESHOLD); }
+    function updateNav() {
+      const scrolledPastHero = window.scrollY > NAV_THRESHOLD;
+      let inCatalogueZone = false;
+      if (filterBar) {
+        const rect = filterBar.getBoundingClientRect();
+        // Filter bar is "stuck" when its top is at 0 (or above, due to scroll)
+        // and its bottom is still on screen (the catalogue is still in view)
+        inCatalogueZone = rect.top <= 0 && rect.bottom > 0;
+      }
+      // Show nav when scrolled past hero AND not in catalogue zone
+      nav.classList.toggle('scrolled', scrolledPastHero && !inCatalogueZone);
+    }
     window.addEventListener('scroll', updateNav, { passive: true });
+    window.addEventListener('resize', updateNav, { passive: true });
     updateNav();
 
     // Detail pages
