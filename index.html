@@ -314,6 +314,9 @@
 
     /* DETAIL PAGES */
     .detail{display:none}.detail.on{display:block}
+    /* When body has .viewing-detail, hide the homepage entirely */
+    body.viewing-detail #homepage{display:none !important}
+    body.viewing-detail #detail-host{display:block}
     .d-hero{min-height:88vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;position:relative;background:#1c2316}
     .d-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85}
     .d-hero-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,22,14,.92) 0%,rgba(18,22,14,.35) 40%,rgba(18,22,14,.2) 100%)}
@@ -1044,20 +1047,22 @@
         console.warn('No catalogue entry for slug:', slug);
         return;
       }
-      document.getElementById('homepage').style.display = 'none';
       const host = document.getElementById('detail-host');
       host.innerHTML = renderDetail(obj);
+      document.body.classList.add('viewing-detail');
       document.getElementById('back-btn').classList.add('on');
       nav.classList.add('scrolled');
-      window.scrollTo(0, 0);
+      // Defer scroll to after the browser applies the body class
+      // and lays out the new detail content
+      requestAnimationFrame(() => window.scrollTo(0, 0));
     }
 
     function goHome() {
+      document.body.classList.remove('viewing-detail');
       const host = document.getElementById('detail-host');
       host.innerHTML = '';
-      document.getElementById('homepage').style.display = 'block';
       document.getElementById('back-btn').classList.remove('on');
-      window.scrollTo(0, 0);
+      requestAnimationFrame(() => window.scrollTo(0, 0));
       updateNav();
     }
 
