@@ -451,7 +451,7 @@
   <nav id="site-nav">
     <div class="nav-inner">
       <div class="nav-brand" onclick="goHome()">
-        <span class="nav-seal"><img src="images/nav-icon.png" alt="Heirloom" /></span>
+        <span class="nav-brand-name">Heirloom.</span>
       </div>
       <ul class="nav-links">
         <li><a href="#index">Catalogue</a></li>
@@ -473,7 +473,6 @@
     <section class="hero">
       <div class="hero-content">
         <div>
-          <img class="hero-icon" src="images/hero-icon.png" alt="Heirloom" />
           <span class="accent-rule" style="background:var(--accent)"></span>
           <span class="hero-imprint">A Gardener &amp; Son imprint — Est. MMXXVI</span>
           <h1 class="hero-line">Things worth<br>keeping.</h1>
@@ -555,15 +554,9 @@
         <button class="pill on" onclick="doFilter('all',this)">All</button>
         <button class="pill" onclick="doFilter('concrete',this)">Concrete</button>
         <button class="pill" onclick="doFilter('cement',this)">Cement</button>
-        <button class="pill" onclick="doFilter('stone',this)">Stone</button>
-        <button class="pill" onclick="doFilter('iron',this)">Iron</button>
-        <button class="pill" onclick="doFilter('timber',this)">Timber</button>
-        <button class="pill" onclick="doFilter('terracotta',this)">Terracotta</button>
-        <button class="pill" onclick="doFilter('vessel',this)">Vessels</button>
         <button class="pill" onclick="doFilter('figurative',this)">Figurative</button>
-        <button class="pill" onclick="doFilter('tool',this)">Tools</button>
       </div>
-      <span class="f-count" id="ct">8 objects</span>
+      <span class="f-count" id="ct">4 objects</span>
     </div>
 
     <!-- GRID -->
@@ -573,100 +566,8 @@
       <h2 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)">Objects, kept.</h2>
     </div>
 
-    <div class="obj-grid" id="grid">
-
-      <!-- 01 — Stork (real photograph) -->
-      <div class="card tall" data-tags="concrete figurative" onclick="goDetail('stork')">
-        <div class="ph">
-          <img class="ph-img" src="images/heirloom-stork.jpeg" alt="Mid-Century Cast Concrete Garden Stork standing in a wild garden in front of a weathered Victorian house" />
-        </div>
-        <div class="badge">Released</div>
-        <div class="era">Cast concrete &amp; steel — c. 1950–1970</div>
-        <div class="card-ft">
-          <p class="card-name">Mid-Century Cast Concrete Garden Stork.</p>
-          <p class="card-mat">Cast concrete body, steel legs · Australian</p>
-        </div>
-      </div>
-
-      <!-- 02 — Duck (real photograph) -->
-      <div class="card" data-tags="cement figurative" onclick="goDetail('duck')">
-        <div class="ph">
-          <img class="ph-img" src="images/heirloom_duck.jpeg" alt="Mid-Century Cast Cement Garden Duck at a pond edge in front of an old shearing shed" />
-        </div>
-        <div class="badge">Released</div>
-        <div class="era">Cast cement — c. 1950–1970</div>
-        <div class="card-ft">
-          <p class="card-name">Mid-Century Cast Cement Garden Duck.</p>
-          <p class="card-mat">Cast cement, hand-painted · Australian</p>
-        </div>
-      </div>
-
-      <!-- 03 — Bluestone Birdbath -->
-      <div class="card" data-tags="stone vessel" onclick="goDetail('birdbath')">
-        <div class="ph"><svg class="ph-svg" viewBox="0 0 380 560" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="190" cy="310" r="140" stroke="#fff0dc" stroke-width="0.8" opacity="0.35"/><circle cx="190" cy="310" r="88" stroke="#fff0dc" stroke-width="0.5" opacity="0.28"/><ellipse cx="190" cy="430" rx="120" ry="16" stroke="#fff0dc" stroke-width="0.8" opacity="0.45"/><ellipse cx="190" cy="190" rx="56" ry="9" stroke="#fff0dc" stroke-width="0.6" opacity="0.4"/><line x1="190" y1="199" x2="190" y2="430" stroke="#fff0dc" stroke-width="0.8" opacity="0.38"/></svg></div>
-        <div class="badge">Released</div>
-        <div class="era">Bluestone — c. 1960s</div>
-        <div class="card-ft">
-          <p class="card-name">1960s Bluestone Garden Birdbath.</p>
-          <p class="card-mat">Bluestone · Central Victoria</p>
-        </div>
-      </div>
-
-      <!-- 04 — Cast Iron Urn -->
-      <div class="card" data-tags="iron vessel" onclick="goDetail('iron-urn')">
-        <div class="ph"><svg class="ph-svg" viewBox="0 0 380 480" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M120 380 C95 310 90 200 110 140 C130 80 190 60 190 60 C190 60 250 80 270 140 C290 200 285 310 260 380" stroke="#fff0dc" stroke-width="1.1" opacity="0.42" fill="none"/><ellipse cx="190" cy="380" rx="90" ry="14" stroke="#fff0dc" stroke-width="0.8" opacity="0.45"/><ellipse cx="190" cy="60" rx="42" ry="8" stroke="#fff0dc" stroke-width="0.7" opacity="0.4"/><line x1="120" y1="200" x2="260" y2="200" stroke="#fff0dc" stroke-width="0.3" opacity="0.2"/></svg></div>
-        <div class="badge">Released</div>
-        <div class="era">Cast iron — Victorian</div>
-        <div class="card-ft">
-          <p class="card-name">Victorian Cast Iron Garden Urn.</p>
-          <p class="card-mat">Cast iron · English foundry</p>
-        </div>
-      </div>
-
-      <!-- 05 — Concrete Trough -->
-      <div class="card tall" data-tags="concrete vessel" onclick="goDetail('trough')">
-        <div class="ph"><svg class="ph-svg" viewBox="0 0 380 480" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="60" y="180" width="260" height="220" stroke="#fff0dc" stroke-width="1" opacity="0.4" fill="none"/><line x1="60" y1="220" x2="320" y2="220" stroke="#fff0dc" stroke-width="0.5" opacity="0.25"/><line x1="80" y1="400" x2="80" y2="420" stroke="#fff0dc" stroke-width="0.8" opacity="0.3"/><line x1="300" y1="400" x2="300" y2="420" stroke="#fff0dc" stroke-width="0.8" opacity="0.3"/><line x1="100" y1="180" x2="100" y2="160" stroke="#fff0dc" stroke-width="0.6" opacity="0.25"/><line x1="280" y1="180" x2="280" y2="160" stroke="#fff0dc" stroke-width="0.6" opacity="0.25"/></svg></div>
-        <div class="badge">Released</div>
-        <div class="era">Cast concrete — c. 1960s</div>
-        <div class="card-ft">
-          <p class="card-name">1960s Cast Concrete Garden Trough.</p>
-          <p class="card-mat">Cast concrete · Australian</p>
-        </div>
-      </div>
-
-      <!-- 06 — Watering Can -->
-      <div class="card" data-tags="iron tool" onclick="goDetail('watering-can')">
-        <div class="ph"><svg class="ph-svg" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="180" cy="260" rx="100" ry="16" stroke="#fff0dc" stroke-width="0.8" opacity="0.42"/><rect x="100" y="140" width="160" height="120" stroke="#fff0dc" stroke-width="1" opacity="0.4" fill="none"/><path d="M260 180 L320 165 L325 200 L260 220" stroke="#fff0dc" stroke-width="0.8" opacity="0.38" fill="none"/><path d="M100 160 C80 130 65 110 80 100 C100 95 110 120 110 140" stroke="#fff0dc" stroke-width="0.6" opacity="0.32" fill="none"/></svg></div>
-        <div class="badge">Released</div>
-        <div class="era">Galvanised — 1930s French</div>
-        <div class="card-ft">
-          <p class="card-name">1930s French Galvanised Watering Can.</p>
-          <p class="card-mat">Galvanised iron · Provincial France</p>
-        </div>
-      </div>
-
-      <!-- 07 — Terracotta Strawberry Pot -->
-      <div class="card" data-tags="terracotta vessel" onclick="goDetail('terracotta')">
-        <div class="ph"><svg class="ph-svg" viewBox="0 0 680 340" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M185 295 C162 238 152 175 172 128 C192 78 282 58 340 58 C398 58 488 78 508 128 C528 175 518 238 495 295" stroke="#fff0dc" stroke-width="1.1" opacity="0.42" fill="none"/><ellipse cx="340" cy="295" rx="155" ry="20" stroke="#fff0dc" stroke-width="0.8" opacity="0.38"/><circle cx="270" cy="170" r="10" stroke="#fff0dc" stroke-width="0.5" opacity="0.3"/><circle cx="410" cy="200" r="10" stroke="#fff0dc" stroke-width="0.5" opacity="0.3"/></svg></div>
-        <div class="badge arc">Archive</div>
-        <div class="era">Terracotta — Mid-Century</div>
-        <div class="card-ft">
-          <p class="card-name">Mid-Century Terracotta Strawberry Pot.</p>
-          <p class="card-mat">Hand-thrown terracotta · Italian</p>
-        </div>
-      </div>
-
-      <!-- 08 — Ironbark Bench -->
-      <div class="card tall" data-tags="timber" onclick="goDetail('bench')">
-        <div class="ph"><svg class="ph-svg" viewBox="0 0 380 480" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="40" y="200" width="300" height="22" rx="1" stroke="#fff0dc" stroke-width="1" opacity="0.42"/><rect x="40" y="230" width="300" height="22" rx="1" stroke="#fff0dc" stroke-width="1" opacity="0.42"/><line x1="80" y1="252" x2="80" y2="400" stroke="#fff0dc" stroke-width="0.9" opacity="0.32"/><line x1="300" y1="252" x2="300" y2="400" stroke="#fff0dc" stroke-width="0.9" opacity="0.32"/><line x1="80" y1="340" x2="300" y2="340" stroke="#fff0dc" stroke-width="0.4" opacity="0.2"/></svg></div>
-        <div class="badge">Released</div>
-        <div class="era">Reclaimed ironbark — early C20</div>
-        <div class="card-ft">
-          <p class="card-name">Early 20th Century Ironbark Garden Bench.</p>
-          <p class="card-mat">Reclaimed ironbark · Country Victoria</p>
-        </div>
-      </div>
-
+    <!-- Catalogue grid — populated from JSON below -->
+    <div class="obj-grid" id="grid"></div>
     </div>
 
     </div><!-- /catalogue-zone -->
@@ -740,13 +641,13 @@
             <div class="col-img"><svg class="col-svg" viewBox="0 0 280 360" xmlns="http://www.w3.org/2000/svg" fill="none"><ellipse cx="140" cy="180" rx="90" ry="120" stroke="#fff0dc" stroke-width="1.4"/><ellipse cx="140" cy="180" rx="55" ry="75" stroke="#fff0dc" stroke-width="0.7"/><line x1="80" y1="120" x2="200" y2="240" stroke="#fff0dc" stroke-width="0.3" opacity="0.4"/></svg></div>
             <div class="col-lbl"><p class="col-name">Cement</p><p class="col-desc">Finer cast pieces — figurative birds, smaller vessels, decorative work.</p></div>
           </div>
-          <div class="col-card reveal reveal-d1" onclick="doFilter('stone',document.querySelector('.pill:nth-child(4)'))">
+          <div class="col-card reveal reveal-d1" style="opacity:.55">
             <div class="col-img"><svg class="col-svg" viewBox="0 0 280 360" xmlns="http://www.w3.org/2000/svg" fill="none"><circle cx="140" cy="180" r="110" stroke="#fff0dc" stroke-width="1.4"/><circle cx="140" cy="180" r="70" stroke="#fff0dc" stroke-width="0.7"/><line x1="140" y1="70" x2="140" y2="290" stroke="#fff0dc" stroke-width="0.3" opacity="0.3"/></svg></div>
-            <div class="col-lbl"><p class="col-name">Stone</p><p class="col-desc">Bluestone, basalt, sandstone. Single-piece pieces. Generational.</p></div>
+            <div class="col-lbl"><p class="col-name">Stone</p><p class="col-desc">Bluestone, basalt, sandstone. Forthcoming.</p></div>
           </div>
-          <div class="col-card reveal reveal-d2" onclick="doFilter('iron',document.querySelector('.pill:nth-child(5)'))">
+          <div class="col-card reveal reveal-d2" style="opacity:.55">
             <div class="col-img"><svg class="col-svg" viewBox="0 0 280 360" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M140 60 L140 290" stroke="#fff0dc" stroke-width="1.4"/><path d="M140 200 L100 165 C80 150 70 122 90 110 C112 100 138 130 140 165" stroke="#fff0dc" stroke-width="1.2"/><path d="M140 200 L180 165 C200 150 210 122 190 110 C168 100 142 130 140 165" stroke="#fff0dc" stroke-width="1.2"/></svg></div>
-            <div class="col-lbl"><p class="col-name">Iron</p><p class="col-desc">Cast and wrought. Urns, gates, hand tools, finials.</p></div>
+            <div class="col-lbl"><p class="col-name">Iron</p><p class="col-desc">Cast and wrought. Forthcoming.</p></div>
           </div>
         </div>
       </div>
@@ -791,209 +692,322 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- DETAIL: STORK -->
+  <!-- Detail pages — populated from JSON catalogue below -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <div id="det-stork" class="detail">
-    <div class="d-hero">
-      <img class="d-hero-img" src="images/heirloom-stork.jpeg" alt="Mid-Century Cast Concrete Garden Stork standing in a garden in front of a weathered Victorian house" />
-      <div class="d-hero-shade"></div>
-      <svg class="d-hero-seal"><use href="#heirloom-seal"/></svg>
-      <div class="d-hero-c">
-        <div>
-          <span class="d-eyebrow">Cast concrete · Steel legs · Australian · c. 1950–1970</span>
-          <h1 class="d-title">Mid-Century Cast Concrete Garden Stork.</h1>
-        </div>
-        <div style="text-align:right">
-          <div class="d-status-lbl">Status</div>
-          <div class="d-status-val">Released</div>
-        </div>
-      </div>
-    </div>
-    <div class="d-prov">
-      <div class="d-prov-item"><span class="d-prov-lbl">Origin</span><p class="d-prov-val">Australian</p><p class="d-prov-note">Acquired from a private garden in regional Victoria.</p></div>
-      <div class="d-prov-item"><span class="d-prov-lbl">Period</span><p class="d-prov-val">c. 1950–1970</p><p class="d-prov-note">Cast in the post-war Australian decorative concrete tradition.</p></div>
-      <div class="d-prov-item"><span class="d-prov-lbl">Material</span><p class="d-prov-val">Concrete &amp; steel</p><p class="d-prov-note">Cast concrete body and base, two slender steel legs.</p></div>
-      <div class="d-prov-item"><span class="d-prov-lbl">Condition</span><p class="d-prov-val">Weathered</p><p class="d-prov-note">Structurally sound, original paint, surface rust to legs.</p></div>
-    </div>
-    <div class="d-body">
-      <div class="d-desc">
-        <p>A life-sized garden stork in cast concrete, hand-painted and weathered by decades outdoors. The body holds its original paint — chalked and crazed to a soft white, the wing picked out in charcoal grey — and stands on two slender steel legs set into a cast concrete base moulded as a shallow plinth.</p>
-        <p>The construction is the period speaking plainly: concrete for the body and base, where mass and weather-resistance mattered, and steel for the legs, where concrete could never have held the span. It is why the stork is still standing. Most of its contemporaries are not.</p>
-        <p>The wear is the record. Paint loss across the breast and back, surface crazing along the neck, a warm rust bloom rising up both legs where the steel has done its honest work, and the soft green-grey bloom that only arrives on concrete left in real weather. Nothing here has been corrected.</p>
-        <p>Figural garden birds of this period — storks, herons, cranes, flamingos — were cast to bring a note of theatre to mid-century suburban gardens. Most were used hard and discarded. This one was kept.</p>
-      </div>
-      <div class="d-specs">
-        <div class="d-spec"><span class="d-slbl">Material</span><span class="d-sval">Cast concrete body &amp; base, steel legs</span></div>
-        <div class="d-spec"><span class="d-slbl">Period</span><span class="d-sval">c. 1950–1970</span></div>
-        <div class="d-spec"><span class="d-slbl">Origin</span><span class="d-sval">Australian</span></div>
-        <div class="d-spec"><span class="d-slbl">Condition</span><span class="d-sval">Weathered, structurally sound</span></div>
-        <div class="d-spec"><span class="d-slbl">Paint</span><span class="d-sval">Original. Crazing and losses consistent with age.</span></div>
-        <div class="d-spec"><span class="d-slbl">Legs</span><span class="d-sval">Stable surface rust. No structural concern.</span></div>
-        <div class="d-spec"><span class="d-slbl">Dimensions</span><span class="d-sval">To be confirmed on site</span></div>
-        <div class="d-spec"><span class="d-slbl">Placement</span><span class="d-sval">Stands unaided. Outdoor positions.</span></div>
-      </div>
-    </div>
-
-    <!-- THE PROMISE — reinforced on every object page -->
-    <div class="d-promise">
-      <div class="d-promise-head">
-        <span class="accent-rule"></span>
-        <span class="label" style="display:block;margin-bottom:.75rem">Released with the Heirloom Promise</span>
-        <h3>Four guarantees, every release.</h3>
-        <p>This object is released with documented provenance, an honest condition statement, a custodianship note, and a lifetime trade-back. The trade-back is transferable.</p>
-      </div>
-      <div class="d-promise-grid">
-        <div class="d-pi"><span class="d-pi-num">01</span><p class="d-pi-name">Provenance.</p><p class="d-pi-txt">Origin, period, material, prior life where known.</p></div>
-        <div class="d-pi"><span class="d-pi-num">02</span><p class="d-pi-name">Condition.</p><p class="d-pi-txt">Honest statement, including imperfection.</p></div>
-        <div class="d-pi"><span class="d-pi-num">03</span><p class="d-pi-name">Custodianship.</p><p class="d-pi-txt">A note on how to live with the object.</p></div>
-        <div class="d-pi"><span class="d-pi-num">04</span><p class="d-pi-name">Trade-back.</p><p class="d-pi-txt">Lifetime offer to repurchase into the catalogue.</p></div>
-      </div>
-    </div>
-
-    <div class="d-buy">
-      <div>
-        <p class="d-price">Price on application</p>
-        <p class="d-pnote">Each object priced plainly. Enquire for the current figure and the certificate of provenance.</p>
-      </div>
-      <button class="btn-enq">Enquire about this object</button>
-    </div>
-    <footer>
-      <svg class="foot-seal"><use href="#heirloom-seal"/></svg>
-      <div class="foot-brand"><span class="foot-name">Heirloom.</span><span class="foot-by">A Gardener &amp; Son imprint</span></div>
-      <nav class="foot-nav"><a href="#" onclick="goHome();return false">← All objects</a></nav>
-    </footer>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- DETAIL: DUCK -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <div id="det-duck" class="detail">
-    <div class="d-hero">
-      <img class="d-hero-img" src="images/heirloom_duck.jpeg" alt="Mid-Century Cast Cement Garden Duck at a pond edge in front of an old shearing shed" />
-      <div class="d-hero-shade"></div>
-      <svg class="d-hero-seal"><use href="#heirloom-seal"/></svg>
-      <div class="d-hero-c">
-        <div>
-          <span class="d-eyebrow">Cast cement · Hand-painted · Australian · c. 1950–1970</span>
-          <h1 class="d-title">Mid-Century Cast Cement Garden Duck.</h1>
-        </div>
-        <div style="text-align:right">
-          <div class="d-status-lbl">Status</div>
-          <div class="d-status-val">Released</div>
-        </div>
-      </div>
-    </div>
-    <div class="d-prov">
-      <div class="d-prov-item"><span class="d-prov-lbl">Origin</span><p class="d-prov-val">Australian</p><p class="d-prov-note">Acquired from a regional garden, NSW.</p></div>
-      <div class="d-prov-item"><span class="d-prov-lbl">Period</span><p class="d-prov-val">c. 1950–1970</p><p class="d-prov-note">Made in number for mid-century Australian gardens.</p></div>
-      <div class="d-prov-item"><span class="d-prov-lbl">Material</span><p class="d-prov-val">Cast cement</p><p class="d-prov-note">Fine cement mix. Crisply moulded feathering and base.</p></div>
-      <div class="d-prov-item"><span class="d-prov-lbl">Condition</span><p class="d-prov-val">Weathered</p><p class="d-prov-note">Structurally sound. Original hand-painting, ochre bill intact.</p></div>
-    </div>
-    <div class="d-body">
-      <div class="d-desc">
-        <p>A garden duck in cast cement, modelled standing with the neck raised and the bill lifted slightly skyward. The casting is a good one — the wing and breast feathering is crisply defined, the form generous and well-proportioned — and it sits on an integral base moulded to suggest a low mound of reeds.</p>
-        <p>It holds its original hand-painting: a soft chalked white across the body, the bill picked out in warm ochre. Decades outdoors have crazed the paint to a fine map of cracks and worn it back in places to the pale cement beneath. The wear is even, unforced, and entirely the record of a life spent in a real garden.</p>
-        <p>Cast cement waterfowl were a fixture of mid-century Australian gardens — set at pond edges, in rockeries, beside birdbaths. They were made in number and most were used until they broke or were cleared away. This one was kept, and it is sound.</p>
-      </div>
-      <div class="d-specs">
-        <div class="d-spec"><span class="d-slbl">Material</span><span class="d-sval">Cast cement, hand-painted</span></div>
-        <div class="d-spec"><span class="d-slbl">Period</span><span class="d-sval">c. 1950–1970</span></div>
-        <div class="d-spec"><span class="d-slbl">Origin</span><span class="d-sval">Australian</span></div>
-        <div class="d-spec"><span class="d-slbl">Condition</span><span class="d-sval">Weathered, structurally sound</span></div>
-        <div class="d-spec"><span class="d-slbl">Paint</span><span class="d-sval">Original. Crazing and partial losses to white.</span></div>
-        <div class="d-spec"><span class="d-slbl">Cement</span><span class="d-sval">Firm. No significant chips or cracks.</span></div>
-        <div class="d-spec"><span class="d-slbl">Dimensions</span><span class="d-sval">To be confirmed on site</span></div>
-        <div class="d-spec"><span class="d-slbl">Placement</span><span class="d-sval">Stands unaided on its integral base.</span></div>
-      </div>
-    </div>
-
-    <div class="d-promise">
-      <div class="d-promise-head">
-        <span class="accent-rule"></span>
-        <span class="label" style="display:block;margin-bottom:.75rem">Released with the Heirloom Promise</span>
-        <h3>Four guarantees, every release.</h3>
-        <p>This object is released with documented provenance, an honest condition statement, a custodianship note, and a lifetime trade-back. The trade-back is transferable.</p>
-      </div>
-      <div class="d-promise-grid">
-        <div class="d-pi"><span class="d-pi-num">01</span><p class="d-pi-name">Provenance.</p><p class="d-pi-txt">Origin, period, material, prior life where known.</p></div>
-        <div class="d-pi"><span class="d-pi-num">02</span><p class="d-pi-name">Condition.</p><p class="d-pi-txt">Honest statement, including imperfection.</p></div>
-        <div class="d-pi"><span class="d-pi-num">03</span><p class="d-pi-name">Custodianship.</p><p class="d-pi-txt">A note on how to live with the object.</p></div>
-        <div class="d-pi"><span class="d-pi-num">04</span><p class="d-pi-name">Trade-back.</p><p class="d-pi-txt">Lifetime offer to repurchase into the catalogue.</p></div>
-      </div>
-    </div>
-
-    <div class="d-buy">
-      <div>
-        <p class="d-price">Price on application</p>
-        <p class="d-pnote">Each object priced plainly. Enquire for the current figure and the certificate of provenance.</p>
-      </div>
-      <button class="btn-enq">Enquire about this object</button>
-    </div>
-    <footer>
-      <svg class="foot-seal"><use href="#heirloom-seal"/></svg>
-      <div class="foot-brand"><span class="foot-name">Heirloom.</span><span class="foot-by">A Gardener &amp; Son imprint</span></div>
-      <nav class="foot-nav"><a href="#" onclick="goHome();return false">← All objects</a></nav>
-    </footer>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- DETAIL: BIRDBATH -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <div id="det-birdbath" class="detail">
-    <div class="d-hero" style="background:linear-gradient(148deg,#3e4c34 0%,#2a3320 45%,#1c2316 100%)">
-      <svg class="d-hero-seal"><use href="#heirloom-seal"/></svg>
-      <div class="d-hero-c"><div><span class="d-eyebrow">Bluestone · c. 1960s · Central Victoria</span><h1 class="d-title">1960s Bluestone Garden Birdbath.</h1></div><div style="text-align:right"><div class="d-status-lbl">Status</div><div class="d-status-val">Released</div></div></div>
-    </div>
-    <div class="d-prov">
-      <div class="d-prov-item"><span class="d-prov-lbl">Origin</span><p class="d-prov-val">Central Victoria</p><p class="d-prov-note">Quarried near Castlemaine.</p></div>
-      <div class="d-prov-item"><span class="d-prov-lbl">Period</span><p class="d-prov-val">c. 1960s</p><p class="d-prov-note">Made for a garden in Kew. Acquired from the estate.</p></div>
-      <div class="d-prov-item"><span class="d-prov-lbl">Material</span><p class="d-prov-val">Bluestone</p><p class="d-prov-note">Single-piece basalt, hand-cut and ground.</p></div>
-      <div class="d-prov-item"><span class="d-prov-lbl">Condition</span><p class="d-prov-val">Weathered</p><p class="d-prov-note">Lichen colonies, edge wear from six decades of weather.</p></div>
-    </div>
-    <div class="d-body">
-      <div class="d-desc">
-        <p>A bluestone birdbath cut from a single piece of basalt and ground shallow across its face. Sixty years of weather have softened the original tool marks and established lichen and moss colonies in the sheltered margins of the bowl.</p>
-        <p>It holds standing water. Over time, leaf fall and algae gather at the margins. This is the surface becoming part of the garden's biology, not deterioration.</p>
-        <p>Bluestone is generational material. It will be in a garden long after most other things have moved on.</p>
-      </div>
-      <div class="d-specs">
-        <div class="d-spec"><span class="d-slbl">Material</span><span class="d-sval">Bluestone (basalt)</span></div>
-        <div class="d-spec"><span class="d-slbl">Period</span><span class="d-sval">c. 1960s</span></div>
-        <div class="d-spec"><span class="d-slbl">Origin</span><span class="d-sval">Central Victoria</span></div>
-        <div class="d-spec"><span class="d-slbl">Dimensions</span><span class="d-sval">450 × 450 × 80 mm</span></div>
-        <div class="d-spec"><span class="d-slbl">Weight</span><span class="d-sval">Approx. 24 kg</span></div>
-        <div class="d-spec"><span class="d-slbl">Surface</span><span class="d-sval">Lichen, edge wear — unrestored</span></div>
-        <div class="d-spec"><span class="d-slbl">Care</span><span class="d-sval">Rinse monthly. Allow algae at margins.</span></div>
-      </div>
-    </div>
-    <div class="d-promise">
-      <div class="d-promise-head">
-        <span class="accent-rule"></span>
-        <span class="label" style="display:block;margin-bottom:.75rem">Released with the Heirloom Promise</span>
-        <h3>Four guarantees, every release.</h3>
-      </div>
-      <div class="d-promise-grid">
-        <div class="d-pi"><span class="d-pi-num">01</span><p class="d-pi-name">Provenance.</p><p class="d-pi-txt">Origin, period, material, prior life where known.</p></div>
-        <div class="d-pi"><span class="d-pi-num">02</span><p class="d-pi-name">Condition.</p><p class="d-pi-txt">Honest statement, including imperfection.</p></div>
-        <div class="d-pi"><span class="d-pi-num">03</span><p class="d-pi-name">Custodianship.</p><p class="d-pi-txt">A note on how to live with the object.</p></div>
-        <div class="d-pi"><span class="d-pi-num">04</span><p class="d-pi-name">Trade-back.</p><p class="d-pi-txt">Lifetime offer to repurchase into the catalogue.</p></div>
-      </div>
-    </div>
-    <div class="d-buy">
-      <div><p class="d-price">$480</p><p class="d-pnote">Delivery available. Installation by arrangement.</p></div>
-      <button class="btn-enq">Enquire about this object</button>
-    </div>
-    <footer>
-      <svg class="foot-seal"><use href="#heirloom-seal"/></svg>
-      <div class="foot-brand"><span class="foot-name">Heirloom.</span><span class="foot-by">A Gardener &amp; Son imprint</span></div>
-      <nav class="foot-nav"><a href="#" onclick="goHome();return false">← All objects</a></nav>
-    </footer>
-  </div>
+  <div id="detail-host"></div>
 
   </main>
 
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- HEIRLOOM CATALOGUE DATA                                              -->
+  <!--                                                                      -->
+  <!-- This is the source of truth for the catalogue. To add a new object,  -->
+  <!-- add a new entry to the `objects` array below. Each object needs:     -->
+  <!--                                                                      -->
+  <!--   slug          — URL-friendly id, unique. e.g. "stork-i"            -->
+  <!--   name          — Period · Material · Form. e.g. "Mid-Century Cast   -->
+  <!--                   Concrete Garden Stork (II)."                        -->
+  <!--   eyebrow       — Material + period descriptor for the detail hero   -->
+  <!--   era_caption   — Short metadata line under the catalogue card photo -->
+  <!--   image         — Filename in /images/. e.g. "heirloom-stork.jpeg"   -->
+  <!--   image_alt     — Accessibility / SEO alt text                       -->
+  <!--   height        — "standard" | "tall" | "taller" — for masonry       -->
+  <!--   status        — "Released" | "Archive" | "Pending"                 -->
+  <!--   tags          — Array of filter tags from the filter bar           -->
+  <!--   provenance    — Object with origin / period / material / condition -->
+  <!--                   each with `value` (short) and `note` (longer)      -->
+  <!--   prose         — Array of paragraphs for the detail page body       -->
+  <!--   specs         — Array of {label, value} pairs for the spec table   -->
+  <!--   price         — Either a string ("$480") or null for POA           -->
+  <!--   price_note    — Short italic line under the price                  -->
+  <!--   square_url    — Future: link to Square purchase page. null for now -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <script type="application/json" id="heirloom-catalogue">
+[
+  {
+    "slug": "stork-i",
+    "name": "Mid-Century Cast Concrete Garden Stork (I).",
+    "eyebrow": "Cast concrete · Steel legs · Australian · c. 1950–1970",
+    "era_caption": "Cast concrete & steel — c. 1950–1970",
+    "image": "images/heirloom-stork.jpeg",
+    "image_alt": "Mid-Century Cast Concrete Garden Stork standing in a wild garden in front of a weathered Victorian house",
+    "height": "tall",
+    "status": "Released",
+    "tags": ["concrete", "figurative"],
+    "card_material_line": "Cast concrete body, steel legs · Australian",
+    "provenance": {
+      "origin": { "value": "Australian", "note": "Acquired from a private garden in regional Victoria." },
+      "period": { "value": "c. 1950–1970", "note": "Cast in the post-war Australian decorative concrete tradition." },
+      "material": { "value": "Concrete & steel", "note": "Cast concrete body and base, two slender steel legs." },
+      "condition": { "value": "Weathered", "note": "Structurally sound, original paint, surface rust to legs." }
+    },
+    "prose": [
+      "A life-sized garden stork in cast concrete, hand-painted and weathered by decades outdoors. The body holds its original paint — chalked and crazed to a soft white, the wing picked out in charcoal grey — and stands on two slender steel legs set into a cast concrete base moulded as a shallow plinth.",
+      "The construction is the period speaking plainly: concrete for the body and base, where mass and weather-resistance mattered, and steel for the legs, where concrete could never have held the span. It is why the stork is still standing. Most of its contemporaries are not.",
+      "The wear is the record. Paint loss across the breast and back, surface crazing along the neck, a warm rust bloom rising up both legs where the steel has done its honest work, and the soft green-grey bloom that only arrives on concrete left in real weather. Nothing here has been corrected.",
+      "Figural garden birds of this period — storks, herons, cranes, flamingos — were cast to bring a note of theatre to mid-century suburban gardens. Most were used hard and discarded. This one was kept."
+    ],
+    "specs": [
+      { "label": "Material", "value": "Cast concrete body & base, steel legs" },
+      { "label": "Period", "value": "c. 1950–1970" },
+      { "label": "Origin", "value": "Australian" },
+      { "label": "Condition", "value": "Weathered, structurally sound" },
+      { "label": "Paint", "value": "Original. Crazing and losses consistent with age." },
+      { "label": "Legs", "value": "Stable surface rust. No structural concern." },
+      { "label": "Dimensions", "value": "To be confirmed on site" },
+      { "label": "Placement", "value": "Stands unaided. Outdoor positions." }
+    ],
+    "price": null,
+    "price_note": "Each object priced plainly. Enquire for the current figure and the certificate of provenance.",
+    "square_url": null
+  },
+  {
+    "slug": "stork-ii",
+    "name": "Mid-Century Cast Concrete Garden Stork (II).",
+    "eyebrow": "Cast concrete · Hand-painted · Australian · c. 1960–1970",
+    "era_caption": "Cast concrete — c. 1960–1970",
+    "image": "images/heirloom-stork-2.jpeg",
+    "image_alt": "A second Mid-Century Cast Concrete Garden Stork, white body softened by years of weather, black wing tips intact",
+    "height": "tall",
+    "status": "Released",
+    "tags": ["concrete", "figurative"],
+    "card_material_line": "Cast concrete, hand-painted · Australian",
+    "provenance": {
+      "origin": { "value": "Australian", "note": "Acquired with full provenance documented." },
+      "period": { "value": "c. 1960–1970", "note": "Cast in the post-war Australian decorative concrete tradition." },
+      "material": { "value": "Cast concrete", "note": "Hand-painted, original palette in white and black." },
+      "condition": { "value": "Weathered", "note": "Structurally sound. Chips, crazing, staining and dulling consistent with age." }
+    },
+    "prose": [
+      "Cast and painted for a garden, then left to stand through years of weather, shade and season. The white has softened to the colour of old bone; the black wing tips still hold their shape, and the surface carries all the small marks of age — chips, crazing, stains, and the quiet dulling that only time can make.",
+      "Nothing has been restored away. The wear is the point.",
+      "Garden figures like this were once familiar things: placed beside ponds, tucked into beds, standing watch near paths and verandahs. Most disappeared as gardens changed, broke, or were thrown out. This one remains — still poised, still oddly elegant, still ready to belong somewhere again."
+    ],
+    "specs": [
+      { "label": "Material", "value": "Cast concrete, hand-painted" },
+      { "label": "Period", "value": "c. 1960–1970" },
+      { "label": "Origin", "value": "Australian" },
+      { "label": "Condition", "value": "Weathered throughout, structurally sound" },
+      { "label": "Paint", "value": "Original. Chips, crazing, staining and soft dulling." },
+      { "label": "Dimensions", "value": "To be confirmed on site" },
+      { "label": "Placement", "value": "Stands unaided." }
+    ],
+    "price": null,
+    "price_note": "Each object priced plainly. Enquire for the current figure and the certificate of provenance.",
+    "square_url": null
+  },
+  {
+    "slug": "duck",
+    "name": "Mid-Century Cast Cement Garden Duck.",
+    "eyebrow": "Cast cement · Hand-painted · Australian · c. 1950–1970",
+    "era_caption": "Cast cement — c. 1950–1970",
+    "image": "images/heirloom_duck.jpeg",
+    "image_alt": "Mid-Century Cast Cement Garden Duck at a pond edge in front of an old shearing shed",
+    "height": "standard",
+    "status": "Released",
+    "tags": ["cement", "figurative"],
+    "card_material_line": "Cast cement, hand-painted · Australian",
+    "provenance": {
+      "origin": { "value": "Australian", "note": "Acquired from a regional garden, NSW." },
+      "period": { "value": "c. 1950–1970", "note": "Made in number for mid-century Australian gardens." },
+      "material": { "value": "Cast cement", "note": "Fine cement mix. Crisply moulded feathering and base." },
+      "condition": { "value": "Weathered", "note": "Structurally sound. Original hand-painting, ochre bill intact." }
+    },
+    "prose": [
+      "A garden duck in cast cement, modelled standing with the neck raised and the bill lifted slightly skyward. The casting is a good one — the wing and breast feathering is crisply defined, the form generous and well-proportioned — and it sits on an integral base moulded to suggest a low mound of reeds.",
+      "It holds its original hand-painting: a soft chalked white across the body, the bill picked out in warm ochre. Decades outdoors have crazed the paint to a fine map of cracks and worn it back in places to the pale cement beneath. The wear is even, unforced, and entirely the record of a life spent in a real garden.",
+      "Cast cement waterfowl were a fixture of mid-century Australian gardens — set at pond edges, in rockeries, beside birdbaths. They were made in number and most were used until they broke or were cleared away. This one was kept, and it is sound."
+    ],
+    "specs": [
+      { "label": "Material", "value": "Cast cement, hand-painted" },
+      { "label": "Period", "value": "c. 1950–1970" },
+      { "label": "Origin", "value": "Australian" },
+      { "label": "Condition", "value": "Weathered, structurally sound" },
+      { "label": "Paint", "value": "Original. Crazing and partial losses to white." },
+      { "label": "Cement", "value": "Firm. No significant chips or cracks." },
+      { "label": "Dimensions", "value": "To be confirmed on site" },
+      { "label": "Placement", "value": "Stands unaided on its integral base." }
+    ],
+    "price": null,
+    "price_note": "Each object priced plainly. Enquire for the current figure and the certificate of provenance.",
+    "square_url": null
+  },
+  {
+    "slug": "rooster",
+    "name": "Mid-Century Cast Concrete Garden Rooster.",
+    "eyebrow": "Cast concrete · Hand-painted · Australian · c. 1950–1970",
+    "era_caption": "Cast concrete — c. 1950–1970 · Kept under cover",
+    "image": "images/heirloom-rooster.jpg",
+    "image_alt": "Mid-Century Cast Concrete Garden Rooster on a hay bale in an old timber shed, with two real chickens nearby",
+    "height": "tall",
+    "status": "Released",
+    "tags": ["concrete", "figurative"],
+    "card_material_line": "Cast concrete, hand-painted · Australian",
+    "provenance": {
+      "origin": { "value": "Australian", "note": "Acquired with provenance documented; kept indoors for most of its life." },
+      "period": { "value": "c. 1950–1970", "note": "Cast in the post-war Australian decorative concrete tradition." },
+      "material": { "value": "Cast concrete", "note": "Hand-painted, original palette intact." },
+      "condition": { "value": "Excellent", "note": "Unusually complete. Original paint substantially intact; concrete sound." }
+    },
+    "prose": [
+      "A life-sized garden rooster in cast concrete, hand-painted in the original palette and remarkably intact for its age. White body, scarlet comb and wattle, ochre beak and feet, picked out on a turquoise integral base. The casting is detailed — the modelled feathering on the breast and tail, the upright stance with the head raised — and the form has the confident presence of a piece that was made to stand alone in a yard or beside a coop.",
+      "It is in unusually complete condition. The hand-painting remains largely as it was applied, with only faint crazing and minimal loss across the body. The colours have held. Where most concrete objects of this period read primarily through their weathering, this rooster reads through its preservation: it has spent most of its life under cover, which is the only honest explanation for the survival of paint this intact on a casting this old.",
+      "We tend to release weathered objects. We are releasing this one because the preservation itself is a record of care — someone over six or seven decades chose to bring it in. That custodianship is what's continued forward when the next garden takes it on.",
+      "Figural concrete birds were a fixture of mid-century Australian rural and suburban properties — placed near the chook house, beside garden gates, on rockeries. Most stood out in all weather and show it. This one didn't, and doesn't."
+    ],
+    "specs": [
+      { "label": "Material", "value": "Cast concrete, hand-painted" },
+      { "label": "Period", "value": "c. 1950–1970" },
+      { "label": "Origin", "value": "Australian" },
+      { "label": "Condition", "value": "Excellent. Unusually complete." },
+      { "label": "Paint", "value": "Original. Faint crazing only; minimal loss." },
+      { "label": "Concrete", "value": "Sound. No chips or cracks." },
+      { "label": "Dimensions", "value": "To be confirmed on site" },
+      { "label": "Placement", "value": "Stands unaided on its integral base." }
+    ],
+    "price": null,
+    "price_note": "Each object priced plainly. Enquire for the current figure and the certificate of provenance.",
+    "square_url": null
+  }
+]
+  </script>
+
   <script>
-    // Theme — Canopy (Paper) is default; Understory (Deep) is the toggle
+    // ─── Read catalogue data from the embedded JSON block ────────────────
+    const CATALOGUE = JSON.parse(document.getElementById('heirloom-catalogue').textContent);
+
+    // ─── Small helper for safe HTML escaping ─────────────────────────────
+    function esc(s) {
+      if (s == null) return '';
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // ─── Render the catalogue grid ───────────────────────────────────────
+    function renderCatalogue(filterTag) {
+      const grid = document.getElementById('grid');
+      const isAll = !filterTag || filterTag === 'all';
+      const objects = CATALOGUE.filter(o => isAll || (o.tags || []).includes(filterTag));
+
+      grid.innerHTML = objects.map(o => {
+        const heightClass = o.height && o.height !== 'standard' ? ' ' + o.height : '';
+        const tagAttr = (o.tags || []).join(' ');
+        return `
+          <div class="card${heightClass}" data-tags="${esc(tagAttr)}" onclick="goDetail('${esc(o.slug)}')">
+            <div class="ph">
+              <img class="ph-img" src="${esc(o.image)}" alt="${esc(o.image_alt)}" loading="lazy" />
+            </div>
+            <div class="badge">${esc(o.status)}</div>
+            <div class="era">${esc(o.era_caption)}</div>
+            <div class="card-ft">
+              <p class="card-name">${esc(o.name)}</p>
+              <p class="card-mat">${esc(o.card_material_line)}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Update count
+      const ct = document.getElementById('ct');
+      if (ct) ct.textContent = objects.length + ' object' + (objects.length !== 1 ? 's' : '');
+      grid.classList.toggle('filtered', !isAll);
+    }
+
+    // ─── Render a single detail page ─────────────────────────────────────
+    function renderDetail(obj) {
+      const priceBlock = obj.price
+        ? `<p class="d-price">${esc(obj.price)}</p>`
+        : `<p class="d-price">Price on application</p>`;
+      const enqBtn = obj.square_url
+        ? `<a href="${esc(obj.square_url)}" target="_blank" rel="noopener" class="btn-enq" style="text-decoration:none;display:inline-block">Purchase via Square →</a>`
+        : `<button class="btn-enq">Enquire about this object</button>`;
+
+      const provRows = ['origin', 'period', 'material', 'condition'].map(k => {
+        const p = obj.provenance[k] || {};
+        const label = k.charAt(0).toUpperCase() + k.slice(1);
+        return `
+          <div class="d-prov-item">
+            <span class="d-prov-lbl">${esc(label)}</span>
+            <p class="d-prov-val">${esc(p.value || '')}</p>
+            <p class="d-prov-note">${esc(p.note || '')}</p>
+          </div>`;
+      }).join('');
+
+      const proseBlock = (obj.prose || []).map(p => `<p>${esc(p)}</p>`).join('\n        ');
+
+      const specsBlock = (obj.specs || []).map(s =>
+        `<div class="d-spec"><span class="d-slbl">${esc(s.label)}</span><span class="d-sval">${esc(s.value)}</span></div>`
+      ).join('\n        ');
+
+      return `
+        <div id="det-${esc(obj.slug)}" class="detail on">
+          <div class="d-hero">
+            <img class="d-hero-img" src="${esc(obj.image)}" alt="${esc(obj.image_alt)}" />
+            <div class="d-hero-shade"></div>
+            <svg class="d-hero-seal"><use href="#heirloom-seal"/></svg>
+            <div class="d-hero-c">
+              <div>
+                <span class="d-eyebrow">${esc(obj.eyebrow)}</span>
+                <h1 class="d-title">${esc(obj.name)}</h1>
+              </div>
+              <div style="text-align:right">
+                <div class="d-status-lbl">Status</div>
+                <div class="d-status-val">${esc(obj.status)}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-prov">${provRows}</div>
+
+          <div class="d-body">
+            <div class="d-desc">
+              ${proseBlock}
+            </div>
+            <div class="d-specs">
+              ${specsBlock}
+            </div>
+          </div>
+
+          <div class="d-promise">
+            <div class="d-promise-head">
+              <span class="accent-rule"></span>
+              <span class="label" style="display:block;margin-bottom:.75rem">Released with the Heirloom Promise</span>
+              <h3>Four guarantees, every release.</h3>
+              <p>This object is released with documented provenance, an honest condition statement, a custodianship note, and a lifetime trade-back. The trade-back is transferable.</p>
+            </div>
+            <div class="d-promise-grid">
+              <div class="d-pi"><span class="d-pi-num">01</span><p class="d-pi-name">Provenance.</p><p class="d-pi-txt">Origin, period, material, prior life where known.</p></div>
+              <div class="d-pi"><span class="d-pi-num">02</span><p class="d-pi-name">Condition.</p><p class="d-pi-txt">Honest statement, including imperfection.</p></div>
+              <div class="d-pi"><span class="d-pi-num">03</span><p class="d-pi-name">Custodianship.</p><p class="d-pi-txt">A note on how to live with the object.</p></div>
+              <div class="d-pi"><span class="d-pi-num">04</span><p class="d-pi-name">Trade-back.</p><p class="d-pi-txt">Lifetime offer to repurchase into the catalogue.</p></div>
+            </div>
+          </div>
+
+          <div class="d-buy">
+            <div>
+              ${priceBlock}
+              <p class="d-pnote">${esc(obj.price_note || '')}</p>
+            </div>
+            ${enqBtn}
+          </div>
+
+          <footer>
+            <svg class="foot-seal"><use href="#heirloom-seal"/></svg>
+            <div class="foot-brand">
+              <span class="foot-name">Heirloom.</span>
+              <span class="foot-by">A Gardener &amp; Son imprint</span>
+            </div>
+            <nav class="foot-nav"><a href="#" onclick="goHome();return false">← All objects</a></nav>
+          </footer>
+        </div>
+      `;
+    }
+
+    // ─── Theme — Canopy (Paper) is default; Understory (Deep) is the toggle
     const body = document.body;
     const themeBtn = document.getElementById('theme-btn');
     const themeLabel = document.getElementById('theme-label');
@@ -1007,7 +1021,7 @@
       localStorage.setItem('heirloom-theme', isUnder ? 'understory' : 'canopy');
     });
 
-    // Nav — hides while the catalogue filter bar is sticking, reappears before and after
+    // ─── Nav — hides while the catalogue filter bar is sticking
     const nav = document.getElementById('site-nav');
     const filterBar = document.querySelector('.filter-bar');
     const NAV_THRESHOLD = 80;
@@ -1016,58 +1030,51 @@
       let inCatalogueZone = false;
       if (filterBar) {
         const rect = filterBar.getBoundingClientRect();
-        // Filter bar is "stuck" when its top is at 0 (or above, due to scroll)
-        // and its bottom is still on screen (the catalogue is still in view)
         inCatalogueZone = rect.top <= 0 && rect.bottom > 0;
       }
-      // Show nav when scrolled past hero AND not in catalogue zone
       nav.classList.toggle('scrolled', scrolledPastHero && !inCatalogueZone);
     }
     window.addEventListener('scroll', updateNav, { passive: true });
     window.addEventListener('resize', updateNav, { passive: true });
-    updateNav();
 
-    // Detail pages
-    function goDetail(id) {
+    // ─── Detail pages — now generated from catalogue data
+    function goDetail(slug) {
+      const obj = CATALOGUE.find(o => o.slug === slug);
+      if (!obj) {
+        console.warn('No catalogue entry for slug:', slug);
+        return;
+      }
       document.getElementById('homepage').style.display = 'none';
-      document.querySelectorAll('.detail').forEach(d => d.classList.remove('on'));
-      const page = document.getElementById('det-' + id);
-      if (page) { page.classList.add('on'); window.scrollTo(0, 0); }
+      const host = document.getElementById('detail-host');
+      host.innerHTML = renderDetail(obj);
       document.getElementById('back-btn').classList.add('on');
       nav.classList.add('scrolled');
+      window.scrollTo(0, 0);
     }
 
     function goHome() {
-      document.querySelectorAll('.detail').forEach(d => d.classList.remove('on'));
+      const host = document.getElementById('detail-host');
+      host.innerHTML = '';
       document.getElementById('homepage').style.display = 'block';
       document.getElementById('back-btn').classList.remove('on');
       window.scrollTo(0, 0);
       updateNav();
     }
 
-    // Filter
+    // ─── Filter — re-renders the catalogue with the chosen tag
     function doFilter(tag, btn) {
       document.querySelectorAll('.pill').forEach(p => p.classList.remove('on'));
       if (btn) btn.classList.add('on');
-      const grid = document.getElementById('grid');
-      const isAll = tag === 'all';
-      let n = 0;
-      document.querySelectorAll('.card').forEach(c => {
-        const match = isAll || (c.dataset.tags || '').includes(tag);
-        c.style.display = match ? '' : 'none';
-        if (match) n++;
-      });
-      grid.classList.toggle('filtered', !isAll);
-      document.getElementById('ct').textContent = n + ' object' + (n !== 1 ? 's' : '');
+      renderCatalogue(tag === 'all' ? null : tag);
     }
 
-    // Reveal
+    // ─── Reveal animations
     const ro = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
     }, { threshold: 0.07 });
     document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-    // Smooth scroll
+    // ─── Smooth scroll for in-page links
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
@@ -1076,6 +1083,10 @@
         target.scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    // ─── Initial render
+    renderCatalogue();
+    updateNav();
   </script>
 </body>
 </html>
