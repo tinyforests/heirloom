@@ -897,7 +897,7 @@
         const heightClass = o.height && o.height !== 'standard' ? ' ' + o.height : '';
         const tagAttr = (o.tags || []).join(' ');
         return `
-          <div class="card${heightClass}" data-tags="${esc(tagAttr)}" onclick="goDetail('${esc(o.slug)}')">
+          <div class="card${heightClass}" data-tags="${esc(tagAttr)}" data-slug="${esc(o.slug)}">
             <div class="ph">
               <img class="ph-img" src="${esc(o.image)}" alt="${esc(o.image_alt)}" loading="lazy" />
             </div>
@@ -1087,6 +1087,15 @@
     // ─── Initial render
     renderCatalogue();
     updateNav();
+
+    // ─── Click delegation — listen on the grid container, fire goDetail
+    //     when a card (or any descendant of a card) is clicked.
+    document.getElementById('grid').addEventListener('click', function(e) {
+      const card = e.target.closest('.card');
+      if (!card) return;
+      const slug = card.dataset.slug;
+      if (slug) goDetail(slug);
+    });
   </script>
 </body>
 </html>
