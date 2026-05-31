@@ -571,7 +571,6 @@
 
     <!-- Catalogue grid — populated from JSON below -->
     <div class="obj-grid" id="grid"></div>
-    </div>
 
     </div><!-- /catalogue-zone -->
 
@@ -1047,22 +1046,22 @@
         console.warn('No catalogue entry for slug:', slug);
         return;
       }
+      // Scroll up first (instant) so the smooth-scroll CSS doesn't animate
+      // across the entire homepage before swapping to detail view
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       const host = document.getElementById('detail-host');
       host.innerHTML = renderDetail(obj);
       document.body.classList.add('viewing-detail');
       document.getElementById('back-btn').classList.add('on');
       nav.classList.add('scrolled');
-      // Defer scroll to after the browser applies the body class
-      // and lays out the new detail content
-      requestAnimationFrame(() => window.scrollTo(0, 0));
     }
 
     function goHome() {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       document.body.classList.remove('viewing-detail');
       const host = document.getElementById('detail-host');
       host.innerHTML = '';
       document.getElementById('back-btn').classList.remove('on');
-      requestAnimationFrame(() => window.scrollTo(0, 0));
       updateNav();
     }
 
