@@ -566,12 +566,7 @@
 
     <div class="filter-bar" id="index">
       <span class="f-lbl">Filter</span>
-      <div class="pills">
-        <button class="pill on" onclick="doFilter('all',this)">All</button>
-        <button class="pill" onclick="doFilter('concrete',this)">Concrete</button>
-        <button class="pill" onclick="doFilter('cement',this)">Cement</button>
-        <button class="pill" onclick="doFilter('figurative',this)">Figurative</button>
-      </div>
+      <div class="pills" id="pills"></div>
       <span class="f-count" id="ct">4 objects</span>
     </div>
 
@@ -702,7 +697,20 @@
   <!--   image_alt     — Accessibility / SEO alt text                       -->
   <!--   height        — "standard" | "tall" | "taller" — for masonry       -->
   <!--   status        — "Released" | "Archive" | "Pending"                 -->
-  <!--   tags          — Array of filter tags from the filter bar           -->
+  <!--   tags          — Array of category tags. Pick from the six categories:  -->
+  <!--                   "figures"   — figurative castings (birds, animals,    -->
+  <!--                                 classical figures, ornaments)            -->
+  <!--                   "vessels"   — urns, troughs, birdbaths, planters,     -->
+  <!--                                 pots, anything that holds                -->
+  <!--                   "furniture" — benches, chairs, tables, stools         -->
+  <!--                   "tools"     — trowels, forks, shears, hand tools      -->
+  <!--                   "hardware"  — gates, finials, house numbers, hooks,   -->
+  <!--                                 boot scrapers, architectural metalwork  -->
+  <!--                   "pictures"  — framed art, botanical prints, garden    -->
+  <!--                                 photography                              -->
+  <!--                   An object can carry more than one tag if it genuinely  -->
+  <!--                   spans two categories. Use sparingly — most objects    -->
+  <!--                   belong cleanly in one.                                  -->
   <!--   provenance    — Object with origin / period / material / condition -->
   <!--                   each with `value` (short) and `note` (longer)      -->
   <!--   prose         — Array of paragraphs for the detail page body       -->
@@ -722,7 +730,7 @@
     "image_alt": "Mid-Century Cast Concrete Garden Stork standing in a wild garden in front of a weathered Victorian house",
     "height": "tall",
     "status": "Released",
-    "tags": ["concrete", "figurative"],
+    "tags": ["figures"],
     "card_material_line": "Cast concrete body, steel legs · Australian",
     "provenance": {
       "origin": { "value": "Australian", "note": "Acquired from a private garden in regional Victoria." },
@@ -759,7 +767,7 @@
     "image_alt": "A second Mid-Century Cast Concrete Garden Stork, white body softened by years of weather, black wing tips intact",
     "height": "tall",
     "status": "Released",
-    "tags": ["concrete", "figurative"],
+    "tags": ["figures"],
     "card_material_line": "Cast concrete, hand-painted · Australian",
     "provenance": {
       "origin": { "value": "Australian", "note": "Acquired with full provenance documented." },
@@ -794,7 +802,7 @@
     "image_alt": "Mid-Century Cast Cement Garden Duck at a pond edge in front of an old shearing shed",
     "height": "standard",
     "status": "Released",
-    "tags": ["cement", "figurative"],
+    "tags": ["figures"],
     "card_material_line": "Cast cement, hand-painted · Australian",
     "provenance": {
       "origin": { "value": "Australian", "note": "Acquired from a regional garden, NSW." },
@@ -830,7 +838,7 @@
     "image_alt": "Mid-Century Cast Concrete Garden Rooster on a hay bale in an old timber shed, with two real chickens nearby",
     "height": "tall",
     "status": "Released",
-    "tags": ["concrete", "figurative"],
+    "tags": ["figures"],
     "card_material_line": "Cast concrete, hand-painted · Australian",
     "provenance": {
       "origin": { "value": "Australian", "note": "Acquired with provenance documented; kept indoors for most of its life." },
@@ -1066,6 +1074,39 @@
       renderCatalogue(tag === 'all' ? null : tag);
     }
 
+    // ─── Filter pills — generated from the catalogue itself.
+    //     Categories with no matching object are omitted (no dead clicks).
+    //     The canonical six-category taxonomy is defined here; ordering and
+    //     labels live in this one place so they're easy to change later.
+    const FILTER_CATEGORIES = [
+      { tag: 'figures',   label: 'Figures'   },
+      { tag: 'vessels',   label: 'Vessels'   },
+      { tag: 'furniture', label: 'Furniture' },
+      { tag: 'tools',     label: 'Tools'     },
+      { tag: 'hardware',  label: 'Hardware'  },
+      { tag: 'pictures',  label: 'Pictures'  }
+    ];
+
+    function renderFilterPills() {
+      const pillsEl = document.getElementById('pills');
+      if (!pillsEl) return;
+      // Find which categories are populated in the current catalogue
+      const presentTags = new Set();
+      CATALOGUE.forEach(o => (o.tags || []).forEach(t => presentTags.add(t)));
+      // Build pills: All first, then any of the six categories that have objects
+      const pills = ['<button class="pill on" data-filter="all">All</button>'];
+      FILTER_CATEGORIES.forEach(cat => {
+        if (presentTags.has(cat.tag)) {
+          pills.push(`<button class="pill" data-filter="${esc(cat.tag)}">${esc(cat.label)}</button>`);
+        }
+      });
+      pillsEl.innerHTML = pills.join('');
+      // Wire up clicks via delegation
+      pillsEl.querySelectorAll('.pill').forEach(btn => {
+        btn.addEventListener('click', () => doFilter(btn.dataset.filter, btn));
+      });
+    }
+
     // ─── Reveal animations
     const ro = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
@@ -1083,6 +1124,7 @@
     });
 
     // ─── Initial render
+    renderFilterPills();
     renderCatalogue();
     updateNav();
 
