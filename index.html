@@ -241,6 +241,10 @@
     .card:nth-child(6) .ph{background:#3a4830}.card:nth-child(7) .ph{background:#4c3c28}.card:nth-child(8) .ph{background:#384030}
     .era{position:absolute;bottom:1rem;left:1.25rem;z-index:4;font-size:.5625rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warmed-patina);font-style:italic;font-family:var(--font-serif)}
     .badge{position:absolute;top:.875rem;right:.875rem;z-index:4;font-size:.5625rem;letter-spacing:.16em;text-transform:uppercase;padding:3px 8px;border:1px solid rgba(255,240,220,.25);color:rgba(255,240,220,.7);background:rgba(22,26,16,.55);backdrop-filter:blur(4px)}
+    /* Kept state — object is now with a steward. Card visually deprioritised. */
+    .card.kept{opacity:.7}
+    .card.kept:hover{opacity:.92}
+    .card.kept .badge{border-color:rgba(201,160,122,.55);color:var(--warmed-patina);background:rgba(22,26,16,.7)}
     .badge.arc{opacity:.45}
     .card-ft{position:absolute;bottom:0;left:0;right:0;padding:3rem 1.25rem 2rem;background:linear-gradient(to top,rgba(18,22,14,.88) 0%,transparent 100%)}
     .card-name{font-family:var(--font-display);font-size:1.0625rem;font-weight:400;color:var(--beige);line-height:1.15;margin-bottom:.2rem}
@@ -375,6 +379,11 @@
     .d-pi-txt{font-family:var(--font-sans);font-size:.8125rem;line-height:1.6;opacity:.7}
 
     .d-buy{padding:3.5rem var(--pad-x);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;max-width:var(--max-w);margin:0 auto}
+    /* Kept variant — quiet steward statement, no commerce affordance */
+    .d-buy-kept{display:block;text-align:center;padding:4.5rem var(--pad-x)}
+    .d-kept-statement{max-width:54ch;margin:0 auto}
+    .d-kept-headline{font-family:var(--font-display);font-size:clamp(1.5rem,2.6vw,2rem);color:var(--fg);line-height:1.15;margin-bottom:1.5rem}
+    .d-kept-note{font-family:var(--font-serif);font-style:italic;font-size:.9375rem;line-height:1.8;color:var(--patina);max-width:54ch;margin:0 auto}
     .d-price{font-family:var(--font-display);font-size:2.25rem}
     .d-pnote{font-family:var(--font-serif);font-size:.8125rem;color:var(--patina);font-style:italic;margin-top:4px}
 
@@ -696,7 +705,16 @@
   <!--   image         — Filename in /images/. e.g. "heirloom-stork.jpeg"   -->
   <!--   image_alt     — Accessibility / SEO alt text                       -->
   <!--   height        — "standard" | "tall" | "taller" — for masonry       -->
-  <!--   status        — "Released" | "Archive" | "Pending"                 -->
+  <!--   status        — Lifecycle state of the object. One of:                -->
+  <!--                   "Released" — currently available in the catalogue,    -->
+  <!--                                enquireable                               -->
+  <!--                   "Kept"     — now with a steward. Stays visible in the -->
+  <!--                                catalogue at reduced opacity. Detail page-->
+  <!--                                still works but enquire button is        -->
+  <!--                                suppressed; trade-back note shown        -->
+  <!--                                instead. May return one day.             -->
+  <!--                   "Reserved" — held pending transaction (optional)      -->
+  <!--                   "Archive"  — older record, not currently for sale     -->
   <!--   tags          — Array of category tags. Pick from the six categories:  -->
   <!--                   "figures"   — figurative castings (birds, animals,    -->
   <!--                                 classical figures, ornaments)            -->
@@ -874,7 +892,7 @@
     "image": "images/heirloom-heron.jpeg",
     "image_alt": "Mid-Century Cast Concrete Garden Heron with weathered white paint and lichen bloom, standing in front of a grand decaying Victorian house",
     "height": "tall",
-    "status": "Released",
+    "status": "Kept",
     "tags": ["figures"],
     "card_material_line": "Cast concrete body, steel legs · Australian",
     "provenance": {
@@ -929,9 +947,10 @@
 
       grid.innerHTML = objects.map(o => {
         const heightClass = o.height && o.height !== 'standard' ? ' ' + o.height : '';
+        const keptClass = o.status === 'Kept' ? ' kept' : '';
         const tagAttr = (o.tags || []).join(' ');
         return `
-          <div class="card${heightClass}" data-tags="${esc(tagAttr)}" data-slug="${esc(o.slug)}">
+          <div class="card${heightClass}${keptClass}" data-tags="${esc(tagAttr)}" data-slug="${esc(o.slug)}">
             <div class="ph">
               <img class="ph-img" src="${esc(o.image)}" alt="${esc(o.image_alt)}" loading="lazy" />
             </div>
@@ -953,12 +972,35 @@
 
     // ─── Render a single detail page ─────────────────────────────────────
     function renderDetail(obj) {
-      const priceBlock = obj.price
-        ? `<p class="d-price">${esc(obj.price)}</p>`
-        : `<p class="d-price">Price on application</p>`;
-      const enqBtn = obj.square_url
-        ? `<a href="${esc(obj.square_url)}" target="_blank" rel="noopener" class="btn-enq" style="text-decoration:none;display:inline-block">Purchase via Square →</a>`
-        : `<button class="btn-enq">Enquire about this object</button>`;
+      const isKept = obj.status === 'Kept';
+
+      // Kept objects: no price, no button — replaced by steward statement.
+      // Released objects: show price (or POA) and enquire/purchase button.
+      let buyBlock;
+      if (isKept) {
+        buyBlock = `
+          <div class="d-buy d-buy-kept">
+            <div class="d-kept-statement">
+              <p class="d-kept-headline">This object is now with a steward.</p>
+              <p class="d-kept-note">Under the Heirloom Promise, every object carries a lifetime, transferable trade-back. This piece may one day return to the catalogue. If you would like to be notified when objects of this kind become available again, write to us at the studio.</p>
+            </div>
+          </div>`;
+      } else {
+        const priceBlock = obj.price
+          ? `<p class="d-price">${esc(obj.price)}</p>`
+          : `<p class="d-price">Price on application</p>`;
+        const enqBtn = obj.square_url
+          ? `<a href="${esc(obj.square_url)}" target="_blank" rel="noopener" class="btn-enq" style="text-decoration:none;display:inline-block">Purchase via Square →</a>`
+          : `<button class="btn-enq">Enquire about this object</button>`;
+        buyBlock = `
+          <div class="d-buy">
+            <div>
+              ${priceBlock}
+              <p class="d-pnote">${esc(obj.price_note || '')}</p>
+            </div>
+            ${enqBtn}
+          </div>`;
+      }
 
       const provRows = ['origin', 'period', 'material', 'condition'].map(k => {
         const p = obj.provenance[k] || {};
@@ -1021,13 +1063,7 @@
             </div>
           </div>
 
-          <div class="d-buy">
-            <div>
-              ${priceBlock}
-              <p class="d-pnote">${esc(obj.price_note || '')}</p>
-            </div>
-            ${enqBtn}
-          </div>
+          ${buyBlock}
 
           <footer>
             <svg class="foot-seal"><use href="#heirloom-seal"/></svg>
